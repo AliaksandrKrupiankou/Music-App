@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { SearchSongService } from './services/search-song-service';
-import { Track } from './model';
+import { SearchSongService } from '../../core/services/search-song-service';
+import { Track } from '../../models/app-interface';
 
 @Component({
   selector: 'app-search-page',

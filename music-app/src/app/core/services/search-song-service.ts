@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { Track } from '../model';
+import { Track } from '../../models/app-interface';
 import { map, Observable } from 'rxjs';
-import { ApiSearchResponse, ApiSong } from '../apiModel';
+import { ApiSearchResponse, ApiSong } from '../../models/api-interface';
 
 @Injectable({
   providedIn: 'root',
