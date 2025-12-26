@@ -1,0 +1,10 @@
+<div class="page">
+    <div class="search-input">
+        <input type="text" [formControl]="serachInput">
+        <button (click)="search()">search</button>
+    </div>
+
+    <div class="track-list">
+        <app-track-list [tracks]="foundSongs()"></app-track-list>
+    </div>
+</div>
