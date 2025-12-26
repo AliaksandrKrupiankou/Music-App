@@ -1,3 +1,55 @@
 :host{
+    height: var(--player-bar-height);
+    background-color: var(--player-bar-bg);
+    margin: var(--player-bar-margin);
+    border-radius: var(--player-border-radius);
+    padding: 5px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.cover-img img{
+    width: var(--player-bar-cover-size);
+    height: var(--player-bar-cover-size);
+    border-radius: var(--player-bar-cover-br);
+}
+
+.track-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    margin-left: 10px;
+}
+
+.title{
+    color: var(--main-text-color);
+}
+.artist{
+    color: var(--secondary-text-color);
+}
+
+.navigation{
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-btn{
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7d754;
+    width: 50px;
     height: 50px;
+    border-radius: 20px;
 }

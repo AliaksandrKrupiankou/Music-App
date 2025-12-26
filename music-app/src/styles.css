@@ -6,6 +6,28 @@
     box-sizing: border-box;
 }
 
+:host{
+    background-color: var(--bg-main);
+}
+
 :root{
-    --bg-main: #141414
+    --bg-main: #141414;
+    --bg-secondary: #1b1b1b;
+    --main-text-color: #e6e6e6;
+    --secondary-text-color: #878686;
+
+    --player-border-radius: 10px;
+    --player-bar-margin: 0px 15px 15px 0px;
+    --player-bar-bg: #323838;
+    --player-bar-height: 75px;
+    --player-bar-cover-size: 60px;
+    --player-bar-cover-br: 10px;
+
+    --page-border-radius: 20px; 
+    --router-outlet-margin: 15px 15px 15px 0px;
+    --router-outlet-padding: 30px;
+
+    --sidebar-width: 240px;
+    --sidebar-margin-top: 30px;
+    --sidebar-links-gap: 30px;
 }
