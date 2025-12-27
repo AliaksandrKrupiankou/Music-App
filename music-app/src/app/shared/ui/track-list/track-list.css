@@ -25,6 +25,7 @@ ul{
     flex-direction: row;
     padding: 5px;
     border-radius: 10px;
+    gap: 10px;
 }
 
 .track:hover{
@@ -70,5 +71,19 @@ ul{
     height: 30px;
     border-radius: 50%;
     background-color: var(--main-text-color);
+}
+
+.like{
+    display: flex;
+    align-items: center;
+}
+
+.like svg{
+    color: var(--secondary-text-color);
+}
+
+.like-btn{
+    all: unset;
+    cursor: pointer;
 }
 

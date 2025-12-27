@@ -31,6 +31,8 @@ export class AudioService {
       this.currentTrack.set(track);
     }
 
+    
+
 
 
     this.player.play()
@@ -42,6 +44,10 @@ export class AudioService {
     );
   }
 
+  changeVolume(value: string){
+
+    this.player.volume = Number(value);
+  }
 
 
   playNextTrack(){
