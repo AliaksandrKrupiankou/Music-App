@@ -1,4 +1,11 @@
 <div class="container">
+
+    <div class="during">
+    <input type="range" #rangeInput [max]="service.currentTrack()?.duration" [value]="service.currentTime()" (change)="seekTrack(rangeInput.value)">
+    </div>
+
+    <div class="main-container">
+
     <div class="cover-img">
         <img src="{{service.currentTrack()?.coverUrl}}" alt="cover-img">
     </div>
@@ -33,6 +40,7 @@
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-skip-forward-icon lucide-skip-forward">
             <path d="M21 4v16"/><path d="M6.029 4.285A2 2 0 0 0 3 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z"/></svg>
         </button>
+    </div>
     </div>
 
     

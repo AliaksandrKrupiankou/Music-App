@@ -9,4 +9,8 @@ import { AudioService } from '../../services/audio-service';
 })
 export class PlayerBarComponent {
   service = inject(AudioService);
+
+  seekTrack(val: string){
+    this.service.seekTo(Number(val))
+  }
 }
