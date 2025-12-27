@@ -1,13 +1,20 @@
 <div class="container">
 
     <div class="during">
-    <input type="range" #rangeInput [max]="service.currentTrack()?.duration" [value]="service.currentTime()" (change)="seekTrack(rangeInput.value)">
+
+    <input type="range" 
+        #rangeInput 
+        [max]="service.currentTrack()?.duration" 
+        [value]="service.currentTime()" 
+        (change)="seekTrack(rangeInput.value)"
+        [style.background-size]="progress() + '% 100%'">
     </div>
 
     <div class="main-container">
 
     <div class="cover-img">
-        <img src="{{service.currentTrack()?.coverUrl}}" alt="cover-img">
+        <img [src]="service.currentTrack()?.coverUrl"
+        [hidden]="!service.currentTrack()">
     </div>
 
     <div class="track-info">

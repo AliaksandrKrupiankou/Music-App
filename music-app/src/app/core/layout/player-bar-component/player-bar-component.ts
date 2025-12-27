@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { AudioService } from '../../services/audio-service';
 
 @Component({
@@ -12,5 +12,14 @@ export class PlayerBarComponent {
 
   seekTrack(val: string){
     this.service.seekTo(Number(val))
-  }
+  };
+
+  progress = computed(() => {
+    const current = this.service.currentTime();
+    const fullTime = this.service.currentTrack()?.duration;
+
+    if(fullTime === 0 || fullTime === null || fullTime === undefined) return 0;
+
+    return (current / fullTime) * 100;
+  })
 }

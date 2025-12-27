@@ -16,17 +16,23 @@
 ul{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
     list-style: none;
 }
 
 .track{
     display: flex;
     flex-direction: row;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.track:hover{
+    background-color: #393939;
 }
 
 .track-info{
-    width: 20%;
+    width: 30%;
 }
 
 .track-name{
@@ -62,7 +68,7 @@ ul{
     background-color: beige;
     width: 30px;
     height: 30px;
-    border-radius: 5px;
+    border-radius: 50%;
     background-color: var(--main-text-color);
 }
 

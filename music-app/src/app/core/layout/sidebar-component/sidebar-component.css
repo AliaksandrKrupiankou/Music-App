@@ -35,3 +35,7 @@ a:hover{
     margin-top: 30px;
     gap: var(--sidebar-links-gap);
 }
+
+.active-link{
+    color: var(--main-text-color);
+}

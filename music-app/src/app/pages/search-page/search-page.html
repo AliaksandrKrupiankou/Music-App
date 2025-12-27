@@ -1,10 +1,10 @@
 <div class="page">
     <div class="search-input">
-        <input type="text" [formControl]="serachInput" placeholder="Search of track">
-        <button (click)="search()">search</button>
+        <app-search (foundSongs)="foundSongs.set($event)"></app-search>
     </div>
 
     <div class="track-list">
         <app-track-list [tracks]="foundSongs()"></app-track-list>
     </div>
+    
 </div>

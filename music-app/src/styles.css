@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Lato", sans-serif;
 }
 
 :host{
@@ -15,6 +16,7 @@
     --bg-secondary: #1b1b1b;
     --main-text-color: #e6e6e6;
     --secondary-text-color: #878686;
+    --main-yellow-color: #f7d754;
 
     --player-border-radius: 10px;
     --player-bar-margin: 0px 15px 15px 0px;
