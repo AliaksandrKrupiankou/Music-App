@@ -48,6 +48,8 @@
 
 .cover-img{
     width: 7%;
+    min-width: 100px;
+    flex-shrink: 0;
 }
 
 .cover-img img{
@@ -123,7 +125,25 @@
     justify-content: center;
     position: relative;
     z-index: 10;
+    margin-right: 15px;
+
 }
+
+.volume button {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 60px;
+    color: var(--secondary-text-color);
+}
+
+
+
+
+
 
 .vol-wrapper {
     position: absolute;

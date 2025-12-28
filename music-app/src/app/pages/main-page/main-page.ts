@@ -9,6 +9,6 @@ import { FavoriteService } from '../../core/services/favorite-service';
   styleUrl: './main-page.css',
 })
 export class MainPage {
-  likedService = inject(FavoriteService);
+
   
 }
