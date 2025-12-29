@@ -1,3 +1,5 @@
+<div class="search-area">
+
 <div class="search">
     <div class="input-wrapper">
 
@@ -17,3 +19,15 @@
     </button>
 
 </div>
+
+<div class="search-type">
+    <button class="filter" [class.active]="typeOfSearch() === 'songs'" (click)="setSearchType('songs')">
+        Songs
+    </button>
+
+    <button class="filter" [class.active]="typeOfSearch() === 'artists'" (click)="setSearchType('artists')">
+        Artists
+    </button>
+</div>
+</div>
+

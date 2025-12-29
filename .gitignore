@@ -20,7 +20,7 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
-
+.angular/
 # Visual Studio Code
 .vscode/*
 !.vscode/settings.json
@@ -43,7 +43,8 @@ __screenshots__/
 .env.development.local
 .env.test.local
 .env.production.local
-
+.gitignore
 # System files
 .DS_Store
 Thumbs.db
+/.angular/

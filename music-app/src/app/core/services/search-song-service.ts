@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Track } from '../../models/app-interface';
 import { map, Observable } from 'rxjs';
 import { ApiSearchResponse, ApiSong } from '../../models/api-interface';
+import { ApiArtistSearchResponse, ApiArtistShort, Artist } from '../../models/api-artists-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class SearchSongService {
 
   http = inject(HttpClient);
 
-  url = 'https://saavn.sumit.co/api/search/songs';
+  url = 'https://music-app-api-two.vercel.app/api/search/';
 
   searchSongs(query: string): Observable<Track[]>{
 
@@ -25,7 +26,7 @@ export class SearchSongService {
       limit: 10,
     }
 
-    return this.http.get<ApiSearchResponse>(this.url, { params }).pipe(
+    return this.http.get<ApiSearchResponse>(`${this.url}songs`, { params }).pipe(
       map((response) => {
         const songs = response.data?.results || [];
         return songs.map(track => this.trasformToTrack(track));
@@ -45,6 +46,35 @@ export class SearchSongService {
       duration: numberDuration,
       audioUrl: bestSound.url,
       coverUrl: bestCover.url,
+    }
+  }
+
+
+  searchArtists(query: string){
+
+    const params = {
+      query: query,
+      page: 0,
+      limit: 10,
+      language: 'english',
+    };
+
+    return this.http.get<ApiArtistSearchResponse>(`${this.url}artists`, { params }).pipe(
+      map((response) => {
+        const artists = response.data?.results || [];
+        return artists.map(artist => this.transformToArtist(artist));
+      })
+
+    )
+  }
+
+  transformToArtist(data: ApiArtistShort): Artist{
+    const bestCover = data.image[data.image.length - 1];
+    return{
+      id: data.id,
+      name: data.name,
+      role: data.role,
+      image: bestCover.url,
     }
   }
 

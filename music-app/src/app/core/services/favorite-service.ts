@@ -18,8 +18,8 @@ export class FavoriteService {
     this.localStorageService.set(this.localStorageKey, this.likedTracks());
   }
 
-  isLiked(track: Track){
-    if(this.likedTracks() !== null && this.likedTracks().some(t => t.id === track.id )){
+  isLiked(track: Track | null){
+    if(this.likedTracks() !== null &&  track !== null && this.likedTracks().some(t => t.id === track.id )){
       return true;
     } else{
       return false;
@@ -31,11 +31,15 @@ export class FavoriteService {
     this.localStorageService.set(this.localStorageKey, this.likedTracks());
   }
 
-  toggleLike(track: Track){
-    if(this.isLiked(track)){
+  toggleLike(track: Track | null){
+    if(track === null){
+      return false;
+    } else if(this.isLiked(track)){
       this.removeFromLiked(track);
+      return false;
     } else {
       this.addToLiked(track);
+      return true;
     }
   }
 }

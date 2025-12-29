@@ -173,7 +173,15 @@
     padding: 0 5px;
 }
 
+.like button{
+    all: unset;
+    cursor: pointer;
+}
 
+.like svg{
+    color: var(--secondary-text-color);
+}
 
-
-
+.like svg.liked{
+    fill: var(--secondary-text-color);
+}

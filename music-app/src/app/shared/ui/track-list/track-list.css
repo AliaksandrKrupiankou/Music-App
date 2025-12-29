@@ -66,11 +66,16 @@ ul{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: beige;
+    background-color: none;
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: var(--main-text-color);
+    background-color: var(--main-yellow-color);
+}
+
+.play-button svg{
+    background-color: none;
+    border: none;
 }
 
 .like{

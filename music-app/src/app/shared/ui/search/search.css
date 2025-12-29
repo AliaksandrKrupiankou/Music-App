@@ -1,3 +1,10 @@
+
+.search-area{
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
 .search {
     display: flex;
     gap: 10px;
@@ -73,4 +80,16 @@
 button svg{
     display: block;
     margin: 0;
+}
+
+.search-type{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
+.filter.active{
+    border-color: var(--main-yellow-color) ;
+    width: 200px;
 }
