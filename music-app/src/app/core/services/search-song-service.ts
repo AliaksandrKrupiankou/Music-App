@@ -28,12 +28,12 @@ export class SearchSongService {
     return this.http.get<ApiSearchResponse>(this.url, { params }).pipe(
       map((response) => {
         const songs = response.data?.results || [];
-        return songs.map(track => this.trasforToTrack(track));
+        return songs.map(track => this.trasformToTrack(track));
       })
     )
   }
 
-  trasforToTrack(data: ApiSong): Track{
+  trasformToTrack(data: ApiSong): Track{
     const bestCover = data.image[data.image.length - 1];
     const bestSound = data.downloadUrl[data.downloadUrl.length - 1];
     const numberDuration = Number(data.duration);

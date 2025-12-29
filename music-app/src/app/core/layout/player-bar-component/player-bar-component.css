@@ -166,8 +166,14 @@
 }
 
 .volume-slider{
+    all: unset;
     appearance: slider-vertical;
     width: 20px;
     height: 150px;
     padding: 0 5px;
 }
+
+
+
+
+

@@ -78,12 +78,20 @@ ul{
     align-items: center;
 }
 
+
 .like svg{
     color: var(--secondary-text-color);
 }
 
-.like-btn{
+.like svg.liked{
+    fill: var(--secondary-text-color);
+}
+
+.like-btn-active{
     all: unset;
     cursor: pointer;
+    background-color: none;
 }
+
+
 

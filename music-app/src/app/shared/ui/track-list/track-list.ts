@@ -2,6 +2,7 @@ import { Component, computed, inject, input, Signal } from '@angular/core';
 import { Track } from '../../../models/app-interface';
 import { AudioService } from '../../../core/services/audio-service';
 import { TrackDuringPipe } from '../../../core/pipes/track-during-pipe';
+import { FavoriteService } from '../../../core/services/favorite-service';
 
 @Component({
   selector: 'app-track-list',
@@ -12,6 +13,7 @@ import { TrackDuringPipe } from '../../../core/pipes/track-during-pipe';
 export class TrackList {
   tracks =  input<Track[]>();
   player = inject(AudioService);
+  like = inject(FavoriteService);
 
   playTrack(track: Track, playList: Track[]){
     this.player.currentPlaylist.set(playList);

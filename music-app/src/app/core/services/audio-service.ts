@@ -31,10 +31,6 @@ export class AudioService {
       this.currentTrack.set(track);
     }
 
-    
-
-
-
     this.player.play()
     .then(() => this.isPlaying.set(true))
     .catch(err => {
@@ -70,6 +66,7 @@ export class AudioService {
   playPastTrack(){
     this.currentTime.set(0);
     if(this.currentIndex() === 0){
+      this.player.currentTime = 0;
       this.playTrack(this.currentTrack()!);
     } else {
       this.playTrack(this.currentPlaylist()[this.currentIndex()! - 1]);
