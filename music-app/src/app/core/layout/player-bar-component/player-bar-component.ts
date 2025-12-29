@@ -1,6 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { AudioService } from '../../services/audio-service';
 import { FavoriteService } from '../../services/favorite-service';
+import { LocalStorageService } from '../../services/local-storage-service';
 
 @Component({
   selector: 'app-player-bar-component',
@@ -11,6 +12,7 @@ import { FavoriteService } from '../../services/favorite-service';
 export class PlayerBarComponent {
   service = inject(AudioService);
   like = inject(FavoriteService);
+
 
   seekTrack(val: string){
     this.service.seekTo(Number(val))
