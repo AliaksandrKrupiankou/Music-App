@@ -10,7 +10,7 @@
                         <img [src]="artist.image" alt="">
                     </div>
                     <div class="name">
-                        <p>{{artist.name}}</p>
+                        <a [routerLink]="['/artist', artist.id]">{{artist.name}}</a>
                     </div>
                 </div>
             </li>

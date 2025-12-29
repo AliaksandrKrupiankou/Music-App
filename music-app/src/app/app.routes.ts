@@ -3,6 +3,7 @@ import { MainLayoutComponent } from './core/layout/main-layout/main-layout-compo
 import { PlaylistPage } from './pages/playlist-page/playlist-page';
 import { SearchPage } from './pages/search-page/search-page';
 import { MainPage } from './pages/main-page/main-page';
+import { ArtistPage } from './pages/artist-page/artist-page';
 
 export const routes: Routes = [
     {
@@ -20,6 +21,10 @@ export const routes: Routes = [
             {
                 path: 'main',
                 component: MainPage,
+            },
+            {
+                path: 'artist/:artistId',
+                component: ArtistPage,
             }
 
         ]
