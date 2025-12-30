@@ -36,6 +36,16 @@ ul{
     width: 30%;
 }
 
+.track-info a {
+    all: unset;
+    cursor: pointer;
+    color: var(--secondary-text-color);
+}
+
+.track-info a:hover{
+    color: #adadad;
+}
+
 .track-name{
     color: var(--main-text-color);
 }

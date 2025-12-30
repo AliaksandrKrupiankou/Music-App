@@ -2,10 +2,11 @@ import { Component, computed, inject } from '@angular/core';
 import { AudioService } from '../../services/audio-service';
 import { FavoriteService } from '../../services/favorite-service';
 import { LocalStorageService } from '../../services/local-storage-service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-player-bar-component',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './player-bar-component.html',
   styleUrl: './player-bar-component.css',
 })

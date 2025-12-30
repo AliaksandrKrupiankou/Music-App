@@ -19,7 +19,7 @@
 
     <div class="track-info">
         <p class="title">{{service.currentTrack()?.title}}</p>
-        <p class="artist">{{service.currentTrack()?.artist}}</p>
+        <a class="artist" [routerLink]="['artist/', service.currentTrack()?.artistId]">{{service.currentTrack()?.artist}}</a>
     </div>
 
     <div class="navigation">

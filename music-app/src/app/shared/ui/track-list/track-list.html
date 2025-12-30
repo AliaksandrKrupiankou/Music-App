@@ -7,7 +7,7 @@
                 <div class="cover-img"><img [src]="track.coverUrl" alt=""></div>
                 <div class="track-info">
                     <p class="track-name">{{track.title}}</p>
-                    <p class="artist-name">{{track.artist}}</p>
+                    <a [routerLink]="['/artist', track.artistId]">{{track.artist}}</a>
                 </div>
                 <div class="play-button">
                     <button (click)="playTrack(track, tracks()!)">

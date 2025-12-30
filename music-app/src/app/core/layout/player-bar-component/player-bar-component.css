@@ -70,7 +70,10 @@
 .title{
     color: var(--main-text-color);
 }
-.artist{
+.track-info a{
+    all: unset;
+    cursor: pointer;
+    z-index: 10;
     color: var(--secondary-text-color);
 }
 
