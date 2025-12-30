@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { Track } from '../../models/app-interface';
+import { Album, Track } from '../../models/app-interface';
 import { map, Observable, tap } from 'rxjs';
-import { ApiSearchResponse, ApiSong } from '../../models/api-interface';
+import { ApiAlbumFull, ApiAlbumResponse, ApiSearchResponse, ApiSong } from '../../models/api-interface';
 import { ApiArtistSearchResponse, ApiArtistShort, Artist } from '../../models/api-artists-interface';
 import { ArtistProfile, ArtistResponse } from '../../models/api-artist-page-interface';
 
@@ -135,4 +135,33 @@ export class SearchSongService {
     }
   }
 
+  getAlbumById(id: string){
+
+    const params = {
+      id: id
+    }
+
+    return this.http.get<ApiAlbumResponse>(`${this.url}albums`, { params }).pipe(
+      map((response) => {
+        return this.albumByIdMapper(response);
+      }
+      )
+    )
+
+  }
+
+  albumByIdMapper(response: ApiAlbumResponse): Album{
+    const data = response.data;
+    const bestCover = data.image[data.image.length - 1].url; 
+    return{
+      id: data.id,
+      name: data.name,
+      description: data.description,
+      year: data.year,
+      coverUrl: bestCover,
+      artistName: data.artists.primary[0].name,
+      artistId: data.artists.primary[0].id,
+      tracks: data.songs.map(song => this.trasformToTrack(song))
+    }
+  }
 }

@@ -3,10 +3,12 @@ import { SearchSongService } from '../../core/services/search-song-service';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { filter, switchMap } from 'rxjs';
 import { TrackList } from '../../shared/ui/track-list/track-list';
+import { AlbumsList } from "../../shared/ui/albums-list/albums-list";
+import { SimilarArtists } from "../../shared/ui/similar-artists/similar-artists";
 
 @Component({
   selector: 'app-artist-page',
-  imports: [TrackList],
+  imports: [TrackList, AlbumsList, SimilarArtists],
   templateUrl: './artist-page.html',
   styleUrl: './artist-page.css',
 })

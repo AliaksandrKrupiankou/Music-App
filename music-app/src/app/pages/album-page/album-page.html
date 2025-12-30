@@ -1,0 +1,18 @@
+
+<div class="container">
+    <div class="header">
+        <div class="img">
+            <img [src]="albumData()?.coverUrl" alt="">
+        </div>
+
+        <div class="info">
+            <p class="album">Album</p>
+            <h1 class="name">{{albumData()?.name}}</h1>
+            <a [routerLink]="['/artist', albumData()?.artistId]">{{albumData()?.artistName}}</a>
+        </div>
+    </div>
+
+    <div class="track-list">
+        <app-track-list [tracks]="albumData()?.tracks"></app-track-list>
+    </div>
+</div>

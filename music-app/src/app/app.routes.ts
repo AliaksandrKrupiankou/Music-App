@@ -4,6 +4,7 @@ import { PlaylistPage } from './pages/playlist-page/playlist-page';
 import { SearchPage } from './pages/search-page/search-page';
 import { MainPage } from './pages/main-page/main-page';
 import { ArtistPage } from './pages/artist-page/artist-page';
+import { AlbumPage } from './pages/album-page/album-page';
 
 export const routes: Routes = [
     {
@@ -25,7 +26,11 @@ export const routes: Routes = [
             {
                 path: 'artist/:artistId',
                 component: ArtistPage,
-            }
+            },
+            {
+                path: 'albums/:albumId',
+                component: AlbumPage,
+            },
 
         ]
     }

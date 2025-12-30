@@ -8,3 +8,14 @@ export interface Track {
   audioUrl: string; 
   coverUrl: string;
 }
+
+export interface Album {
+  id: string;
+  name: string;
+  description: string | null;
+  year: string | number | null;
+  coverUrl: string;
+  artistName: string;
+  artistId: string;
+  tracks: Track[]; // Используем ваш готовый интерфейс Track
+}

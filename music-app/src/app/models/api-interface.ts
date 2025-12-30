@@ -54,3 +54,33 @@ export interface ApiSearchResponse {
     results: ApiSong[];
   };
 }
+
+export interface ApiAlbumFull {
+  id: string;
+  name: string;
+  description: string;
+  year: string | null;
+  type: string;
+  playCount: string | null;
+  language: string;
+  explicitContent: boolean;
+  artists: {
+    // В JSON альбома это массивы объектов
+    primary: ApiArtist[]; 
+    featured: ApiArtist[];
+    all: ApiArtist[];
+  };
+  songCount: string | null;
+  url: string;
+  image: ApiQualityUrl[]; // Массив объектов с quality и url
+  songs: ApiSong[];       // Массив песен
+}
+
+// Обертка ответа от сервера
+export interface ApiAlbumResponse {
+  success: boolean;
+  data: ApiAlbumFull;
+}
+
+
+

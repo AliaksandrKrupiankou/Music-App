@@ -1,5 +1,6 @@
 
 
+import { SimilarArtists } from "../shared/ui/similar-artists/similar-artists";
 import { Track } from "./app-interface";
 
 export interface Image {
@@ -117,4 +118,10 @@ export interface ArtistProfile {
     name: string;
     image: string;
   }[];
+}
+
+export interface SimilarArtist{
+  id: string,
+  name: string,
+  image: string,
 }

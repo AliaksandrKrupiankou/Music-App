@@ -35,8 +35,16 @@
             <h1>Popular albums:</h1>
         </div>
         <div>
-
+            <app-albums-list [albums]="artistProfile()?.topAlbums"></app-albums-list>
         </div>
     </div>
+
+    @if(artistProfile()?.similarArtists !== [] && artistProfile()?.similarArtists !== null && artistProfile()?.similarArtists !== undefined){
+
+        <div class="similar-artists">
+            <app-similar-artists [artists]="artistProfile()?.similarArtists"></app-similar-artists>
+        </div>    
+    }
+
 </div>
 }
