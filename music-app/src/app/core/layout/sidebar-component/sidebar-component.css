@@ -39,3 +39,18 @@ a:hover{
 .active-link{
     color: var(--main-text-color);
 }
+
+.user{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    margin-bottom: 20px;
+}
+
+.user img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}

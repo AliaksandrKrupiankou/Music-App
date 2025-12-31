@@ -7,11 +7,18 @@
 .header{
     display: flex;
     flex-direction: row;
-    color: var(--main-text-color);
+    gap: 20px;
 }
 
 .header img{
     width: 200px;
     height: 200px;
-    border-radius: 20px;
+    border-radius: 50%;
+}
+
+.header .info{
+    color: var(--main-text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

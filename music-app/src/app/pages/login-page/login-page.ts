@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../core/services/auth-service';
 
 @Component({
   selector: 'app-login-page',
@@ -8,5 +9,5 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './login-page.css',
 })
 export class LoginPage {
-
+  auth = inject(AuthService);
 }

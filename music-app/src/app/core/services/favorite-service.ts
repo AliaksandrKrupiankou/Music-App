@@ -1,21 +1,33 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Track } from '../../models/app-interface';
-import { LocalStorageService } from './local-storage-service';
+import { DbService } from './db-service';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { AuthService } from './auth-service';
+import { of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FavoriteService {
-  localStorageService = inject(LocalStorageService);
+  dbService = inject(DbService);
   localStorageKey = 'likedSongs';
-  
-  likedTracks = signal<Track[]>(this.localStorageService.get(this.localStorageKey) !== null ? this.localStorageService.get(this.localStorageKey) : []);
+  auth = inject(AuthService)
+
+  likedTracks = toSignal(
+    toObservable(this.auth.user).pipe(
+      switchMap(user => {
+        if(!user) return of([]);
+
+          return this.dbService.getFavoriteSongs(user?.uid);
+      })
+    ),
+    {initialValue: []}
+  )
 
   
 
   addToLiked(track: Track){
-    this.likedTracks.update(() => [track, ...this.likedTracks()]);
-    this.localStorageService.set(this.localStorageKey, this.likedTracks());
+    this.dbService.addSongToFavorite(this.auth.user()?.uid!, track)
   }
 
   isLiked(track: Track | null){
@@ -27,8 +39,7 @@ export class FavoriteService {
   }
 
   removeFromLiked(track: Track){
-    this.likedTracks.update(() => [...this.likedTracks().filter(song => song.id !== track.id)]);
-    this.localStorageService.set(this.localStorageKey, this.likedTracks());
+    this.dbService.removeLike(this.auth.user()?.uid!, track.id);
   }
 
   toggleLike(track: Track | null){
