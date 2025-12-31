@@ -1,6 +1,6 @@
 import { Component, inject, input } from '@angular/core';
 import { SearchSongService } from '../../core/services/search-song-service';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { rxResource, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { filter, switchMap } from 'rxjs';
 import { TrackList } from '../../shared/ui/track-list/track-list';
 import { AlbumsList } from "../../shared/ui/albums-list/albums-list";
@@ -16,10 +16,9 @@ export class ArtistPage {
   artistId = input<string>();
   artistService = inject(SearchSongService);
 
-  artistProfile = toSignal(
-    toObservable(this.artistId).pipe(
-      filter(id => !!id && id !== 'undefined'),
-      switchMap(id => this.artistService.getArtistById(id!))
-    )
-  )
+  artistProfile = rxResource({
+    request: () => this.artistId(),
+    loader: ({ request: id }) => this.artistService.getArtistById(id),
+  })
+
 }

@@ -1,21 +1,21 @@
-@if(artistProfile()){
+@if(artistProfile.value()){
     <div class="container">
 
     <div class="header">
         <div class="img">
-            <img [src]="artistProfile()?.image" alt="">
+            <img [src]="artistProfile.value()?.image" alt="">
         </div>
 
         <div class="info">
             <div class="name">
-                <h1>{{artistProfile()?.name}}</h1>
+                <h1>{{artistProfile.value()?.name}}</h1>
             </div>
 
             <div class="listeners-count">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round">
                 <circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
-                <p>{{artistProfile()?.fanCount}} listeners per month</p>
+                <p>{{artistProfile.value()?.fanCount}} listeners per month</p>
             </div>
         </div>
     </div>
@@ -25,7 +25,7 @@
             <h1>Popular Songs:</h1>
         </div>
         <div class="songs">
-                <app-track-list [tracks]="artistProfile()?.topSongs"></app-track-list>
+                <app-track-list [tracks]="artistProfile.value()?.topSongs"></app-track-list>
 
         </div>
     </div>
@@ -35,14 +35,14 @@
             <h1>Popular albums:</h1>
         </div>
         <div>
-            <app-albums-list [albums]="artistProfile()?.topAlbums"></app-albums-list>
+            <app-albums-list [albums]="artistProfile.value()?.topAlbums"></app-albums-list>
         </div>
     </div>
 
-    @if(artistProfile()?.similarArtists !== [] && artistProfile()?.similarArtists !== null && artistProfile()?.similarArtists !== undefined){
+    @if(artistProfile.value()?.similarArtists){
 
         <div class="similar-artists">
-            <app-similar-artists [artists]="artistProfile()?.similarArtists"></app-similar-artists>
+            <app-similar-artists [artists]="artistProfile.value()?.similarArtists"></app-similar-artists>
         </div>    
     }
 

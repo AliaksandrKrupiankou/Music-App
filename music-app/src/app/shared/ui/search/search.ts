@@ -4,6 +4,8 @@ import { SearchSongService } from '../../../core/services/search-song-service';
 import { Track } from '../../../models/app-interface';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Artist } from '../../../models/api-artists-interface';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-search',
   imports: [ReactiveFormsModule],
@@ -13,8 +15,6 @@ import { Artist } from '../../../models/api-artists-interface';
 export class Search {
   searchService = inject(SearchSongService);
   typeOfSearch = signal<string>('songs');
-
-  
 
   foundSongs = output<Track[]>();
   foundArtists = output<Artist[]>();
@@ -28,31 +28,27 @@ export class Search {
 
   search(){
     const query = this.serachInput.value!;
-    this.dataType.emit(this.typeOfSearch());
+    const type = this.typeOfSearch();
 
-    if(this.typeOfSearch() === 'artists'){
-      this.searchService.searchArtists(query).subscribe({
-        next: (data) => {
-          console.log(data);
-          this.foundArtists.emit(data);
-        },
-        error: (err) => {
-          console.log(`ERROR: ${err.message}`);
-        }
-      })
+    this.dataType.emit(type);
+    
+    const request = 
+    (type === 'artists'
+    ? this.searchService.searchArtists(query)
+    : this.searchService.searchSongs(query)) as Observable<Artist[] | Track[]>
 
-    } else{
-
-    this.searchService.searchSongs(query).subscribe({
+    request.subscribe({
       next: (data) => {
-        console.log(data);
-        this.foundSongs.emit(data);
-        return true;
+        if(type === 'artists'){
+          this.foundArtists.emit(data as Artist[])
+        } else {
+          this.foundSongs.emit(data as Track[]);
+        }
       },
       error: (err) => {
-        console.log(`Error: ${err.message}`)
+        console.error(`Error of search: ${err}`);
       }
-    }) }
+    })
 
   }
 }
