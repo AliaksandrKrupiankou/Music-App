@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { SearchSongService } from '../../core/services/search-song-service';
 import { rxResource, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { filter, switchMap } from 'rxjs';
@@ -10,6 +10,7 @@ import { ActivatedRoute, Router, RouterLink } from "@angular/router";
   imports: [TrackList, RouterLink],
   templateUrl: './album-page.html',
   styleUrl: './album-page.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlbumPage {
   albumId = input<string>();

@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, Signal } from '@angular/core';
 import { Track } from '../../../models/app-interface';
 import { AudioService } from '../../../core/services/audio-service';
 import { TrackDuringPipe } from '../../../core/pipes/track-during-pipe';
@@ -10,6 +10,7 @@ import { RouterLink } from "@angular/router";
   imports: [TrackDuringPipe, RouterLink],
   templateUrl: './track-list.html',
   styleUrl: './track-list.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TrackList {
   tracks =  input<Track[]>();

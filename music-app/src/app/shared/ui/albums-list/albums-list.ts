@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CompactAlbum } from '../../../models/api-artist-page-interface';
 import { RouterLink } from "@angular/router";
 
@@ -7,6 +7,7 @@ import { RouterLink } from "@angular/router";
   imports: [RouterLink],
   templateUrl: './albums-list.html',
   styleUrl: './albums-list.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlbumsList {
   albums = input<CompactAlbum[]>();

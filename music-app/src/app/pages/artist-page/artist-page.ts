@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { SearchSongService } from '../../core/services/search-song-service';
 import { rxResource, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { filter, switchMap } from 'rxjs';
@@ -11,6 +11,7 @@ import { SimilarArtists } from "../../shared/ui/similar-artists/similar-artists"
   imports: [TrackList, AlbumsList, SimilarArtists],
   templateUrl: './artist-page.html',
   styleUrl: './artist-page.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArtistPage {
   artistId = input<string>();

@@ -1,4 +1,4 @@
-import { Component, inject, output, Signal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, output, Signal, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SearchSongService } from '../../../core/services/search-song-service';
 import { Track } from '../../../models/app-interface';
@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
   imports: [ReactiveFormsModule],
   templateUrl: './search.html',
   styleUrl: './search.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Search {
   searchService = inject(SearchSongService);

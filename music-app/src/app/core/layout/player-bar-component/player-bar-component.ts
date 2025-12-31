@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { AudioService } from '../../services/audio-service';
 import { FavoriteService } from '../../services/favorite-service';
 import { LocalStorageService } from '../../services/local-storage-service';
@@ -9,6 +9,7 @@ import { RouterLink } from "@angular/router";
   imports: [RouterLink],
   templateUrl: './player-bar-component.html',
   styleUrl: './player-bar-component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlayerBarComponent {
   service = inject(AudioService);

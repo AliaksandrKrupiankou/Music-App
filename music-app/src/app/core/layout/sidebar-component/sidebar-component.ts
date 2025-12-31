@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { AuthService } from '../../services/auth-service';
 
@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth-service';
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './sidebar-component.html',
   styleUrl: './sidebar-component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent {
   service = inject(AuthService);
