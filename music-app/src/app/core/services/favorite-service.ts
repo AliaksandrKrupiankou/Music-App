@@ -17,7 +17,6 @@ export class FavoriteService {
     toObservable(this.auth.user).pipe(
       switchMap(user => {
         if(!user) return of([]);
-
           return this.dbService.getFavoriteSongs(user?.uid);
       })
     ),

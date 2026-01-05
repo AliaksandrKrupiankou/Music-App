@@ -22,3 +22,12 @@
     flex-direction: column;
     justify-content: center;
 }
+
+a{
+    all: unset;
+    cursor: pointer;
+}
+
+a:hover{
+    color: var(--secondary-text-color);
+}

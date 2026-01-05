@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, output, Signal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, output, Signal, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SearchSongService } from '../../../core/services/search-song-service';
 import { Track } from '../../../models/app-interface';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Artist } from '../../../models/api-artists-interface';
-import { rxResource } from '@angular/core/rxjs-interop';
+import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-search',
@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 })
 export class Search {
   searchService = inject(SearchSongService);
+  destroyRef = inject(DestroyRef);
   typeOfSearch = signal<string>('songs');
 
   foundSongs = output<Track[]>();
@@ -38,7 +39,9 @@ export class Search {
     ? this.searchService.searchArtists(query)
     : this.searchService.searchSongs(query)) as Observable<Artist[] | Track[]>
 
-    request.subscribe({
+    request
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe({
       next: (data) => {
         if(type === 'artists'){
           this.foundArtists.emit(data as Artist[])

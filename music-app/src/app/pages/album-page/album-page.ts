@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { SearchSongService } from '../../core/services/search-song-service';
-import { rxResource, toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { filter, switchMap } from 'rxjs';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { TrackList } from "../../shared/ui/track-list/track-list";
-import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-album-page',

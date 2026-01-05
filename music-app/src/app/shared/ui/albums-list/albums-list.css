@@ -28,3 +28,13 @@ img{
     flex-direction: column;
     
 }
+
+a{
+    all: unset;
+    cursor: pointer;
+}
+
+a:hover{
+    text-decoration: underline;
+
+}

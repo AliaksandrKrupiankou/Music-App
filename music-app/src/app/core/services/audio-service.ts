@@ -1,7 +1,8 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, NgZone, signal } from '@angular/core';
 import { Track } from '../../models/app-interface';
 import { fromEvent } from 'rxjs';
 import { LocalStorageService } from './local-storage-service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
@@ -15,17 +16,25 @@ export class AudioService {
   player = new Audio();
   currentVolume = signal<number>(this.player.volume);
   localStorageService = inject(LocalStorageService);
+  zone = inject(NgZone);
+
   constructor(){
 
     this.player.volume = this.localStorageService.get('volume');
     this.currentVolume.set(this.localStorageService.get('volume'));
-      fromEvent(this.player, 'ended').subscribe(() => {
+
+      fromEvent(this.player, 'ended')
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => {
         this.playNextTrack();
       })
 
-      fromEvent(this.player, 'timeupdate').subscribe(() => {
+      this.zone.runOutsideAngular(() => {
+      fromEvent(this.player, 'timeupdate')
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => {
         this.currentTime.set(this.player.currentTime);
-      })
+      })});
   }
   
   playTrack(track: Track){

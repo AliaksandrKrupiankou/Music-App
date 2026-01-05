@@ -88,8 +88,23 @@ button svg{
     gap: 20px;
 }
 
+.filter{
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333333;
+    color: #ffffff;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 2px;
+    border-radius: 20px;
+    width: 200px;
+    height: 30px;
+
+}
 
 .filter.active{
     border-color: var(--main-yellow-color) ;
-    width: 200px;
 }

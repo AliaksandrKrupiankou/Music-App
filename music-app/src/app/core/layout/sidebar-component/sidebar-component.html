@@ -25,7 +25,7 @@
     </div>
 
     <div class="user">
-        <h1>{{user()?.displayName}}</h1>
+        <p>{{user()?.displayName}}</p>
         <img [src]="user()?.photoURL" >
         <button (click)="service.logout()">LogOut</button>
     </div>
