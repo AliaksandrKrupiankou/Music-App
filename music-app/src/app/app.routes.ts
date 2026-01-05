@@ -6,11 +6,14 @@ import { MainPage } from './pages/main-page/main-page';
 import { ArtistPage } from './pages/artist-page/artist-page';
 import { AlbumPage } from './pages/album-page/album-page';
 import { LoginPage } from './pages/login-page/login-page';
+import { authGuard } from './guards/auth.guard';
+import { loginGuard } from './guards/login.guard';
 
 export const routes: Routes = [
     {
         path: '',
         component: MainLayoutComponent,
+        canActivate: [authGuard],
         children: [
             {
                 path: 'playlist',
@@ -37,5 +40,6 @@ export const routes: Routes = [
             {
                 path: 'login',
                 component: LoginPage,
+                canActivate: [loginGuard]
             }
 ];

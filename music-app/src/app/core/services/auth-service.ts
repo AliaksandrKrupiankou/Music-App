@@ -10,17 +10,20 @@ export class AuthService {
   auth = inject(Auth);
   router = inject(Router);
 
+  user$ = authState(this.auth);
   user = toSignal(authState(this.auth));
 
   login() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(this.auth, provider)
-      .then(() => this.router.navigate(['/']))
+      .then(() => {
+        this.router.navigate(['/']);
+      })
       .catch(error => console.error(error));
   }
 
   logout() {
-    signOut(this.auth)
-      .then(() => this.router.navigate(['/login']));
+    signOut(this.auth);
+    this.router.navigate(['/login']);
   }
 }
