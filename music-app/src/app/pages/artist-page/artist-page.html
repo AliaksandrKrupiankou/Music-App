@@ -1,0 +1,50 @@
+@if(artistProfile.value()){
+    <div class="container">
+
+    <div class="header">
+        <div class="img">
+            <img [src]="artistProfile.value()?.image" alt="">
+        </div>
+
+        <div class="info">
+            <div class="name">
+                <h1>{{artistProfile.value()?.name}}</h1>
+            </div>
+
+            <div class="listeners-count">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" 
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round">
+                <circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+                <p>{{artistProfile.value()?.fanCount}} listeners per month</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="popular-songs">
+        <div class="sector-header">
+            <h1>Popular Songs:</h1>
+        </div>
+        <div class="songs">
+                <app-track-list [tracks]="artistProfile.value()?.topSongs"></app-track-list>
+
+        </div>
+    </div>
+
+    <div class="albums">
+        <div class="sector-header">
+            <h1>Popular albums:</h1>
+        </div>
+        <div>
+            <app-albums-list [albums]="artistProfile.value()?.topAlbums"></app-albums-list>
+        </div>
+    </div>
+
+    @if(artistProfile.value()?.similarArtists){
+
+        <div class="similar-artists">
+            <app-similar-artists [artists]="artistProfile.value()?.similarArtists"></app-similar-artists>
+        </div>    
+    }
+
+</div>
+}

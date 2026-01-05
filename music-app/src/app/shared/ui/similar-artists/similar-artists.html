@@ -1,0 +1,25 @@
+
+    <div class="container">
+
+    <div class="header">
+        <h1>Similar artists: </h1>
+    </div>
+
+    <ul class="list">
+        @for(artist of artists(); track artist.id){
+            <div class="artist">
+                <div class="img">
+                    <img [src]="artist.image" alt="">
+                </div>
+                <div class="name">
+                    <a [routerLink]="['/artist/', artist.id]">{{artist.name}}</a>
+                </div>
+            </div>
+
+        }
+    </ul>
+
+    </div>
+
+
+
