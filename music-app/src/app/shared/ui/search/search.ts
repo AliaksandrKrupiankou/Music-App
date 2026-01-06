@@ -5,12 +5,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Artist } from '../../../models/api-artists-interface';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { combineLatest, debounceTime, filter, switchMap, tap } from 'rxjs';
-import { MusicDataService } from '../../../core/services/music-data.service';
+import { MusicDataService } from '../../../core/services/data-services/music-data.service';
 import { LucideAngularModule } from 'lucide-angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search',
-  imports: [ReactiveFormsModule, LucideAngularModule],
+  imports: [ReactiveFormsModule, LucideAngularModule, TranslateModule],
   templateUrl: './search.html',
   styleUrl: './search.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

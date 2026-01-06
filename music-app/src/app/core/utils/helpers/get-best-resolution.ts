@@ -1,3 +1,3 @@
-export function getBest(data: any){
-    return data[data.length - 1];
+export function getBest(data: any) {
+  return data[data.length - 1];
 }

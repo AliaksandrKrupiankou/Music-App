@@ -23,13 +23,9 @@
     </div>
 
     <div class="navigation">
-
       <div class="like">
         <button class="like-btn-active" (click)="toggleLike()">
-          <lucide-icon
-            name="heart"
-            [class.liked]="isLiked()"
-          ></lucide-icon>
+          <lucide-icon name="heart" [class.liked]="isLiked()"></lucide-icon>
         </button>
       </div>
 
@@ -48,7 +44,6 @@
       <button class="skip-track" (click)="playNextTrack()">
         <lucide-icon name="skip-forward"></lucide-icon>
       </button>
-
     </div>
 
     <div class="volume">

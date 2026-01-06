@@ -5,7 +5,7 @@
     </div>
 
     <div class="info">
-      <p class="album">Album</p>
+      <p class="album">{{ 'ALBUM_PAGE.ALBUM' | translate }}</p>
       <h1 class="name">{{ albumData.value()?.artistName }}</h1>
       <a [routerLink]="['/artist', albumData.value()?.artistId]">{{
         albumData.value()?.artistName

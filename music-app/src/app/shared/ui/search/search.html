@@ -3,7 +3,11 @@
     <div class="input-wrapper">
       <lucide-icon name="search" class="search-icon"></lucide-icon>
 
-      <input type="text" [formControl]="searchInput" placeholder="Search of track" />
+      <input
+        type="text"
+        [formControl]="searchInput"
+        placeholder="{{ 'SEARCH.PLACEHOLDER' | translate }}"
+      />
     </div>
   </div>
 
@@ -13,7 +17,7 @@
       [class.active]="typeOfSearch() === 'songs'"
       (click)="setSearchType('songs')"
     >
-      Songs
+      {{ 'SEARCH.SONGS' | translate }}
     </button>
 
     <button
@@ -21,7 +25,7 @@
       [class.active]="typeOfSearch() === 'artists'"
       (click)="setSearchType('artists')"
     >
-      Artists
+      {{ 'SEARCH.ARTISTS' | translate }}
     </button>
   </div>
 </div>

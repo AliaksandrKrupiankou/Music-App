@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ApiAlbumResponse, ApiSearchResponse } from '../../models/api-interface';
-import { ApiArtistSearchResponse } from '../../models/api-artists-interface';
-import { ArtistResponse } from '../../models/api-artist-page-interface';
-import { API } from '../utils/constants/api.constants';
+import { ApiAlbumResponse, ApiSearchResponse } from '../../../models/api-interface';
+import { ApiArtistSearchResponse } from '../../../models/api-artists-interface';
+import { ArtistResponse } from '../../../models/api-artist-page-interface';
+import { API } from '../../utils/constants/api.constants';
 
 @Injectable({
   providedIn: 'root',

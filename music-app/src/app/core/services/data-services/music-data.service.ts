@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Album, Track } from '../../models/app-interface';
+import { Album, Track } from '../../../models/app-interface';
 import { MusicApiService } from './music-api-service';
-import { transformToTrack } from '../utils/mappers/track.mapper';
-import { Artist } from '../../models/api-artists-interface';
-import { artistByIdMapper, transformToArtist } from '../utils/mappers/artist.mapper';
-import { ArtistProfile } from '../../models/api-artist-page-interface';
-import { albumByIdMapper } from '../utils/mappers/album.mapper';
+import { transformToTrack } from '../../utils/mappers/track.mapper';
+import { Artist } from '../../../models/api-artists-interface';
+import { artistByIdMapper, transformToArtist } from '../../utils/mappers/artist.mapper';
+import { ArtistProfile } from '../../../models/api-artist-page-interface';
+import { albumByIdMapper } from '../../utils/mappers/album.mapper';
 
 @Injectable({
   providedIn: 'root',

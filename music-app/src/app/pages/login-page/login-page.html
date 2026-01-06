@@ -1,10 +1,10 @@
 <div class="container">
   <div class="header">
     <h1>{{ appName | uppercase }}</h1>
-    <h2>Open your own musics world</h2>
+    <h2>{{ 'LOGIN_PAGE.TITLE' | translate }}</h2>
   </div>
 
   <div class="login">
-    <button (click)="auth.login()">Listen music</button>
+    <button (click)="auth.login()">{{ 'LOGIN_PAGE.BTN_TEXT' | translate }}</button>
   </div>
 </div>

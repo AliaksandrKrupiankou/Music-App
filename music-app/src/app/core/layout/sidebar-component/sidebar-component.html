@@ -6,23 +6,37 @@
   <div class="links">
     <a routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
       <lucide-icon name="search"></lucide-icon>
-      {{SectionsNames.SEARCH}}</a
-    >
+      {{ 'SIDEBAR.SEARCH' | translate }}
+    </a>
 
     <a routerLink="main" routerLinkActive="active-link">
       <lucide-icon name="music"></lucide-icon>
-      {{SectionsNames.MAIN}}</a
-    >
+      {{ 'SIDEBAR.MAIN' | translate }}
+    </a>
 
     <a routerLink="playlist" routerLinkActive="active-link">
       <lucide-icon name="book-heart"></lucide-icon>
-      {{SectionsNames.COLLECTION}}</a
-    >
+      {{ 'SIDEBAR.COLLECTION' | translate }}
+    </a>
+  </div>
+
+  <div class="lang-toggle">
+    <div class="glider" [class.slide-right]="currentLang() === 'ru'"></div>
+
+    <button type="button" (click)="setLang('en')" [class.active]="currentLang() === 'en'">
+      {{ 'SIDEBAR.EN' | translate }}
+    </button>
+
+    <button type="button" (click)="setLang('ru')" [class.active]="currentLang() === 'ru'">
+      {{ 'SIDEBAR.RU' | translate }}
+    </button>
   </div>
 
   <div class="user">
-    <p>{{ user()?.displayName }}</p>
-    <img [src]="user()?.photoURL" />
-    <button (click)="logout()">{{SectionsNames.LOGOUT}}</button>
+    <div class="user-info">
+      <img [src]="user()?.photoURL" />
+      <p>{{ user()?.displayName }}</p>
+    </div>
+    <button class="logout-btn" (click)="logout()">{{ 'SIDEBAR.LOGOUT' | translate }}</button>
   </div>
 </div>

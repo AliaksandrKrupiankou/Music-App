@@ -10,10 +10,10 @@ import {
   serverTimestamp,
   setDoc,
 } from '@angular/fire/firestore';
-import { AuthService } from './auth-service';
-import { Track } from '../../models/app-interface';
+import { AuthService } from '../auth-service';
+import { Track } from '../../../models/app-interface';
 import { Observable } from 'rxjs';
-import { FIRESTORE_COLLECTIONS } from '../utils/constants/firestore.constants';
+import { FIRESTORE_COLLECTIONS } from '../../utils/constants/firestore.constants';
 
 @Injectable({
   providedIn: 'root',

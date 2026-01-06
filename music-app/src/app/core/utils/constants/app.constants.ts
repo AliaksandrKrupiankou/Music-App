@@ -6,5 +6,5 @@ export const SIDEBAR_CONSTS = {
   SEARCH: 'Search',
   MAIN: 'Main',
   COLLECTION: 'Collection',
-  LOGOUT: 'LogOut'
+  LOGOUT: 'LogOut',
 };

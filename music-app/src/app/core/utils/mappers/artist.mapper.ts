@@ -5,7 +5,7 @@ import { ArtistProfile } from '../../../models/api-artist-page-interface';
 import { getBest } from '../helpers/get-best-resolution';
 
 export function transformToArtist(data: ApiArtistShort): Artist {
-  const bestCover = getBest(data.image); 
+  const bestCover = getBest(data.image);
 
   return {
     id: data.id,

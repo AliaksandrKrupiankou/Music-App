@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core
 import { rxResource } from '@angular/core/rxjs-interop';
 import { TrackList } from '../../shared/ui/track-list/track-list';
 import { RouterLink } from '@angular/router';
-import { MusicDataService } from '../../core/services/music-data.service';
+import { MusicDataService } from '../../core/services/data-services/music-data.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-album-page',
-  imports: [TrackList, RouterLink],
+  imports: [TrackList, RouterLink, TranslateModule],
   templateUrl: './album-page.html',
   styleUrl: './album-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

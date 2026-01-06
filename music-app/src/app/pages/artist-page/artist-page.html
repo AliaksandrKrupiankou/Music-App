@@ -12,14 +12,17 @@
 
       <div class="listeners-count">
         <lucide-icon name="user-round"></lucide-icon>
-        <p>{{ artistProfile.value()?.fanCount }} listeners per month</p>
+        <p>
+          {{ artistProfile.value()?.fanCount }}
+          {{ 'ARTIST_PROFILE.LISTENERS_PER_MONTH' | translate }}
+        </p>
       </div>
     </div>
   </div>
 
   <div class="popular-songs">
     <div class="sector-header">
-      <h1>Popular Songs:</h1>
+      <h1>{{ 'ARTIST_PROFILE.POPULAR_SONGS' | translate }}</h1>
     </div>
     <div class="songs">
       <app-track-list [tracks]="artistProfile.value()?.topSongs"></app-track-list>
@@ -28,7 +31,7 @@
 
   <div class="albums">
     <div class="sector-header">
-      <h1>Popular albums:</h1>
+      <h1>{{ 'ARTIST_PROFILE.POPULAR_ALBUMS' | translate }}</h1>
     </div>
     <div>
       <app-albums-list [albums]="artistProfile.value()?.topAlbums"></app-albums-list>
@@ -38,6 +41,7 @@
   @if(artistProfile.value()?.similarArtists){
 
   <div class="similar-artists">
+    <h1>{{ 'ARTIST_PROFILE.SIMILAR_ARTISTS' | translate }}</h1>
     <app-similar-artists [artists]="artistProfile.value()?.similarArtists"></app-similar-artists>
   </div>
   }

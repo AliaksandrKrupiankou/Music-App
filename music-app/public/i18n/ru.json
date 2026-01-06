@@ -1,0 +1,37 @@
+{
+  "SIDEBAR": {
+    "SEARCH": "Поиск",
+    "MAIN": "Главная",
+    "COLLECTION": "Коллекция",
+    "LOGOUT": "Выйти",
+    "EN": "EN",
+    "RU": "RU"
+  },
+
+  "SEARCH": {
+    "SONGS": "Треки",
+    "ARTISTS": "Исполнители",
+    "PLACEHOLDER": "Поиск музыки"
+  },
+
+  "COLLECTION": {
+    "PLAYLIST": "Плейлист",
+    "MY_COLLECTION": "Моя коллекция"
+  },
+
+  "ARTIST_PROFILE": {
+    "LISTENERS_PER_MONTH": "Слушателей в месяц",
+    "POPULAR_SONGS": "Популярные треки:",
+    "POPULAR_ALBUMS": "Популярные альбомы:",
+    "SIMILAR_ARTISTS": "Похожие исполнители:"
+  },
+
+  "ALBUM_PAGE": {
+    "ALBUM": "Альбом"
+  },
+
+  "LOGIN_PAGE": {
+    "TITLE": "Открой свой мир музыки",
+    "BTN_TEXT": "Начать слушать музыку"
+  }
+}
