@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SearchSongService } from './search-song-service';
+import { MusicDataService } from './music-data.service';
 
-describe('SearchSongService', () => {
-  let service: SearchSongService;
+describe('MusicDataService', () => {
+  let service: MusicDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SearchSongService);
+    service = TestBed.inject(MusicDataService);
   });
 
   it('should be created', () => {

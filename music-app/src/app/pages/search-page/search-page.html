@@ -1,16 +1,16 @@
 <div class="page">
     <div class="search-input">
-        <app-search (foundSongs)="foundSongs.set($event)" (dataType)="dataType.set($event)" (foundArtists)="foundArtists.set($event)"></app-search>
+        <app-search (searchResult)="searchResult.set($event)" (dataType)="dataType.set($event)"></app-search>
     </div>
 
     @if(dataType() === 'artists'){
         <div class="artists-list">
-            <app-artists-list [artists]="foundArtists()"></app-artists-list>
+            <app-artists-list [artists]="artists()"></app-artists-list>
         </div>
 
     } @else {
         <div class="track-list">
-            <app-track-list [tracks]="foundSongs()"></app-track-list>
+            <app-track-list [tracks]="songs()"></app-track-list>
         </div>
     }
 

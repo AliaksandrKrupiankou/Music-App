@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Track } from '../../models/app-interface';
 import { TrackList } from '../../shared/ui/track-list/track-list';
 import { Search } from "../../shared/ui/search/search";
@@ -13,7 +13,14 @@ import { ArtistsList } from "../../shared/ui/artists-list/artists-list";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchPage {
-  foundSongs = signal<Track[]>([]);
+  searchResult = signal<Track[] | Artist[]>([]);
   dataType = signal<string>('');
-  foundArtists = signal<Artist[]>([]);
+  
+  artists = computed(() => 
+    this.dataType() === 'artists' ? (this.searchResult() as Artist[]) : []
+  )
+
+  songs = computed(() => 
+    this.dataType() === 'songs' ? (this.searchResult() as Track[]) : []
+  )
 }

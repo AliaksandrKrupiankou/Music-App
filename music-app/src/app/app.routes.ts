@@ -37,9 +37,9 @@ export const routes: Routes = [
             },
         ]
     },
-            {
-                path: 'login',
-                component: LoginPage,
-                canActivate: [loginGuard]
-            }
+    {
+        path: 'login',
+        component: LoginPage,
+        canActivate: [loginGuard]
+    }
 ];

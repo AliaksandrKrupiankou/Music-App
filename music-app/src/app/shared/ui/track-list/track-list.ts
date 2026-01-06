@@ -13,6 +13,9 @@ import { RouterLink } from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TrackList {
+
+
+
   tracks =  input<Track[]>();
   player = inject(AudioService);
   like = inject(FavoriteService);
