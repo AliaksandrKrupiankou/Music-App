@@ -1,48 +1,45 @@
-.artists-list{
-    margin-top: 30px;
+.artists-list {
+  margin-top: 30px;
 }
 
-.artists{
- display: flex;
- flex-direction: row;
- flex-wrap: wrap;
- gap: 30px;
+.artists {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
 }
 
-.artist-li{
-    all: unset;
-    gap: 20px;
+.artist-li {
+  gap: 20px;
 }
 
-.artist{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    flex: 0 0 auto;
+.artist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex: 0 0 auto;
 }
-.img img{
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-}
-
-.name{
-    display: flex;
-    width: 100px;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    color: var(--main-text-color);
+.img img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
-a{
-    all: unset;
-    cursor: pointer;
+.name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  color: var(--main-text-color);
 }
 
-a:hover{
-    text-decoration: underline;
+a {
+  all: unset;
+  cursor: pointer;
 }
 
+a:hover {
+  text-decoration: underline;
+}

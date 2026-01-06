@@ -4,8 +4,8 @@ export interface Track {
   artist: string;
   artistId: string;
   album: string;
-  duration: number; 
-  audioUrl: string; 
+  duration: number;
+  audioUrl: string;
   coverUrl: string;
 }
 
@@ -17,5 +17,5 @@ export interface Album {
   coverUrl: string;
   artistName: string;
   artistId: string;
-  tracks: Track[]; // Используем ваш готовый интерфейс Track
+  tracks: Track[];
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterOutlet } from "@angular/router";
-import { SidebarComponent } from "../sidebar-component/sidebar-component";
-import { PlayerBarComponent } from "../player-bar-component/player-bar-component";
+import { RouterOutlet } from '@angular/router';
+import { SidebarComponent } from '../sidebar-component/sidebar-component';
+import { PlayerBarComponent } from '../player-bar-component/player-bar-component';
 
 @Component({
   selector: 'app-main-layout-component',
@@ -10,6 +10,4 @@ import { PlayerBarComponent } from "../player-bar-component/player-bar-component
   styleUrl: './main-layout-component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainLayoutComponent {
-
-}
+export class MainLayoutComponent {}

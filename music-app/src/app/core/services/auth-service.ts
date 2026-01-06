@@ -19,11 +19,11 @@ export class AuthService {
       .then(() => {
         this.router.navigate(['/']);
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   }
 
   logout() {
     signOut(this.auth);
-    this.router.navigate(['/login']);
+    this.router.navigate(['login']);
   }
 }

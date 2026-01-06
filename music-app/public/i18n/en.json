@@ -1,0 +1,37 @@
+{
+  "SIDEBAR": {
+    "SEARCH": "Search",
+    "MAIN": "Main",
+    "COLLECTION": "Collection",
+    "EN": "EN",
+    "RU": "RU",
+    "LOGOUT": "LogOut"
+  },
+
+  "SEARCH": {
+    "SONGS": "Songs",
+    "ARTISTS": "Artists",
+    "PLACEHOLDER": "Search music"
+  },
+
+  "COLLECTION": {
+    "PLAYLIST": "Playlist",
+    "MY_COLLECTION": "My collection"
+  },
+
+  "ARTIST_PROFILE": {
+    "LISTENERS_PER_MONTH": "Listeners per month",
+    "POPULAR_SONGS": "Popular songs:",
+    "POPULAR_ALBUMS": "Popular albums:",
+    "SIMILAR_ARTISTS": "Similar artists:"
+  },
+
+  "ALBUM_PAGE": {
+    "ALBUM": "Album"
+  },
+
+  "LOGIN_PAGE": {
+    "TITLE": "Open your own musics world",
+    "BTN_TEXT": "Start liten music"
+  }
+}

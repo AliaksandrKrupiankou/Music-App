@@ -1,35 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Lato", sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
 
-:host{
-    background-color: var(--bg-main);
+:host {
+  background-color: var(--bg-main);
 }
 
-:root{
-    --bg-main: #141414;
-    --bg-secondary: #1b1b1b;
-    --main-text-color: #e6e6e6;
-    --secondary-text-color: #878686;
-    --main-yellow-color: #f7d754;
+:root {
+  --bg-main: #141414;
+  --bg-secondary: #1b1b1b;
+  --main-text-color: #e6e6e6;
+  --secondary-text-color: #878686;
+  --main-yellow-color: #f7d754;
 
-    --player-border-radius: 10px;
-    --player-bar-margin: 0px 15px 15px 0px;
-    --player-bar-bg: #323838;
-    --player-bar-height: 75px;
-    --player-bar-cover-size: 60px;
-    --player-bar-cover-br: 10px;
+  --player-border-radius: 10px;
+  --player-bar-margin: 0px 15px 15px 0px;
+  --player-bar-padding: 5px;
+  --player-bar-bg: #323838;
+  --player-bar-height: 75px;
+  --player-bar-cover-size: 60px;
+  --player-bar-cover-br: 10px;
+  --player-progress-bar-height: 5px;
+  --player-progress-bar-border-rad: 15px;
+  --width-player-img: 100px;
 
-    --page-border-radius: 20px; 
-    --router-outlet-margin: 15px 15px 15px 0px;
-    --router-outlet-padding: 30px;
+  --page-border-radius: 20px;
+  --router-outlet-margin: 15px 15px 15px 0px;
+  --router-outlet-padding: 30px;
 
-    --sidebar-width: 240px;
-    --sidebar-margin-top: 30px;
-    --sidebar-links-gap: 30px;
+  --sidebar-width: 240px;
+  --sidebar-margin-top: 30px;
+  --sidebar-links-gap: 30px;
 }

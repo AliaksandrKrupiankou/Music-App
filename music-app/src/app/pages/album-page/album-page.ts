@@ -1,26 +1,23 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
-import { SearchSongService } from '../../core/services/search-song-service';
-import { rxResource, toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { filter, switchMap } from 'rxjs';
-import { TrackList } from "../../shared/ui/track-list/track-list";
-import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { rxResource } from '@angular/core/rxjs-interop';
+import { TrackList } from '../../shared/ui/track-list/track-list';
+import { RouterLink } from '@angular/router';
+import { MusicDataService } from '../../core/services/data-services/music-data.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-album-page',
-  imports: [TrackList, RouterLink],
+  imports: [TrackList, RouterLink, TranslateModule],
   templateUrl: './album-page.html',
   styleUrl: './album-page.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlbumPage {
   albumId = input<string>();
-  service = inject(SearchSongService);
+  service = inject(MusicDataService);
 
   albumData = rxResource({
     request: () => this.albumId(),
-    loader: ({ request: id }) => this.service.getAlbumById(id)
+    loader: ({ request: id }) => this.service.getAlbumById(id),
   });
-
-
-
 }

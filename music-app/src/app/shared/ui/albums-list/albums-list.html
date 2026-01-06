@@ -1,18 +1,17 @@
 <div class="albums-list">
-    <ul class="albums">
-        @for (album of albums(); track album.id) {
-            <li>
-                <div class="album">
-                    <div class="album-cover">
-                        <img [src]="album.image" alt="">
-                    </div>
-                    <div>
-                        <a [routerLink]="['/albums/', album.id]" class="album-name">{{album.name}}</a>
-                        <p class="year">{{album.year}}</p>
-                        <!-- ID -->
-                    </div> 
-                </div>
-            </li>
-        }
-    </ul>
+  <ul class="albums">
+    @for (album of albums(); track album.id) {
+    <li>
+      <div class="album">
+        <div class="album-cover">
+          <img [src]="album.image" alt="" />
+        </div>
+        <div>
+          <a [routerLink]="['/albums/', album.id]" class="album-name">{{ album.name }}</a>
+          <p class="year">{{ album.year }}</p>
+        </div>
+      </div>
+    </li>
+    }
+  </ul>
 </div>

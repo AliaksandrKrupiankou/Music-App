@@ -1,7 +1,4 @@
-
-
-import { SimilarArtists } from "../shared/ui/similar-artists/similar-artists";
-import { Track } from "./app-interface";
+import { Track } from './app-interface';
 
 export interface Image {
   quality: string;
@@ -31,7 +28,7 @@ export interface TrackApi {
   hasLyrics: boolean;
   url: string;
   image: Image[];
-  downloadUrl: Image[]; // Здесь лежат прямые ссылки на mp3 файлы
+  downloadUrl: Image[];
   album: {
     id: string | null;
     name: string | null;
@@ -44,9 +41,6 @@ export interface TrackApi {
   };
 }
 
-
-
-// 4. Альбом (используется в topAlbums)
 export interface Album {
   id: string;
   name: string;
@@ -58,7 +52,7 @@ export interface Album {
   explicitContent: boolean;
   url: string;
   image: Image[];
-  songs: TrackApi[] | null; // В списке альбомов артиста песни часто null
+  songs: TrackApi[] | null;
   artists: {
     primary: ArtistShort[];
     featured: ArtistShort[];
@@ -73,14 +67,12 @@ export interface CompactAlbum {
   image: string;
 }
 
-// 5. Биография
 export interface ArtistBio {
   text: string | null;
   title: string | null;
   sequence: number | null;
 }
 
-// 6. ОСНОВНОЙ ОБЪЕКТ АРТИСТА
 export interface ArtistResponse {
   success: boolean;
   data: {
@@ -100,7 +92,7 @@ export interface ArtistResponse {
     topSongs: TrackApi[];
     topAlbums: Album[];
     singles: TrackApi[];
-    similarArtists: Partial<ArtistResponse['data']>[]; 
+    similarArtists: Partial<ArtistResponse['data']>[];
   };
 }
 
@@ -109,10 +101,10 @@ export interface ArtistProfile {
   name: string;
   image: string;
   fanCount: string | null;
-  
+
   topSongs: Track[];
   topAlbums: CompactAlbum[];
-  
+
   similarArtists: {
     id: string;
     name: string;
@@ -120,8 +112,8 @@ export interface ArtistProfile {
   }[];
 }
 
-export interface SimilarArtist{
-  id: string,
-  name: string,
-  image: string,
+export interface SimilarArtist {
+  id: string;
+  name: string;
+  image: string;
 }

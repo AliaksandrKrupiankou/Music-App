@@ -8,7 +8,7 @@ export interface ApiArtistShort {
   name: string;
   role?: string;
   type: string;
-  image: ApiQualityUrl[]; 
+  image: ApiQualityUrl[];
   url: string;
 }
 
@@ -23,9 +23,9 @@ export interface ApiArtistSearchResponse {
   data: ApiArtistSearchData;
 }
 
-export interface Artist{
+export interface Artist {
   id: string;
   name: string;
   role?: string;
-  image: string; 
+  image: string;
 }

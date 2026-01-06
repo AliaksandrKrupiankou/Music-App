@@ -8,7 +8,7 @@ export interface ApiArtist {
   name: string;
   role: string;
   type: string;
-  image: ApiQualityUrl[] | boolean; 
+  image: ApiQualityUrl[] | boolean;
   url: string;
 }
 
@@ -24,24 +24,24 @@ export interface ApiSong {
   type: string;
   year: string | null;
   releaseDate: string | null;
-  duration: number | string | null; 
+  duration: number | string | null;
   label: string | null;
   explicitContent: boolean;
-  playCount: number | string | null; 
+  playCount: number | string | null;
   language: string;
   hasLyrics: boolean;
   lyricsId: string | null;
   url: string;
   copyright: string | null;
-  
+
   album: ApiAlbum;
-  
+
   artists: {
     primary: ApiArtist[];
     featured: ApiArtist[];
     all: ApiArtist[];
   };
-  
+
   image: ApiQualityUrl[];
   downloadUrl: ApiQualityUrl[];
 }
@@ -65,22 +65,17 @@ export interface ApiAlbumFull {
   language: string;
   explicitContent: boolean;
   artists: {
-    // В JSON альбома это массивы объектов
-    primary: ApiArtist[]; 
+    primary: ApiArtist[];
     featured: ApiArtist[];
     all: ApiArtist[];
   };
   songCount: string | null;
   url: string;
-  image: ApiQualityUrl[]; // Массив объектов с quality и url
-  songs: ApiSong[];       // Массив песен
+  image: ApiQualityUrl[];
+  songs: ApiSong[];
 }
 
-// Обертка ответа от сервера
 export interface ApiAlbumResponse {
   success: boolean;
   data: ApiAlbumFull;
 }
-
-
-
