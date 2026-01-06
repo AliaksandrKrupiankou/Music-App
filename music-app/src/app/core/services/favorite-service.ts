@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Track } from '../../models/app-interface';
 import { DbService } from './db-service';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
@@ -11,40 +11,42 @@ import { of, switchMap } from 'rxjs';
 export class FavoriteService {
   dbService = inject(DbService);
   localStorageKey = 'likedSongs';
-  auth = inject(AuthService)
+  auth = inject(AuthService);
 
   likedTracks = toSignal(
     toObservable(this.auth.user).pipe(
-      switchMap(user => {
-        if(!user) return of([]);
-          return this.dbService.getFavoriteSongs(user?.uid);
+      switchMap((user) => {
+        if (!user) return of([]);
+        return this.dbService.getFavoriteSongs(user?.uid);
       })
     ),
-    {initialValue: []}
-  )
+    { initialValue: [] }
+  );
 
-  
-
-  addToLiked(track: Track){
-    this.dbService.addSongToFavorite(this.auth.user()?.uid!, track)
+  addToLiked(track: Track) {
+    this.dbService.addSongToFavorite(this.auth.user()?.uid!, track);
   }
 
-  isLiked(track: Track | null){
-    if(this.likedTracks() !== null &&  track !== null && this.likedTracks().some(t => t.id === track.id )){
+  isLiked(track: Track | null) {
+    if (
+      this.likedTracks() !== null &&
+      track !== null &&
+      this.likedTracks().some((t) => t.id === track.id)
+    ) {
       return true;
-    } else{
+    } else {
       return false;
     }
   }
 
-  removeFromLiked(track: Track){
+  removeFromLiked(track: Track) {
     this.dbService.removeLike(this.auth.user()?.uid!, track.id);
   }
 
-  toggleLike(track: Track | null){
-    if(track === null){
+  toggleLike(track: Track | null) {
+    if (track === null) {
       return false;
-    } else if(this.isLiked(track)){
+    } else if (this.isLiked(track)) {
       this.removeFromLiked(track);
       return false;
     } else {

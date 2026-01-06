@@ -9,7 +9,7 @@ import { UpperCasePipe } from '@angular/common';
   imports: [ReactiveFormsModule, UpperCasePipe],
   templateUrl: './login-page.html',
   styleUrl: './login-page.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPage {
   auth = inject(AuthService);

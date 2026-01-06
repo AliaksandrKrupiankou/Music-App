@@ -181,10 +181,11 @@
     cursor: pointer;
 }
 
-.like svg{
-    color: var(--secondary-text-color);
+.like lucide-icon {
+    color: var(--secondary-text-color); 
+    transition: all 0.2s ease; 
 }
 
-.like svg.liked{
-    fill: var(--secondary-text-color);
+.like lucide-icon.liked ::ng-deep svg {
+    fill: currentColor; 
 }

@@ -1,9 +1,10 @@
 import { ApiSong } from '../../../models/api-interface';
 import { Track } from '../../../models/app-interface';
+import { getBest } from '../helpers/get-best-resolution';
 
 export function transformToTrack(data: ApiSong): Track {
-  const bestCover = data.image[data.image.length - 1];
-  const bestSound = data.downloadUrl[data.downloadUrl.length - 1];
+  const bestCover = getBest(data.image);
+  const bestSound = getBest(data.downloadUrl);
   const numberDuration = Number(data.duration);
 
   return {

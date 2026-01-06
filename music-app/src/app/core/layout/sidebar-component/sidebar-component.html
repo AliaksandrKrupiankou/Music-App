@@ -5,17 +5,17 @@
 
   <div class="links">
     <a routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
-      <lucide-icon [img]="SearchIcon"></lucide-icon>
+      <lucide-icon name="search"></lucide-icon>
       {{SectionsNames.SEARCH}}</a
     >
 
     <a routerLink="main" routerLinkActive="active-link">
-      <lucide-icon [img]="MainIcon"></lucide-icon>
+      <lucide-icon name="music"></lucide-icon>
       {{SectionsNames.MAIN}}</a
     >
 
     <a routerLink="playlist" routerLinkActive="active-link">
-      <lucide-icon [img]="CollectionIcon"></lucide-icon>
+      <lucide-icon name="book-heart"></lucide-icon>
       {{SectionsNames.COLLECTION}}</a
     >
   </div>
@@ -23,6 +23,6 @@
   <div class="user">
     <p>{{ user()?.displayName }}</p>
     <img [src]="user()?.photoURL" />
-    <button (click)="service.logout()">{{SectionsNames.LOGOUT}}</button>
+    <button (click)="logout()">{{SectionsNames.LOGOUT}}</button>
   </div>
 </div>

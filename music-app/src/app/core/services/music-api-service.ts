@@ -16,7 +16,9 @@ export class MusicApiService {
   }
 
   searchArtists(params: any) {
-    return this.http.get<ApiArtistSearchResponse>(`${API.URL}${API.SEARCH}${API.ARTISTS}`, { params });
+    return this.http.get<ApiArtistSearchResponse>(`${API.URL}${API.SEARCH}${API.ARTISTS}`, {
+      params,
+    });
   }
 
   getArtistById(id: string, params: any) {

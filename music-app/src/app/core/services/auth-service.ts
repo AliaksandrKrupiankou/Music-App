@@ -19,7 +19,7 @@ export class AuthService {
       .then(() => {
         this.router.navigate(['/']);
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   }
 
   logout() {

@@ -1,23 +1,16 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  inject,
-  output,
-  Signal,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, output, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MusicApiService } from '../../../core/services/music-api-service';
 import { Track } from '../../../models/app-interface';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Artist } from '../../../models/api-artists-interface';
-import { rxResource, takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import { combineLatest, debounceTime, filter, Observable, switchMap, tap } from 'rxjs';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { combineLatest, debounceTime, filter, switchMap, tap } from 'rxjs';
 import { MusicDataService } from '../../../core/services/music-data.service';
+import { LucideAngularModule } from 'lucide-angular';
+
 @Component({
   selector: 'app-search',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, LucideAngularModule],
   templateUrl: './search.html',
   styleUrl: './search.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,7 +22,7 @@ export class Search {
   searchResult = output<Track[] | Artist[]>();
   dataType = output<string>();
 
-  serachInput = new FormControl('');
+  searchInput = new FormControl('');
 
   setSearchType(type: 'songs' | 'artists') {
     this.typeOfSearch.set(type);
@@ -37,7 +30,7 @@ export class Search {
 
   constructor() {
     combineLatest({
-      query: this.serachInput.valueChanges,
+      query: this.searchInput.valueChanges,
       type: toObservable(this.typeOfSearch),
     })
       .pipe(

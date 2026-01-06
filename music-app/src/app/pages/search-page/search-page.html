@@ -1,19 +1,19 @@
 <div class="page">
-    <div class="search-input">
-        <app-search (searchResult)="searchResult.set($event)" (dataType)="dataType.set($event)"></app-search>
-    </div>
+  <div class="search-input">
+    <app-search
+      (searchResult)="searchResult.set($event)"
+      (dataType)="dataType.set($event)"
+    ></app-search>
+  </div>
 
-    @if(dataType() === 'artists'){
-        <div class="artists-list">
-            <app-artists-list [artists]="artists()"></app-artists-list>
-        </div>
+  @if(dataType() === 'artists'){
+  <div class="artists-list">
+    <app-artists-list [artists]="artists()"></app-artists-list>
+  </div>
 
-    } @else {
-        <div class="track-list">
-            <app-track-list [tracks]="songs()"></app-track-list>
-        </div>
-    }
-
-
-    
+  } @else {
+  <div class="track-list">
+    <app-track-list [tracks]="songs()"></app-track-list>
+  </div>
+  }
 </div>

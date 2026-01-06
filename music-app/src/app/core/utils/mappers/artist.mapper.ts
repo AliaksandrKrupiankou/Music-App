@@ -2,9 +2,11 @@ import { ApiArtistShort } from '../../../models/api-artists-interface';
 import { Artist } from '../../../models/api-artists-interface';
 import { ArtistResponse } from '../../../models/api-artist-page-interface';
 import { ArtistProfile } from '../../../models/api-artist-page-interface';
+import { getBest } from '../helpers/get-best-resolution';
 
 export function transformToArtist(data: ApiArtistShort): Artist {
-  const bestCover = data.image[data.image.length - 1];
+  const bestCover = getBest(data.image); 
+
   return {
     id: data.id,
     name: data.name,
@@ -15,7 +17,7 @@ export function transformToArtist(data: ApiArtistShort): Artist {
 
 export function artistByIdMapper(data: ArtistResponse): ArtistProfile {
   const apiData = data.data;
-  const bestImg = apiData.image[apiData.image.length - 1];
+  const bestImg = getBest(apiData.image);
 
   return {
     id: apiData.id,
@@ -30,21 +32,21 @@ export function artistByIdMapper(data: ArtistResponse): ArtistProfile {
       artistId: song.artists.primary[0].id,
       album: song.album.id ?? '',
       duration: Number(song.duration),
-      coverUrl: song.image?.[song.image.length - 1]?.url ?? '',
-      audioUrl: song.downloadUrl[song.downloadUrl.length - 1].url,
+      coverUrl: getBest(song?.image)?.url ?? '',
+      audioUrl: getBest(song.downloadUrl).url,
     })),
 
     topAlbums: apiData.topAlbums.map((album) => ({
       id: album.id,
       name: album.name,
       year: album.year,
-      image: album.image[album.image.length - 1].url || '',
+      image: getBest(album.image).url || '',
     })),
 
     similarArtists: (apiData.similarArtists || []).map((artist) => ({
       id: artist.id || '',
       name: artist.name || 'Unknown artist',
-      image: artist.image?.[artist.image?.length - 1].url || '',
+      image: getBest(artist?.image).url || '',
     })),
   };
 }

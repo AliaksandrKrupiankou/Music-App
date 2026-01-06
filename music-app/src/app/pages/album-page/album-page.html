@@ -1,19 +1,19 @@
-
 <div class="container">
-
-    <div class="header">
-        <div class="img">
-            <img [src]="albumData.value()?.coverUrl" alt="">
-        </div>
-
-        <div class="info">
-            <p class="album">Album</p>
-            <h1 class="name">{{albumData.value()?.artistName}}</h1>
-            <a [routerLink]="['/artist', albumData.value()?.artistId]">{{albumData.value()?.artistName}}</a>
-        </div>
+  <div class="header">
+    <div class="img">
+      <img [src]="albumData.value()?.coverUrl" alt="" />
     </div>
 
-    <div class="track-list">
-        <app-track-list [tracks]="albumData.value()?.tracks"></app-track-list>
+    <div class="info">
+      <p class="album">Album</p>
+      <h1 class="name">{{ albumData.value()?.artistName }}</h1>
+      <a [routerLink]="['/artist', albumData.value()?.artistId]">{{
+        albumData.value()?.artistName
+      }}</a>
     </div>
+  </div>
+
+  <div class="track-list">
+    <app-track-list [tracks]="albumData.value()?.tracks"></app-track-list>
+  </div>
 </div>
