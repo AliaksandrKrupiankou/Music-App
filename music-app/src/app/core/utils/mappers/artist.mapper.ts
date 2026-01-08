@@ -24,6 +24,7 @@ export function artistByIdMapper(data: ArtistResponse): ArtistProfile {
     name: apiData.name,
     image: bestImg.url,
     fanCount: apiData.fanCount,
+    twitter: apiData.twitter,
 
     topSongs: apiData.topSongs.map((song) => ({
       id: song.id,

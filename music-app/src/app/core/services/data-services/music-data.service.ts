@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { Album, Track } from '../../../models/app-interface';
 import { MusicApiService } from './music-api-service';
 import { transformToTrack } from '../../utils/mappers/track.mapper';
@@ -46,6 +46,7 @@ export class MusicDataService {
     };
 
     return this.api.getArtistById(id, params).pipe(
+      tap(data => console.log(data)),
       map((response) => {
         return artistByIdMapper(response);
       })

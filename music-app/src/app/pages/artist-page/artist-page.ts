@@ -6,10 +6,11 @@ import { SimilarArtists } from '../../shared/ui/similar-artists/similar-artists'
 import { MusicDataService } from '../../core/services/data-services/music-data.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { TwitterHoverDirective } from '../../shared/derectives/twitter-hover.directive';
 
 @Component({
   selector: 'app-artist-page',
-  imports: [TrackList, AlbumsList, SimilarArtists, LucideAngularModule, TranslateModule],
+  imports: [TrackList, AlbumsList, SimilarArtists, LucideAngularModule, TranslateModule, TwitterHoverDirective],
   templateUrl: './artist-page.html',
   styleUrl: './artist-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

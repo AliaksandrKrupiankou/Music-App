@@ -7,7 +7,7 @@
 
     <div class="info">
       <div class="name">
-        <h1>{{ artistProfile.value()?.name }}</h1>
+        <h1 appTwitterHover [url]='artistProfile.value()?.twitter'  >{{ artistProfile.value()?.name }}</h1>
       </div>
 
       <div class="listeners-count">

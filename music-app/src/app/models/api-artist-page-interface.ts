@@ -101,7 +101,7 @@ export interface ArtistProfile {
   name: string;
   image: string;
   fanCount: string | null;
-
+  twitter: string | null;
   topSongs: Track[];
   topAlbums: CompactAlbum[];
 
