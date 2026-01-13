@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { Track } from '../../../models/app-interface';
 import { AudioService } from '../../../core/services/audio-service';
-import { TrackDuringPipe } from '../../../core/pipes/track-during-pipe';
+import { TrackRowComponent } from '../track-row/track-row.component';
 import { FavoriteService } from '../../../core/services/favorite-service';
-import { RouterLink } from '@angular/router';
-import { LucideAngularModule } from 'lucide-angular';
+
+
 @Component({
   selector: 'app-track-list',
-  imports: [TrackDuringPipe, RouterLink, LucideAngularModule],
+  imports: [TrackRowComponent],
   templateUrl: './track-list.html',
   styleUrl: './track-list.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TrackList {
-  tracks = input<Track[]>();
+  tracks = input.required<Track[]>();
   player = inject(AudioService);
   like = inject(FavoriteService);
 
@@ -25,9 +25,9 @@ export class TrackList {
     return this.like.isLiked(track);
   }
 
-  playTrack(track: Track, playList: Track[]) {
-    this.player.currentPlaylist.set(playList);
-    this.player.currentIndex.set(playList.indexOf(track));
+  playTrack(track: Track) {
+    this.player.currentPlaylist.set(this.tracks());
+    this.player.currentIndex.set(this.tracks().indexOf(track));
     this.player.toggle(track);
   }
 }

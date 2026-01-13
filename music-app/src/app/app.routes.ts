@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout-component';
-import { PlaylistPage } from './pages/playlist-page/playlist-page';
+import { CollectionPage } from './pages/playlist-page/collection-page';
 import { SearchPage } from './pages/search-page/search-page';
 import { MainPage } from './pages/main-page/main-page';
 import { ArtistPage } from './pages/artist-page/artist-page';
@@ -16,8 +16,8 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {
-        path: 'playlist',
-        component: PlaylistPage,
+        path: 'collection',
+        component: CollectionPage,
       },
       {
         path: '',

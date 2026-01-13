@@ -1,0 +1,13 @@
+.container{
+    color: var(--main-text-color);
+}
+
+.fav-list ::ng-deep ul {
+  column-count: 2;     
+  column-gap: 30px;    
+}
+
+.fav-list ::ng-deep li {
+  margin-bottom: 10px; 
+  width: 100%;         
+}

@@ -1,5 +1,6 @@
 import {
   Directive,
+  effect,
   ElementRef,
   HostListener,
   inject,
@@ -20,6 +21,16 @@ export class TwitterHoverDirective {
 
   icon: HTMLElement | null = null;
   hover = signal<boolean>(false);
+
+  constructor(){
+    effect(() => {
+      this.hover() ? this.showIcon() : this.hideIcon();
+    })
+  }
+
+  ngOnDestroy(){
+    this.hideIcon();
+  }
 
 
   showIcon() {
@@ -55,14 +66,11 @@ export class TwitterHoverDirective {
 
   @HostListener('mouseenter')
   onEnter() {
-    if(this.icon) return;
     this.hover.set(true);
-    this.showIcon();
   }
 
   @HostListener('mouseleave')
   onLeave() {
-    this.hideIcon();
     this.hover.set(false);
   }
 }

@@ -33,5 +33,10 @@
   "LOGIN_PAGE": {
     "TITLE": "Open your own musics world",
     "BTN_TEXT": "Start liten music"
+  },
+
+  "MAIN": {
+    "HEADER": "Main",
+    "FAVORITE": "Favorite"
   }
 }

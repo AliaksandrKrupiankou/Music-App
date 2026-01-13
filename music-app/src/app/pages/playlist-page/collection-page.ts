@@ -5,13 +5,13 @@ import { AuthService } from '../../core/services/auth-service';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-playlist-page',
+  selector: 'app-collection-page',
   imports: [TrackList, TranslateModule],
-  templateUrl: './playlist-page.html',
-  styleUrl: './playlist-page.css',
+  templateUrl: './collection-page.html',
+  styleUrl: './collection-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlaylistPage {
+export class CollectionPage {
   likedService = inject(FavoriteService);
   authService = inject(AuthService);
 

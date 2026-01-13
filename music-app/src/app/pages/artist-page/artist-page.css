@@ -33,12 +33,11 @@
   padding: 3px;
 }
 
-.twitter-icon{
+.twitter-icon {
   color: var(--main-text-color);
   margin-left: 10px;
 }
 
-.twitter-icon:hover{
-  color: rgb(63, 97, 202);
+.twitter-icon:hover {
+  color: var(--main-yellow-color);
 }
-
