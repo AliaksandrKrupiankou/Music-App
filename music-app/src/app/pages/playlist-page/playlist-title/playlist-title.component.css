@@ -1,0 +1,58 @@
+.title-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+    color: var(--main-text-color);
+    font-size: 60px;
+}
+
+.edit-btn{
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(78, 78, 78, 0.425);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    padding: 0;
+}
+
+.title-container:hover .edit-btn{
+    opacity: 1;
+}
+
+.edit-btn lucide-icon {
+   display: flex;  
+   line-height: 0;  
+}
+
+
+
+.title-input {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  
+  font-size: inherit;   
+  font-family: inherit;
+  color: inherit;
+  
+  font-weight: 700; 
+  
+  width: 100%;
+}
+
+
+
+.title {
+  margin: 0;
+  font-size: inherit; 
+  font-weight: 700;
+}
+

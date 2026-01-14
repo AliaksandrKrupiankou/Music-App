@@ -11,7 +11,10 @@ import {
   Volume2,
   Volume1,
   UserRound,
-  Twitter
+  Twitter,
+  Pencil,
+  Plus,
+  Trash
 } from 'lucide-angular';
 
 export const icons = {
@@ -27,5 +30,8 @@ export const icons = {
   Volume2,
   VolumeX,
   UserRound,
-  Twitter
+  Twitter,
+  Pencil,
+  Plus,
+  Trash
 };

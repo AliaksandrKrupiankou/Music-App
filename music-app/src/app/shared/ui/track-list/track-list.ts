@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, TemplateRef } from '@angular/core';
 import { Track } from '../../../models/app-interface';
 import { AudioService } from '../../../core/services/audio-service';
 import { TrackRowComponent } from '../track-row/track-row.component';
 import { FavoriteService } from '../../../core/services/favorite-service';
+import { NgTemplateOutlet } from '@angular/common';
 
 
 @Component({
   selector: 'app-track-list',
-  imports: [TrackRowComponent],
+  imports: [TrackRowComponent, NgTemplateOutlet],
   templateUrl: './track-list.html',
   styleUrl: './track-list.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,6 +17,8 @@ export class TrackList {
   tracks = input.required<Track[]>();
   player = inject(AudioService);
   like = inject(FavoriteService);
+
+  actionTemplate = input<TemplateRef<any> | null>(null);
 
   toggleLike(track: Track) {
     this.like.toggleLike(track);

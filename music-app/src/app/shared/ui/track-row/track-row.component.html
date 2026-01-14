@@ -4,6 +4,14 @@
           <p class="track-name">{{ track().title }}</p>
           <a [routerLink]="['/artist', track().artistId]">{{ track().artist }}</a>
         </div>
+
+        <div class="buttons">
+          
+        <div class="added-btns">
+        <ng-content select="[buttons]" ></ng-content>
+        </div>
+
+
         <div class="play-button">
           <button (click)="playTrack()">
             @if(player.isPlaying() && player.currentTrack()?.id === track().id){
@@ -22,6 +30,9 @@
             <lucide-icon name="heart" [class.liked]="isLiked(track())"></lucide-icon>
           </button>
         </div>
+
+        </div>
+
 
         <div class="duration">
           <p>{{ track().duration | trackDuring }}</p>

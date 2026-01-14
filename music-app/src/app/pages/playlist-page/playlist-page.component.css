@@ -1,0 +1,51 @@
+.header{
+    display: flex;
+    flex-direction: row;
+}
+
+.cover-info{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    color: var(--secondary-text-color);
+}
+
+.playlist-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.delete-btn{
+    display: flex;
+    border: none;
+    flex: 1;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+}
+
+.delete-btn button{
+    all: unset;
+    cursor: pointer;
+    background-color: #333333;
+    border-radius: 40px;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    color: var(--main-text-color);
+}
+
+.delete-btn button:hover{
+    background-color: #535353;
+    transition: ease 0.2s;
+}
+
+
+
+.search-list{
+    margin-top: 20px;
+}
+
+

@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Track } from '../../../models/app-interface';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Artist } from '../../../models/api-artists-interface';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import { combineLatest, debounceTime, filter, switchMap, tap } from 'rxjs';
+import { combineLatest, debounceTime, filter, of, switchMap, tap } from 'rxjs';
 import { MusicDataService } from '../../../core/services/data-services/music-data.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { TranslateModule } from '@ngx-translate/core';
@@ -19,6 +19,10 @@ import { TranslateModule } from '@ngx-translate/core';
 export class Search {
   searchService = inject(MusicDataService);
   typeOfSearch = signal<'songs' | 'artists'>('songs');
+
+
+  showTypes = input<boolean>(true);
+  
 
   searchResult = output<Track[] | Artist[]>();
   dataType = output<string>();
@@ -36,12 +40,16 @@ export class Search {
     })
       .pipe(
         debounceTime(300),
-        filter(({ query }) => !!query && query.length >= 2),
-        tap((data) => this.dataType.emit(data.type)),
-        switchMap((data) => {
-          return data.type === 'artists'
-            ? this.searchService.searchArtists(data.query!)
-            : this.searchService.searchTracks(data.query!);
+        switchMap(({ query , type}) => {
+
+          if(!query || query.length === 0 ){
+            this.searchResult.emit([]);
+            return of([]);
+          }
+          this.dataType.emit(type);
+          return type === 'artists'
+            ? this.searchService.searchArtists(query!)
+            : this.searchService.searchTracks(query!);
         }),
         takeUntilDestroyed()
       )

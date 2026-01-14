@@ -2,7 +2,17 @@
   <ul>
     @for(track of tracks(); track track.id){
     <li>
-      <app-track-row [track]="track" (playTrackId)="playTrack($event)"></app-track-row>
+      <app-track-row [track]="track" (playTrackId)="playTrack($event)">
+
+      @if(actionTemplate()){
+        <div buttons>
+          <ng-container
+          *ngTemplateOutlet="actionTemplate(); context: { $implicit: track }"
+          >
+          </ng-container>
+        </div>
+      }
+      </app-track-row>
     </li>
     }
   </ul>

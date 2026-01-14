@@ -12,6 +12,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { icons } from './icons.config';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { LucideAngularModule } from 'lucide-angular';
+import { provideStorage } from '@angular/fire/storage';
+import { getStorage } from 'firebase/storage';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -24,6 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
 
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideStorage(() => getStorage()),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
 

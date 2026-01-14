@@ -97,3 +97,30 @@
   height: 40px;
   border-radius: 10%;
 }
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.added-btns ::ng-deep button{
+  all: unset;
+  cursor: pointer;
+  color: var(--secondary-text-color);
+  display: flex;
+  width: 30px;
+  height: 30px;
+    align-items: center;
+  justify-content: center;
+}
+
+  .added-btns ::ng-deep button svg{
+    display: flex;
+  }
+
+  .added-btns ::ng-deep button:hover{
+    color: var(--main-text-color);
+    transition: 0.5s;
+  }
+
