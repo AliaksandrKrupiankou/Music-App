@@ -1,13 +1,16 @@
 .playlists {
   display: flex;
   flex-direction: row;
+  gap: 20px;
   overflow-x: auto;
-  margin-top: 15px;
-
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .playlists::-webkit-scrollbar {
   display: none;
+  width: 0;
+  height: 0;
 }
 
 ul {
@@ -16,7 +19,6 @@ ul {
 
 li {
   all: unset;
-
 }
 
 img {
@@ -40,8 +42,7 @@ a:hover {
   text-decoration: underline;
 }
 
-
-button{
+button {
   all: unset;
   cursor: pointer;
   width: 200px;
@@ -54,11 +55,11 @@ button{
   justify-content: center;
 }
 
-button:hover{
+button:hover {
   background-color: #3e3e3e;
   transition: ease 0.5s;
 }
 
-lucide-icon{
+lucide-icon {
   color: #919191;
 }

@@ -3,6 +3,9 @@ import { AudioService } from '../../services/audio-service';
 import { FavoriteService } from '../../services/favorite-service';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
+import { rxResource } from '@angular/core/rxjs-interop';
+import { ImageColorServiceService } from '../../services/image-color-service.service';
+import { from, of } from 'rxjs';
 
 @Component({
   selector: 'app-player-bar-component',
@@ -14,11 +17,24 @@ import { LucideAngularModule } from 'lucide-angular';
 export class PlayerBarComponent {
   service = inject(AudioService);
   like = inject(FavoriteService);
+  colorService = inject(ImageColorServiceService);
 
   currentTrack = this.service.currentTrack;
   currentTime = this.service.currentTime;
   currentVolume = this.service.currentVolume;
   isPlaying = this.service.isPlaying;
+
+  
+  bgColor = rxResource({
+    request: () => this.currentTrack()?.coverUrl,
+    loader: ({ request: url }) => {
+      return this.colorService.getDominantColor(url)
+    }
+  })
+
+  dynamicColor = computed(() => 
+    this.bgColor.value() ?? '#323838' 
+  );
 
   seekTrack(val: string) {
     this.service.seekTo(Number(val));
@@ -51,6 +67,7 @@ export class PlayerBarComponent {
 
   playPauseToggle() {
     this.service.toggle(this.currentTrack()!);
+    console.log(this.dynamicColor())
   }
 
   toggleVolume() {

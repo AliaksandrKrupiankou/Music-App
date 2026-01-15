@@ -14,7 +14,7 @@ export class AuthService {
   user = toSignal(authState(this.auth));
 
   login() {
-    const provider = new GoogleAuthProvider();
+    const provider = new GoogleAuthProvider(); 
     signInWithPopup(this.auth, provider)
       .then(() => {
         this.router.navigate(['/']);

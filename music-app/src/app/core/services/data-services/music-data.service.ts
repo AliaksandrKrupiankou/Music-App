@@ -15,7 +15,7 @@ export class MusicDataService {
   private api = inject(MusicApiService);
 
   searchTracks(query: string): Observable<Track[]> {
-    const params = { query, limit: 10, page: 0 };
+    const params = { query, limit: 40, page: 0 };
 
     return this.api.searchSongs(params).pipe(
       map((response) => {
@@ -46,7 +46,7 @@ export class MusicDataService {
     };
 
     return this.api.getArtistById(id, params).pipe(
-      tap(data => console.log(data)),
+      tap((data) => console.log(data)),
       map((response) => {
         return artistByIdMapper(response);
       })

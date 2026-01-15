@@ -20,9 +20,7 @@ export class Search {
   searchService = inject(MusicDataService);
   typeOfSearch = signal<'songs' | 'artists'>('songs');
 
-
   showTypes = input<boolean>(true);
-  
 
   searchResult = output<Track[] | Artist[]>();
   dataType = output<string>();
@@ -40,9 +38,8 @@ export class Search {
     })
       .pipe(
         debounceTime(300),
-        switchMap(({ query , type}) => {
-
-          if(!query || query.length === 0 ){
+        switchMap(({ query, type }) => {
+          if (!query || query.length === 0) {
             this.searchResult.emit([]);
             return of([]);
           }
