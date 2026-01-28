@@ -1,5 +1,5 @@
 import { inject, Injectable, NgZone, signal } from '@angular/core';
-import { Track } from '../../models/app-interface';
+import { PlayingStrategy, Track } from '../../models/app-interface';
 import { fromEvent } from 'rxjs';
 import { LocalStorageService } from './data-services/local-storage-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -15,6 +15,8 @@ export class AudioService {
   currentTime = signal<number>(0);
   player = new Audio();
   currentVolume = signal<number>(this.player.volume);
+  playingStrategy = signal<PlayingStrategy>(PlayingStrategy.basicPlaying);
+
   localStorageService = inject(LocalStorageService);
   zone = inject(NgZone);
 

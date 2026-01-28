@@ -1,4 +1,4 @@
-import { Component, computed, forwardRef, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, forwardRef, output, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -6,6 +6,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   imports: [],
   templateUrl: './playlist-cover.component.html',
   styleUrl: './playlist-cover.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

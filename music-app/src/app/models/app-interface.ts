@@ -19,3 +19,9 @@ export interface Album {
   artistId: string;
   tracks: Track[];
 }
+
+export enum PlayingStrategy {
+  basicPlaying = 'BASIC_PLAYING',
+  repeatPlaylist = 'REPEAT_PLAYLIST',
+  repeatCurrentTrack = 'REPEAT_CURRENT_TRACK'
+}

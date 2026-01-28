@@ -28,13 +28,11 @@ export class PlayerBarComponent {
   bgColor = rxResource({
     request: () => this.currentTrack()?.coverUrl,
     loader: ({ request: url }) => {
-      return this.colorService.getDominantColor(url)
+      return this.colorService.getDominantColor(url) ?? '#323838' 
     }
   })
 
-  dynamicColor = computed(() => 
-    this.bgColor.value() ?? '#323838' 
-  );
+
 
   seekTrack(val: string) {
     this.service.seekTo(Number(val));
@@ -67,7 +65,6 @@ export class PlayerBarComponent {
 
   playPauseToggle() {
     this.service.toggle(this.currentTrack()!);
-    console.log(this.dynamicColor())
   }
 
   toggleVolume() {

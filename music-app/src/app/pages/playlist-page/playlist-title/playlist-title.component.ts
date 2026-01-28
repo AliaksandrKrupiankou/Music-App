@@ -1,9 +1,9 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   forwardRef,
   inject,
-  output,
   signal,
   viewChild,
 } from '@angular/core';
@@ -15,6 +15,8 @@ import { LucideAngularModule } from 'lucide-angular';
   imports: [LucideAngularModule],
   templateUrl: './playlist-title.component.html',
   styleUrl: './playlist-title.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -54,7 +56,7 @@ export class PlaylistTitleComponent implements ControlValueAccessor {
     this.editing.set(true);
 
     setTimeout(() => {
-      this.inputRef()?.nativeElement.focus();
+      this.inputRef()?.nativeElement.focus(); /// УБРАТЬ ТАЙМАУТ
     });
   }
 

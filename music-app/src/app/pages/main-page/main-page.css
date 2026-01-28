@@ -11,3 +11,20 @@
   margin-bottom: 10px; 
   width: 100%;         
 }
+
+.header{
+  margin-bottom: 20px;
+  width: auto;
+}
+
+a{
+  all:unset;
+  cursor: pointer;
+}
+
+
+
+a:hover{
+  text-decoration: underline;
+  text-decoration-color: rgb(255, 255, 255);
+}

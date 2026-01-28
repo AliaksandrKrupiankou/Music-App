@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { PlaylistsService } from '../../../core/services/playlists.service';
 import { AuthService } from '../../../core/services/auth-service';
 import { rxResource } from '@angular/core/rxjs-interop';
@@ -16,6 +16,8 @@ type PlaylistListItem =
   imports: [RouterLink, LucideAngularModule],
   templateUrl: './playlist-list.component.html',
   styleUrl: './playlist-list.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class PlaylistListComponent {
   playlistService = inject(PlaylistsService);
