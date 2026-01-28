@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchPage } from './search-page';
+import { provideHttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 describe('SearchPage', () => {
   let component: SearchPage;
@@ -8,7 +10,11 @@ describe('SearchPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchPage]
+      imports: [SearchPage],
+      providers: [
+        provideHttpClient(),
+        { provide: TranslateService, useValue: {}}
+      ]
     })
     .compileComponents();
 

@@ -26,14 +26,12 @@ export class PlaylistsService {
   fileUpload = inject(FileUploadService);
   private injector = inject(EnvironmentInjector);
 
-
-
   async createPlaylist(uid: string) {
     const playlistRef = collection(this.firestore, `${FIRESTORE_COLLECTIONS.PLAYLISTS}`);
 
     const newPlaylist = {
       title: 'New playlist',
-      coverUrl: "https://i.ibb.co/TM7YpRKH/chrome-gn-D105t-VDl.png",
+      coverUrl: 'https://i.ibb.co/TM7YpRKH/chrome-gn-D105t-VDl.png',
       tracks: [] as Track[],
       authorId: uid,
       createdAt: serverTimestamp(),
@@ -80,32 +78,29 @@ export class PlaylistsService {
   getUserPlaylists(userId: string): Observable<Playlist[]> {
     const playlistsRef = collection(this.firestore, `${FIRESTORE_COLLECTIONS.PLAYLISTS}`);
 
-    const q = query(playlistsRef, 
-      where('authorId', '==', userId),
-      orderBy('createdAt', 'desc'),
-    );
+    const q = query(playlistsRef, where('authorId', '==', userId), orderBy('createdAt', 'desc'));
 
-    return runInInjectionContext(this.injector ,() => collectionData(q, { idField: 'id' }) as Observable<Playlist[]>);
+    return runInInjectionContext(
+      this.injector,
+      () => collectionData(q, { idField: 'id' }) as Observable<Playlist[]>,
+    );
   }
 
   async addTrackToPlaylist(playlistId: string, track: Track) {
-  const docRef = doc(this.firestore, `${FIRESTORE_COLLECTIONS.PLAYLISTS}/${playlistId}`);
-  
- 
-  await updateDoc(docRef, {
-    tracks: arrayUnion(track),
-    updatedAt: serverTimestamp()
-  });
-}
+    const docRef = doc(this.firestore, `${FIRESTORE_COLLECTIONS.PLAYLISTS}/${playlistId}`);
 
-async removeTrackFromPlaylist(playlistId: string, track: Track) {
-  const docRef = doc(this.firestore, `${FIRESTORE_COLLECTIONS.PLAYLISTS}/${playlistId}`);
+    await updateDoc(docRef, {
+      tracks: arrayUnion(track),
+      updatedAt: serverTimestamp(),
+    });
+  }
 
-  return await updateDoc(docRef, {
-    tracks: arrayRemove(track),
-    updatedAt: serverTimestamp()
-  });
-}
+  async removeTrackFromPlaylist(playlistId: string, track: Track) {
+    const docRef = doc(this.firestore, `${FIRESTORE_COLLECTIONS.PLAYLISTS}/${playlistId}`);
 
-
+    return await updateDoc(docRef, {
+      tracks: arrayRemove(track),
+      updatedAt: serverTimestamp(),
+    });
+  }
 }
