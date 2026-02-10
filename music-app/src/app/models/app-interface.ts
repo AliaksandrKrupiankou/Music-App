@@ -20,7 +20,7 @@ export interface Album {
   tracks: Track[];
 }
 
-export enum PlayingStrategy {
+export const enum PlayingStrategy {
   basicPlaying = 'BASIC_PLAYING',
   repeatPlaylist = 'REPEAT_PLAYLIST',
   repeatCurrentTrack = 'REPEAT_CURRENT_TRACK'

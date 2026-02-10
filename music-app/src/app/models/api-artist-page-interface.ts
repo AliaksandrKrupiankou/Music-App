@@ -60,12 +60,7 @@ export interface Album {
   };
 }
 
-export interface CompactAlbum {
-  id: string;
-  name: string;
-  year: number | null;
-  image: string;
-}
+
 
 export interface ArtistBio {
   text: string | null;
@@ -116,4 +111,18 @@ export interface SimilarArtist {
   id: string;
   name: string;
   image: string;
+}
+
+export interface CompactAlbum {
+  id: string;
+  name: string;
+  year: number | null;
+  image: string;
+}
+
+export interface MediaContent {
+  id: string;
+  name: string; 
+  image: string;
+  year?: number | null;
 }

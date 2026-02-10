@@ -1,16 +1,22 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { TrackList } from '../../shared/ui/track-list/track-list';
-import { AlbumsList } from '../../shared/ui/albums-list/albums-list';
-import { SimilarArtists } from '../../shared/ui/similar-artists/similar-artists';
 import { MusicDataService } from '../../core/services/data-services/music-data.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { TwitterHoverDirective } from '../../shared/derectives/twitter-hover.directive';
+import { MediaListSectionComponent } from '../../shared/ui/media-list-section/media-list-section.component';
+import { MediaContent } from '../../models/api-artist-page-interface';
 
 @Component({
   selector: 'app-artist-page',
-  imports: [TrackList, AlbumsList, SimilarArtists, LucideAngularModule, TranslateModule, TwitterHoverDirective],
+  imports: [
+    TrackList,
+    LucideAngularModule,
+    TranslateModule,
+    TwitterHoverDirective,
+    MediaListSectionComponent,
+  ],
   templateUrl: './artist-page.html',
   styleUrl: './artist-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,4 +29,14 @@ export class ArtistPage {
     request: () => this.artistId(),
     loader: ({ request: id }) => this.artistService.getArtistById(id),
   });
+
+  similarArtists = computed(() => {
+    const data = this.artistProfile.value()?.similarArtists;
+    return data && data.length ? (data as MediaContent[]) : [];
+  });
+
+  topAlbums = computed(() => {
+    const data = this.artistProfile.value()?.topAlbums;
+    return data && data.length ? (data as MediaContent[]) : []; 
+  })
 }

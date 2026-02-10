@@ -41,3 +41,8 @@
 .twitter-icon:hover {
   color: var(--main-yellow-color);
 }
+
+
+.media{
+  margin-top: 50px;
+}

@@ -1,0 +1,28 @@
+<div class="content-list">
+  <ul class="list">
+    @for (content of data(); track content.id) {
+      <li>
+        <div class="content">
+          <div class="content-img">
+            <img
+              [class.circle]="imageForm() === 'Circle'"
+              [class.square]="imageForm() === 'Square'"
+              [src]="content.image"
+              alt=""
+            />
+          </div>
+          <div>
+            <a
+              [routerLink]="[link(), content.id]"
+              class="content-name"
+              [class.circle-content]="imageForm() === 'Circle'"
+              [class.square-content]="imageForm() === 'Square'"
+              >{{ content.name }}</a
+            >
+            <p class="year">{{ content.year }}</p>
+          </div>
+        </div>
+      </li>
+    }
+  </ul>
+</div>
