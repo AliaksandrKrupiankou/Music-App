@@ -1,6 +1,9 @@
 <app-sidebar-component class="side-bar"></app-sidebar-component>
+
 <div class="content">
-  <router-outlet></router-outlet>
+  <ng-scrollbar class="scrollbar" visibility="hover">
+    <router-outlet></router-outlet>
+  </ng-scrollbar>
 </div>
 
 <app-player-bar-component class="player"></app-player-bar-component>

@@ -1,26 +1,14 @@
 @if (artistProfile.value()) {
   <div class="container">
-    <div class="header">
-      <div class="img">
-        <img [src]="artistProfile.value()?.image" alt="" />
-      </div>
-
-      <div class="info">
-        <div class="name">
-          <h1 appTwitterHover [url]="artistProfile.value()?.twitter">
-            {{ artistProfile.value()?.name }}
-          </h1>
-        </div>
-
-        <div class="listeners-count">
-          <lucide-icon name="user-round"></lucide-icon>
-          <p>
-            {{ artistProfile.value()?.fanCount }}
-            {{ 'ARTIST_PROFILE.LISTENERS_PER_MONTH' | translate }}
-          </p>
-        </div>
-      </div>
-    </div>
+    <app-entity-header-component
+      [typeOfPage]="'Artist'"
+      [image]="artistProfile.value()?.image"
+      [imageForm]="'Circle'"
+      [title]="artistProfile.value()?.name!"
+      [description]="headerDiscriptionInfo()"
+    >
+    <button>eojgnr</button>
+  </app-entity-header-component>
 
     <div class="popular-songs">
       <div class="sector-header">
@@ -36,7 +24,10 @@
         <div class="sector-header">
           <h1>{{ 'ARTIST_PROFILE.POPULAR_ALBUMS' | translate }}</h1>
         </div>
-        <app-media-list-section [data]="topAlbums()" [imageForm]="'Square'"></app-media-list-section>
+        <app-media-list-section
+          [data]="topAlbums()"
+          [imageForm]="'Square'"
+        ></app-media-list-section>
       </div>
     }
 
@@ -44,7 +35,10 @@
       <div class="media">
         <h1>{{ 'ARTIST_PROFILE.SIMILAR_ARTISTS' | translate }}</h1>
 
-        <app-media-list-section [data]="similarArtists()" [imageForm]="'Circle'"></app-media-list-section>
+        <app-media-list-section
+          [data]="similarArtists()"
+          [imageForm]="'Circle'"
+        ></app-media-list-section>
       </div>
     }
   </div>

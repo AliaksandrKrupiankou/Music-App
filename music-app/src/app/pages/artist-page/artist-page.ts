@@ -7,6 +7,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TwitterHoverDirective } from '../../shared/derectives/twitter-hover.directive';
 import { MediaListSectionComponent } from '../../shared/ui/media-list-section/media-list-section.component';
 import { MediaContent } from '../../models/api-artist-page-interface';
+import { EntityHeaderComponentComponent } from "../../shared/ui/entity-header-component/entity-header-component.component";
+import { HeaderDescriptionData } from '../../models/app-interface';
 
 @Component({
   selector: 'app-artist-page',
@@ -16,7 +18,8 @@ import { MediaContent } from '../../models/api-artist-page-interface';
     TranslateModule,
     TwitterHoverDirective,
     MediaListSectionComponent,
-  ],
+    EntityHeaderComponentComponent
+],
   templateUrl: './artist-page.html',
   styleUrl: './artist-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,6 +32,12 @@ export class ArtistPage {
     request: () => this.artistId(),
     loader: ({ request: id }) => this.artistService.getArtistById(id),
   });
+
+  headerDiscriptionInfo = computed(() => {
+    return {
+      countOfListners: this.artistProfile.value()?.fanCount
+    } as HeaderDescriptionData
+  })
 
   similarArtists = computed(() => {
     const data = this.artistProfile.value()?.similarArtists;

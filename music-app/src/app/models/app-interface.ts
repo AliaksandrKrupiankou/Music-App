@@ -25,3 +25,12 @@ export const enum PlayingStrategy {
   repeatPlaylist = 'REPEAT_PLAYLIST',
   repeatCurrentTrack = 'REPEAT_CURRENT_TRACK'
 }
+
+export interface HeaderDescriptionData {
+  countOfListners?: string;
+  username?: string;
+  artistName?: string;
+  artistId: string;
+  
+  yearOfAlbum?: string; 
+}

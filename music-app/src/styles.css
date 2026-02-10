@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
+  
 }
 
 :host {
@@ -31,7 +32,6 @@
 
   --page-border-radius: 20px;
   --router-outlet-margin: 15px 15px 15px 0px;
-  --router-outlet-padding: 30px;
 
   --sidebar-width: 240px;
   --sidebar-margin-top: 30px;

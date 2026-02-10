@@ -1,17 +1,14 @@
 <div class="container">
-  <div class="header">
-    <div class="img">
-      <img [src]="albumData.value()?.coverUrl" alt="" />
-    </div>
+  <app-entity-header-component 
+  [typeOfPage]="'Album'"
 
-    <div class="info">
-      <p class="album">{{ 'ALBUM_PAGE.ALBUM' | translate }}</p>
-      <h1 class="name">{{ albumData.value()?.artistName }}</h1>
-      <a [routerLink]="['/artist', albumData.value()?.artistId]">{{
-        albumData.value()?.artistName
-      }}</a>
-    </div>
-  </div>
+  [image]="albumData.value()?.coverUrl"
+  [imageForm]="'Square'"
+
+  [title]="albumData.value()?.name!"
+
+  [description]="headerDiscription()"
+  ></app-entity-header-component>
 
   <div class="track-list">
     <app-track-list [tracks]="albumData.value()?.tracks!"></app-track-list>
