@@ -16,6 +16,7 @@
 .content {
   grid-column: 2;
   grid-row: 1;
+  min-width: 0;
   padding: 0;
   background-color: var(--bg-secondary);
   border-radius: var(--page-border-radius);
@@ -31,12 +32,21 @@
   grid-column: 2;
 }
 
+* {
+  scrollbar-width: none;
+}
+
+:host ::ng-deep .ng-scrollbar-track {
+  background: transparent !important;
+  width: 20px !important; 
+}
 
 :host ::ng-deep .ng-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.3) !important;
-  border-radius: 10px !important;
+  border-radius: 15px !important;
+  border: none !important;
+  width: 100% !important;
   transition: background-color 0.2s ease;
-
 }
 
 :host ::ng-deep .ng-scrollbar-thumb:hover {

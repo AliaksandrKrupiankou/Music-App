@@ -1,19 +1,11 @@
-<div class="header-host" 
-     [style.--hero-color]="bgColor.value() ?? '#181818'">
-
+<div class="header-host" [style.--hero-color]="bgColor.value() ?? '#181818'">
   <div class="ambient-background"></div>
 
   <div class="gradient-overlay"></div>
 
   <div class="content-wrapper">
-    
     <div class="image-box">
-      <img 
-        [src]="image()" 
-        [class]="imageForm()" 
-        alt="Cover Art" 
-        class="cover-img"
-      />
+      <img [src]="image()" [class]="imageForm()" alt="Cover Art" class="cover-img" />
     </div>
 
     <div class="info-stack">
@@ -24,31 +16,36 @@
       <div class="meta-data">
         @switch (typeOfPage()) {
           @case ('Playlist') {
-             <p class="desc-text">{{ description().username }}</p>
+            <p class="desc-text">{{ description().username }}</p>
           }
           @case ('Album') {
-             <p class="desc-text">
-               <span class="artist-link">{{ description().artistName }}</span> 
-               <span class="dot">•</span> 
-               {{ description().yearOfAlbum }}
-             </p>
+            <p class="desc-text">
+              <span class="artist-link">
+                <a class="artist-link" [routerLink]="['/artist/', description().artistId]">{{
+                  description().artistName
+                }}</a></span
+              >
+              <span class="dot"> •</span>
+              {{ description().yearOfAlbum }}
+            </p>
           }
+
           @case ('Artist') {
-             <div class="listeners-badge">
-                <lucide-icon name="user-round" class="icon-small"></lucide-icon>
-                <span>
-                  {{ description().countOfListners  }} 
-                  {{ 'ARTIST_PROFILE.LISTENERS_PER_MONTH' | translate }}
-                </span>
-             </div>
+            <div class="listeners-badge">
+              <lucide-icon name="user-round" class="icon-small"></lucide-icon>
+              <span>
+                {{ description().countOfListners }}
+                {{ 'ARTIST_PROFILE.LISTENERS_PER_MONTH' | translate }}
+              </span>
+            </div>
           }
         }
+        
       </div>
 
       <div class="actions-row">
         <ng-content></ng-content>
       </div>
     </div>
-
   </div>
 </div>

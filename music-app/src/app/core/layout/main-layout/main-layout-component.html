@@ -1,7 +1,7 @@
 <app-sidebar-component class="side-bar"></app-sidebar-component>
 
 <div class="content">
-  <ng-scrollbar class="scrollbar" visibility="hover">
+  <ng-scrollbar class="scrollbar" [orientation]="'vertical'" visibility="hover">
     <router-outlet></router-outlet>
   </ng-scrollbar>
 </div>

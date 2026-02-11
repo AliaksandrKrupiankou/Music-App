@@ -8,7 +8,9 @@
   [title]="albumData.value()?.name!"
 
   [description]="headerDiscription()"
-  ></app-entity-header-component>
+  >
+  <app-listen-button-component [data]="albumData.value()?.tracks!"></app-listen-button-component>
+</app-entity-header-component>
 
   <div class="track-list">
     <app-track-list [tracks]="albumData.value()?.tracks!"></app-track-list>

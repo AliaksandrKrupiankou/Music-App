@@ -55,6 +55,11 @@ export class AudioService {
       });
   }
 
+  playFirstTrack(playlist: Track[]){
+    this.playTrack(playlist[0]);
+    this.currentPlaylist.set(playlist);
+  }
+
   changeVolume(value: string) {
     this.player.volume = Number(value);
     this.currentVolume.set(this.player.volume);

@@ -7,11 +7,12 @@ import { RouterLink } from '@angular/router';
 import { PlaylistsService } from '../../core/services/playlists.service';
 import { AuthService } from '../../core/services/auth-service';
 import { PlaylistListComponent } from "../../shared/ui/playlist-list/playlist-list.component";
+import { MediaListSectionComponent } from "../../shared/ui/media-list-section/media-list-section.component";
 
 
 @Component({
   selector: 'app-main-page',
-  imports: [TranslateModule, TrackList, RouterLink, PlaylistListComponent],
+  imports: [TranslateModule, TrackList, RouterLink, PlaylistListComponent, MediaListSectionComponent],
   templateUrl: './main-page.html',
   styleUrl: './main-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

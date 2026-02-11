@@ -6,7 +6,11 @@
   [imageForm]="'Square'"
   [title]="'MyCollection'"
   [description]="headerDiscriptionData"
-  ></app-entity-header-component>
+  >
+
+  <app-listen-button-component [data]="likedTracksList()"></app-listen-button-component>
+
+</app-entity-header-component>
 
   <div class="search"></div>
 

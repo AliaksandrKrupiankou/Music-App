@@ -1,5 +1,6 @@
 .container{
     color: var(--main-text-color);
+    padding: 20px;
 }
 
 .fav-list ::ng-deep ul {

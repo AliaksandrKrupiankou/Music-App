@@ -3,25 +3,6 @@
   flex-direction: column;
 }
 
-.header {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
-
-.header img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-}
-
-.header .info {
-  color: var(--main-text-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 a {
   all: unset;
   cursor: pointer;

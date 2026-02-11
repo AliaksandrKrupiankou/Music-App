@@ -9,6 +9,7 @@ import { MediaListSectionComponent } from '../../shared/ui/media-list-section/me
 import { MediaContent } from '../../models/api-artist-page-interface';
 import { EntityHeaderComponentComponent } from "../../shared/ui/entity-header-component/entity-header-component.component";
 import { HeaderDescriptionData } from '../../models/app-interface';
+import { ListenButtonComponentComponent } from "../../shared/ui/listen-button-component/listen-button-component.component";
 
 @Component({
   selector: 'app-artist-page',
@@ -18,7 +19,8 @@ import { HeaderDescriptionData } from '../../models/app-interface';
     TranslateModule,
     TwitterHoverDirective,
     MediaListSectionComponent,
-    EntityHeaderComponentComponent
+    EntityHeaderComponentComponent,
+    ListenButtonComponentComponent
 ],
   templateUrl: './artist-page.html',
   styleUrl: './artist-page.css',
