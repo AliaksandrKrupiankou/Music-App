@@ -38,7 +38,7 @@
   padding: 24px 32px;
   gap: 24px;
   height: 100%;
-  padding-top: 80px; 
+  padding-top: 20px; 
 }
 
 .cover-img {
@@ -101,3 +101,4 @@ h1.title {
 .twitter-icon:hover {
   color: var(--main-yellow-color);
 }
+

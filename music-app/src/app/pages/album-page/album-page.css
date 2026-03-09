@@ -1,13 +1,7 @@
-.container {
-  display: flex;
-  flex-direction: column;
+
+
+.track-list{
+  padding: 20px;
 }
 
-a {
-  all: unset;
-  cursor: pointer;
-}
 
-a:hover {
-  color: var(--secondary-text-color);
-}

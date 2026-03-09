@@ -9,4 +9,9 @@ button {
   background-color: var(--main-yellow-color);
   align-items: center;
   justify-content: center; 
+  color: black;
+}
+
+lucide-icon {
+  fill: black;
 }

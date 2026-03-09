@@ -1,12 +1,9 @@
 <div class="container">
   <app-entity-header-component 
   [typeOfPage]="'Album'"
-
   [image]="albumData.value()?.coverUrl"
   [imageForm]="'Square'"
-
   [title]="albumData.value()?.name!"
-
   [description]="headerDiscription()"
   >
   <app-listen-button-component [data]="albumData.value()?.tracks!"></app-listen-button-component>

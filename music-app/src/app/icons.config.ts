@@ -14,7 +14,9 @@ import {
   Twitter,
   Pencil,
   Plus,
-  Trash
+  Trash,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-angular';
 
 export const icons = {
@@ -33,5 +35,7 @@ export const icons = {
   Twitter,
   Pencil,
   Plus,
-  Trash
+  Trash,
+  ChevronLeft,
+  ChevronRight,
 };
