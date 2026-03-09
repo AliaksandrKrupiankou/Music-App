@@ -27,7 +27,13 @@ export class AudioService {
   constructor() {
     this.player.volume = this.localStorageService.get('volume');
     this.currentVolume.set(this.localStorageService.get('volume'));
-    this.currentTrack.set(this.localStorageService.get('lastTrack'));
+    
+    const lastTrack = this.localStorageService.get('lastTrack');
+
+    if(lastTrack){
+      this.currentTrack.set(lastTrack);
+      this.player.src = lastTrack.audioUrl;
+    }
 
     fromEvent(this.player, 'ended')
       .pipe(takeUntilDestroyed())
