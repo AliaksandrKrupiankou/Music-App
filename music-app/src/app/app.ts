@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LanguageService } from './core/services/language.service';
+import { MediaSessionService } from './core/services/media-session.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import { LanguageService } from './core/services/language.service';
 export class App {
   protected readonly title = signal('music-app');
   private langService = inject(LanguageService);
+  private mediaSessionService = inject(MediaSessionService);
 
   ngOnInit() {
     this.langService.init();
