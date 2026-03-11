@@ -1,0 +1,29 @@
+.navigation {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  z-index: 10;
+  padding: 20px;
+  gap: 10px;
+}
+
+.nav-btn {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(240, 248, 255, 0.186);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  padding: 0;
+}
+
+lucide-icon {
+  display: flex; 
+  line-height: 0;
+  padding: 0;
+  margin: 0;
+}

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArtistPage } from './artist-page';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('ArtistPage', () => {
   let component: ArtistPage;
@@ -8,7 +10,10 @@ describe('ArtistPage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ArtistPage],
+      imports: [ArtistPage, TranslateModule.forRoot()],
+      providers: [
+        provideHttpClient()
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ArtistPage);

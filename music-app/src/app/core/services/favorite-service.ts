@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Track } from '../../models/app-interface';
 import { DbService } from './data-services/db-service';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { rxResource, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { AuthService } from './auth-service';
 import { of, switchMap } from 'rxjs';
 
@@ -13,15 +13,16 @@ export class FavoriteService {
   localStorageKey = 'likedSongs';
   auth = inject(AuthService);
 
-  likedTracks = toSignal(
-    toObservable(this.auth.user).pipe(
-      switchMap((user) => {
-        if (!user) return of([]);
-        return this.dbService.getFavoriteSongs(user?.uid);
-      })
-    ),
-    { initialValue: [] }
-  );
+  likedTracks = rxResource({
+    request: () => this.auth.user()?.uid,
+    loader: ({ request: id }) => {
+      if (id) {
+        return this.dbService.getFavoriteSongs(id);
+      } else {
+        return of([]);
+      }
+    },
+  });
 
   addToLiked(track: Track) {
     this.dbService.addSongToFavorite(this.auth.user()?.uid!, track);
@@ -29,9 +30,9 @@ export class FavoriteService {
 
   isLiked(track: Track | null) {
     if (
-      this.likedTracks() !== null &&
+      this.likedTracks !== null &&
       track !== null &&
-      this.likedTracks().some((t) => t.id === track.id)
+      this.likedTracks.value()?.some((t) => t.id === track.id)
     ) {
       return true;
     } else {

@@ -1,0 +1,18 @@
+<div class="title-container">
+  @if(!editing()){
+  <h1 class="title">{{ value() }}</h1>
+
+  <button (click)="enableEditing()" class="edit-btn">
+    <lucide-icon name="pencil" [size]="20"></lucide-icon>
+  </button>
+  } @else {
+    <input 
+    #titleInput
+    [value]="value()" 
+    (input)="onInput($event)"
+    (blur)="finishEditing()"
+    (keydown.enter)="finishEditing()"
+    class="title-input"
+    >
+  }
+</div>

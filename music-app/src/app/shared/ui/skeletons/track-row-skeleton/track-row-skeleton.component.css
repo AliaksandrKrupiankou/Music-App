@@ -1,0 +1,65 @@
+.track {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+  border-radius: 10px;
+  gap: 10px;
+  height: 65px;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+}
+
+.track-info .track-name {
+  width: 300px;
+  height: 15px;
+  border-radius: 20px;
+}
+.track-info .artist-name {
+  width: 100px;
+  height: 10px;
+  border-radius: 20px;
+}
+
+.cover-img {
+  flex: 0 0 40px;
+  height: 40px;
+  border-radius: 10%;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  width: 120px;
+  height: 30px;
+  border-radius: 30px;
+}
+
+.skeleton {
+  background-color: #2a2a2a;
+
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0) 40%
+  );
+
+  background-size: 200% 100%;
+
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

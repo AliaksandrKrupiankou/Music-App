@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout-component';
-import { PlaylistPage } from './pages/playlist-page/playlist-page';
+import { CollectionPage } from './pages/collection-page/collection-page';
 import { SearchPage } from './pages/search-page/search-page';
 import { MainPage } from './pages/main-page/main-page';
 import { ArtistPage } from './pages/artist-page/artist-page';
@@ -8,6 +8,7 @@ import { AlbumPage } from './pages/album-page/album-page';
 import { LoginPage } from './pages/login-page/login-page';
 import { authGuard } from './guards/auth.guard';
 import { loginGuard } from './guards/login.guard';
+import { PlaylistPageComponent } from './pages/playlist-page/playlist-page.component';
 
 export const routes: Routes = [
   {
@@ -16,8 +17,8 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {
-        path: 'playlist',
-        component: PlaylistPage,
+        path: 'collection',
+        component: CollectionPage,
       },
       {
         path: '',
@@ -34,6 +35,10 @@ export const routes: Routes = [
       {
         path: 'albums/:albumId',
         component: AlbumPage,
+      },
+      {
+        path: 'playlist/:playlistId',
+        component:  PlaylistPageComponent
       },
     ],
   },

@@ -1,5 +1,5 @@
-import { inject, Injectable, NgZone, signal } from '@angular/core';
-import { Track } from '../../models/app-interface';
+import { effect, inject, Injectable, NgZone, signal } from '@angular/core';
+import { PlayingStrategy, Track } from '../../models/app-interface';
 import { fromEvent } from 'rxjs';
 import { LocalStorageService } from './data-services/local-storage-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -15,12 +15,25 @@ export class AudioService {
   currentTime = signal<number>(0);
   player = new Audio();
   currentVolume = signal<number>(this.player.volume);
+  playingStrategy = signal<PlayingStrategy>(PlayingStrategy.basicPlaying);
+
   localStorageService = inject(LocalStorageService);
   zone = inject(NgZone);
+
+  lastTrack = effect(() => {
+    this.localStorageService.set('lastTrack', this.currentTrack())
+  })
 
   constructor() {
     this.player.volume = this.localStorageService.get('volume');
     this.currentVolume.set(this.localStorageService.get('volume'));
+    
+    const lastTrack = this.localStorageService.get('lastTrack');
+
+    if(lastTrack){
+      this.currentTrack.set(lastTrack);
+      this.player.src = lastTrack.audioUrl;
+    }
 
     fromEvent(this.player, 'ended')
       .pipe(takeUntilDestroyed())
@@ -51,6 +64,11 @@ export class AudioService {
         this.isPlaying.set(false);
         console.log(`Error: ${err}`);
       });
+  }
+
+  playFirstTrack(playlist: Track[]){
+    this.playTrack(playlist[0]);
+    this.currentPlaylist.set(playlist);
   }
 
   changeVolume(value: string) {

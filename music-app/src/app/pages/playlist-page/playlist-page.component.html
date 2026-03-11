@@ -1,0 +1,50 @@
+<div class="header">
+  <form [formGroup]="form">
+    <div class="cover-info">
+      <div class="cover">
+        <app-playlist-cover
+          formControlName="coverUrl"
+          (onChanged)="saveField('coverUrl')"
+        ></app-playlist-cover>
+      </div>
+
+      <div class="playlist-info">
+        <p>Плейлист</p>
+        <app-playlist-title
+          formControlName="title"
+          (blur)="saveField('title')"
+        ></app-playlist-title>
+        <p>
+          {{ authService.user()?.displayName }} обновил плейлист
+          {{ playlistData.value()?.updatedAt?.seconds! * 1000 | date : 'medium' }}
+        </p>
+      </div>
+    </div>
+  </form>
+  <div class="delete-btn">
+    <button (click)="deletePlaylist()">Удалить</button>
+  </div>
+</div>
+
+<div class="search-list">
+  <app-search [showTypes]="false" (searchResult)="tracks.set($any($event))"></app-search>
+
+  <app-track-list
+    [tracks]="playlistData.value()?.tracks!"
+    [actionTemplate]="deleteTrack"
+  ></app-track-list>
+
+  <app-track-list [tracks]="tracks()" [actionTemplate]="addTrack"></app-track-list>
+</div>
+
+<ng-template #addTrack let-track>
+  <button (click)="addToPlaylist(track)">
+    <lucide-icon name="plus" [size]="30"></lucide-icon>
+  </button>
+</ng-template>
+
+<ng-template #deleteTrack let-track>
+  <button (click)="deleteFromPlaylist(track)">
+    <lucide-icon name="trash"></lucide-icon>
+  </button>
+</ng-template>

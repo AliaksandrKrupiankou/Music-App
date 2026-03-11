@@ -1,0 +1,24 @@
+<div class="container">
+
+  <div class="header">
+    <h1>{{ 'MAIN.HEADER' | translate }}</h1>
+  </div>
+
+  <div class="favorite-container">
+    <div class="section-header">
+      <a routerLink="/collection"><h1>{{ 'MAIN.FAVORITE' | translate }}</h1></a>
+    </div>
+
+    <div class="fovorite-tracks">
+      <app-track-list class="fav-list" [tracks]="favoriteTracks()"></app-track-list>
+    </div>
+  </div>
+
+  <div class="playlists-container">
+    <div class="section-header">
+        <h1>Playlists</h1>
+        <app-playlist-list></app-playlist-list>
+
+    </div>
+  </div>
+</div>

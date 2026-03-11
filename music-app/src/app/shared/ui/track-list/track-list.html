@@ -2,35 +2,17 @@
   <ul>
     @for(track of tracks(); track track.id){
     <li>
-      <div class="track">
-        <div class="cover-img"><img [src]="track.coverUrl" alt="" /></div>
-        <div class="track-info">
-          <p class="track-name">{{ track.title }}</p>
-          <a [routerLink]="['/artist', track.artistId]">{{ track.artist }}</a>
+      <app-track-row [track]="track" (playTrackId)="playTrack($event)">
+
+      @if(actionTemplate()){
+        <div buttons>
+          <ng-container
+          *ngTemplateOutlet="actionTemplate(); context: { $implicit: track }"
+          >
+          </ng-container>
         </div>
-        <div class="play-button">
-          <button (click)="playTrack(track, tracks()!)">
-            @if(player.isPlaying() && player.currentTrack()?.id === track.id){
-
-            <lucide-icon name="pause"></lucide-icon>
-
-            } @else{
-
-            <lucide-icon name="play"></lucide-icon>
-
-            }
-          </button>
-        </div>
-        <div class="like">
-          <button class="like-btn-active" (click)="toggleLike(track)">
-            <lucide-icon name="heart" [class.liked]="isLiked(track)"></lucide-icon>
-          </button>
-        </div>
-
-        <div class="duration">
-          <p>{{ track.duration | trackDuring }}</p>
-        </div>
-      </div>
+      }
+      </app-track-row>
     </li>
     }
   </ul>

@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { MainLayoutComponent } from '../../main-layout-component/main-layout-component';
+import { MainLayoutComponent } from './main-layout-component';
+import { provideHttpClient } from '@angular/common/http';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { SidebarComponent } from '../sidebar-component/sidebar-component';
+import { PlayerBarComponent } from '../player-bar-component/player-bar-component';
 
 describe('MainLayoutComponent', () => {
   let component: MainLayoutComponent;
@@ -9,7 +12,17 @@ describe('MainLayoutComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MainLayoutComponent],
-    }).compileComponents();
+      providers: [provideHttpClient()],
+    })
+      .overrideComponent(MainLayoutComponent, {
+        remove: {
+          imports: [SidebarComponent, PlayerBarComponent],
+        },
+        add: {
+          schemas: [NO_ERRORS_SCHEMA],
+        },
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(MainLayoutComponent);
     component = fixture.componentInstance;

@@ -16,14 +16,43 @@
 .content {
   grid-column: 2;
   grid-row: 1;
-  overflow-y: auto;
+  min-width: 0;
+  padding: 0;
   background-color: var(--bg-secondary);
   border-radius: var(--page-border-radius);
   margin: var(--router-outlet-margin);
-  padding: var(--router-outlet-padding);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .player {
   grid-row: 2;
   grid-column: 2;
+}
+
+* {
+  scrollbar-width: none;
+}
+
+:host ::ng-deep .ng-scrollbar-track {
+  background: transparent !important;
+  width: 20px !important; 
+}
+
+:host ::ng-deep .ng-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 15px !important;
+  border: none !important;
+  width: 100% !important;
+  transition: background-color 0.2s ease;
+}
+
+:host ::ng-deep .ng-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+:host ::ng-deep .ng-scrollbar-thumb:active {
+  background-color: rgba(255, 255, 255, 0.8) !important;
 }

@@ -1,0 +1,18 @@
+<div class="cover-container">
+  <div class="preview-wrapper" >
+    <img [src]="imageUrl()" alt="Cover" class="cover-img">
+    
+    <div class="overlay" (click)="triggerFileInput(fileInput)">
+       <span>{{ value() ? 'Изменить' : 'Добавить' }} обложку</span>
+    </div>
+  </div>
+
+  <input
+    #fileInput
+    type="file"
+    accept="image/*"
+    style="display: none"
+    (change)="onFileChange($event)"
+    [disabled]="disabled()"
+  />
+</div>

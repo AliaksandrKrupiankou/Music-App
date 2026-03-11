@@ -3,32 +3,16 @@
   flex-direction: column;
   color: var(--main-text-color);
   gap: 20px;
+  max-width: 100%;
 }
 
-.header {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
+.popular-songs{
+  padding: 20px;
 }
 
-.header .img img {
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
+.media{
+  padding: 20px;
 }
 
-.info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
-.listeners-count {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(240, 248, 255, 0.172);
-  border-radius: 10px;
-  padding: 3px;
-}
+

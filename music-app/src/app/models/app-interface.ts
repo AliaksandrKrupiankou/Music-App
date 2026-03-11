@@ -19,3 +19,18 @@ export interface Album {
   artistId: string;
   tracks: Track[];
 }
+
+export const enum PlayingStrategy {
+  basicPlaying = 'BASIC_PLAYING',
+  repeatPlaylist = 'REPEAT_PLAYLIST',
+  repeatCurrentTrack = 'REPEAT_CURRENT_TRACK'
+}
+
+export interface HeaderDescriptionData {
+  countOfListners?: string;
+  username?: string;
+  artistName?: string;
+  artistId: string;
+  
+  yearOfAlbum?: string; 
+}

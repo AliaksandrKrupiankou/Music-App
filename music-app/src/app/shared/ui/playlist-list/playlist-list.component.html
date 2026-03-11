@@ -1,0 +1,21 @@
+<div class="playlist-list"></div>
+<ul class="playlists">
+  @for (playlist of playlistWithButton(); track playlist.id) {
+  <li>
+    @if(playlist.type === 'create'){
+    <div class="playlist">
+      <button (click)="createAndRoute()">
+        <lucide-icon name="plus" [size]="45"></lucide-icon>
+      </button>
+    </div>
+
+    } @else {
+
+    <div class="playlist">
+      <img [src]="playlist.coverUrl" alt="" />
+      <a [routerLink]="['/playlist/', playlist.id]">{{ playlist.title }}</a>
+    </div>
+    }
+  </li>
+  }
+</ul>

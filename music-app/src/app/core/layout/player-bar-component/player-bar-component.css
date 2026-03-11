@@ -4,12 +4,17 @@
   background-color: var(--player-bar-bg);
   margin: var(--player-bar-margin);
   border-radius: var(--player-border-radius);
+  
 }
 
 .container {
   display: flex;
   flex-direction: column;
   line-height: 0;
+  border-radius: var(--player-border-radius);
+  transition: background 0.5s ease;
+  backdrop-filter: blur(40px);
+   background: color-mix(in srgb, var(--dynamic-color), #0000004f 50%);
 }
 
 .during input {
@@ -143,7 +148,6 @@
   bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
-
   background-color: var(--player-bar-bg);
   padding: 15px 5px;
   border-radius: 10px;
