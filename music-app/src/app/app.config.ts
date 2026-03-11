@@ -1,7 +1,7 @@
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection, isDevMode } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from './app.routes';
 
@@ -14,6 +14,7 @@ import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { provideStorage } from '@angular/fire/storage';
 import { getStorage } from 'firebase/storage';
+import { provideServiceWorker } from '@angular/service-worker';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -39,6 +40,12 @@ export const appConfig: ApplicationConfig = {
       },
     }),
 
-    importProvidersFrom(LucideAngularModule.pick(icons)),
+    importProvidersFrom(LucideAngularModule.pick(icons)), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }),
   ],
 };
