@@ -38,7 +38,7 @@
 
 :host ::ng-deep .ng-scrollbar-track {
   background: transparent !important;
-  width: 20px !important; 
+  width: 20px !important;
 }
 
 :host ::ng-deep .ng-scrollbar-thumb {
@@ -55,4 +55,28 @@
 
 :host ::ng-deep .ng-scrollbar-thumb:active {
   background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+@media (max-width: 800px) {
+  :host {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto auto; 
+  }
+
+  .side-bar {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .content {
+    grid-column: 1;
+    width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .player {
+    grid-column: 1;
+    grid-row: 2;
+  }
 }

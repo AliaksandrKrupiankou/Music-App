@@ -132,3 +132,39 @@ a:hover {
 .lang-toggle button:hover:not(.active) {
   color: #fff;
 }
+
+@media(max-width: 800px){
+
+  :host {
+    bottom: 0;
+    left: 0;
+    width: 100vw; 
+    height: 60px; 
+    background-color: #121212;
+    z-index: 1000;
+    margin-top: 0;
+  }
+
+  .container {
+    height: 100%;
+    justify-content: center; 
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+    width: 100%;
+    margin-top: 0;
+    gap: 0; 
+  }
+
+  .links a {
+    font-size: 1.8rem; 
+    padding: 10px;
+  }
+
+  .user, .lang-toggle, .logo, .links span {
+    display: none !important;
+  }
+}

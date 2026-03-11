@@ -102,3 +102,12 @@ h1.title {
   color: var(--main-yellow-color);
 }
 
+@media(max-width:800px){
+  .cover-img{
+    width: 132px;
+    height: 132px;
+  }
+  .header-host{
+    min-height: 260px;
+  }
+}

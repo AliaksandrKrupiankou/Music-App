@@ -1,31 +1,35 @@
-.container{
-    color: var(--main-text-color);
-    padding: 20px;
+.container {
+  color: var(--main-text-color);
+  padding: 20px;
 }
 
 .fav-list ::ng-deep ul {
-  column-count: 2;     
-  column-gap: 30px;    
+  column-count: 2;
+  column-gap: 30px;
 }
 
 .fav-list ::ng-deep li {
-  margin-bottom: 10px; 
-  width: 100%;         
+  margin-bottom: 10px;
+  width: 100%;
 }
 
-.header{
+.header {
   margin-bottom: 20px;
   width: auto;
 }
 
-a{
-  all:unset;
+a {
+  all: unset;
   cursor: pointer;
 }
 
-
-
-a:hover{
+a:hover {
   text-decoration: underline;
   text-decoration-color: rgb(255, 255, 255);
+}
+
+@media (max-width: 800px) {
+  .container {
+    display: none;
+  }
 }

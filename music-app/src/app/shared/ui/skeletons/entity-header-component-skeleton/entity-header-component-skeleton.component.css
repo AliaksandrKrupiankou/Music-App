@@ -92,3 +92,13 @@
     background-position: -200% 0;
   }
 }
+
+@media(max-width:800px){
+  .cover-img{
+    width: 132px;
+    height: 132px;
+  }
+  .header-host{
+    min-height: 260px;
+  }
+}

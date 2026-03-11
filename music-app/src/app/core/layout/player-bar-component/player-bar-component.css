@@ -183,3 +183,15 @@
 .like lucide-icon.liked ::ng-deep svg {
   fill: currentColor;
 }
+
+@media(max-width: 800px){
+  .volume, .skip-track{
+    display: none;
+  }
+
+  .navigation{
+    justify-content: end;
+    padding-right: 10%;
+  }
+  
+}
