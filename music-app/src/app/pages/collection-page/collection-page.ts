@@ -6,6 +6,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { EntityHeaderComponentComponent } from '../../shared/ui/entity-header-component/entity-header-component.component';
 import { HeaderDescriptionData } from '../../models/app-interface';
 import { ListenButtonComponentComponent } from '../../shared/ui/listen-button-component/listen-button-component.component';
+import { TrackRowSkeletonComponent } from "../../shared/ui/skeletons/track-row-skeleton/track-row-skeleton.component";
+import { EntityHeaderComponentSkeletonComponent } from "../../shared/ui/skeletons/entity-header-component-skeleton/entity-header-component-skeleton.component";
 
 @Component({
   selector: 'app-collection-page',
@@ -14,7 +16,9 @@ import { ListenButtonComponentComponent } from '../../shared/ui/listen-button-co
     TranslateModule,
     EntityHeaderComponentComponent,
     ListenButtonComponentComponent,
-  ],
+    TrackRowSkeletonComponent,
+    EntityHeaderComponentSkeletonComponent
+],
   templateUrl: './collection-page.html',
   styleUrl: './collection-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

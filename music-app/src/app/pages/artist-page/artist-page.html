@@ -1,5 +1,5 @@
-@if (artistProfile.value()) {
-  <div class="container">
+<div class="container">
+  @if (artistProfile.isLoading() === false) {
     <app-entity-header-component
       [typeOfPage]="'Artist'"
       [image]="artistProfile.value()?.image"
@@ -7,8 +7,10 @@
       [title]="artistProfile.value()?.name!"
       [description]="headerDiscriptionInfo()"
     >
-    <app-listen-button-component [data]="artistProfile.value()?.topSongs!"></app-listen-button-component>
-  </app-entity-header-component>
+      <app-listen-button-component
+        [data]="artistProfile.value()?.topSongs!"
+      ></app-listen-button-component>
+    </app-entity-header-component>
 
     <div class="popular-songs">
       <div class="sector-header">
@@ -41,5 +43,20 @@
         ></app-media-list-section>
       </div>
     }
-  </div>
-}
+  } @else {
+    <app-entity-header-component-skeleton
+      [imageForm]="'Circle'"
+    ></app-entity-header-component-skeleton>
+
+    <div class="popular-songs">
+      <div class="sector-header">
+        <h1>Popular songs:</h1>
+      </div>
+      <div class="songs">
+        @for (item of [1, 2, 3, 4, 5]; track $index) {
+          <app-track-row-skeleton></app-track-row-skeleton>
+        }
+      </div>
+    </div>
+  }
+</div>

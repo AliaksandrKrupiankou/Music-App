@@ -1,15 +1,25 @@
 <div class="container">
-  <app-entity-header-component 
-  [typeOfPage]="'Album'"
-  [image]="albumData.value()?.coverUrl"
-  [imageForm]="'Square'"
-  [title]="albumData.value()?.name!"
-  [description]="headerDiscription()"
+  @defer (when albumData.isLoading() !== true) {
+  <app-entity-header-component
+    [typeOfPage]="'Album'"
+    [image]="albumData.value()?.coverUrl"
+    [imageForm]="'Square'"
+    [title]="albumData.value()?.name!"
+    [description]="headerDiscription()"
   >
-  <app-listen-button-component [data]="albumData.value()?.tracks!"></app-listen-button-component>
-</app-entity-header-component>
+    <app-listen-button-component [data]="albumData.value()?.tracks!"></app-listen-button-component>
+  </app-entity-header-component>
 
   <div class="track-list">
     <app-track-list [tracks]="albumData.value()?.tracks!"></app-track-list>
   </div>
+} @placeholder (minimum 500ms){
+  <app-entity-header-component-skeleton [imageForm]="'Circle'"></app-entity-header-component-skeleton>
+    
+    
+      @for (item of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track $index) {
+        <app-track-row-skeleton></app-track-row-skeleton>
+      }
+  
+}
 </div>

@@ -21,5 +21,5 @@ export class MainPage {
   playlist = inject(PlaylistsService);
   uid = inject(AuthService);
 
-  favoriteTracks = computed<Track[]>(() => this.favorite.likedTracks().slice(0, 10));
+  favoriteTracks = computed<Track[]>(() => this.favorite.likedTracks.value()!.slice(0, 10));
 }
