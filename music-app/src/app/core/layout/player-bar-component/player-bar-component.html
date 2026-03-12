@@ -11,8 +11,11 @@
   </div>
 
   <div class="main-container">
+
     <div class="cover-img">
+      <button class="cover-btn" (click)="openFullScreen()">
       <img [src]="currentTrack()?.coverUrl" [hidden]="!currentTrack()" />
+      </button>
     </div>
 
     <div class="track-info">

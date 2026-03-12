@@ -1,0 +1,26 @@
+
+<div class="container" [style.background-color]="bgColor.value()">
+<div class="close-btn">
+<button (click)="close()">Close</button>
+</div>
+<div class="content">
+    <div>
+        <img [src]="currentTrack()?.coverUrl" alt="">
+    </div>
+    <div class="info">
+        <div class="title">
+            <p>{{currentTrack()?.title}}</p>
+        </div>
+        <div class="artist-name">
+            <p>{{currentTrack()?.artist}}</p>
+        </div>
+    </div>
+    <div class="navigation">
+        <button (click)="previous()">Previous</button>
+        <button (click)="next()">Next</button>
+    </div>
+    <div class="progress-bar">
+        <p>progress-bar</p>
+    </div>
+</div>
+</div>

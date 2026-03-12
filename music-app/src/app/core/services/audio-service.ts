@@ -1,8 +1,9 @@
 import { effect, inject, Injectable, NgZone, signal } from '@angular/core';
 import { PlayingStrategy, Track } from '../../models/app-interface';
-import { fromEvent } from 'rxjs';
+import { BehaviorSubject, fromEvent } from 'rxjs';
 import { LocalStorageService } from './data-services/local-storage-service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ImageColorServiceService } from './image-color-service.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,22 @@ export class AudioService {
   player = new Audio();
   currentVolume = signal<number>(this.player.volume);
   playingStrategy = signal<PlayingStrategy>(PlayingStrategy.basicPlaying);
+  
+  colorService = inject(ImageColorServiceService);
+
+  isFullScreen = signal<boolean>(false);
+
+    bgColor = rxResource({
+    request: () => this.currentTrack()?.coverUrl,
+    loader: ({ request: url }) => {
+      return this.colorService.getDominantColor(url) ?? '#323838' 
+    }
+  })
+
+
+  toggleFullScreen(){
+    this.isFullScreen.set(!this.isFullScreen());
+  }
 
   localStorageService = inject(LocalStorageService);
   zone = inject(NgZone);

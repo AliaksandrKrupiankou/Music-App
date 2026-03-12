@@ -23,16 +23,11 @@ export class PlayerBarComponent {
   currentTime = this.service.currentTime;
   currentVolume = this.service.currentVolume;
   isPlaying = this.service.isPlaying;
+  bgColor = this.service.bgColor;
 
-  
-  bgColor = rxResource({
-    request: () => this.currentTrack()?.coverUrl,
-    loader: ({ request: url }) => {
-      return this.colorService.getDominantColor(url) ?? '#323838' 
-    }
-  })
-
-
+  openFullScreen() {
+    this.service.toggleFullScreen();
+  }
 
   seekTrack(val: string) {
     this.service.seekTo(Number(val));
