@@ -79,3 +79,13 @@ export interface ApiAlbumResponse {
   success: boolean;
   data: ApiAlbumFull;
 }
+
+export interface ApiPopularTracksData {
+  total: number;
+  songs: ApiSong[];
+}
+
+export interface ApiPopularTracksResponse {
+  success: boolean;
+  data: ApiPopularTracksData;
+}

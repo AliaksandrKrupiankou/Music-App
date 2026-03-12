@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ApiAlbumResponse, ApiSearchResponse } from '../../../models/api-interface';
+import {
+  ApiAlbumResponse,
+  ApiPopularTracksResponse,
+  ApiSearchResponse,
+} from '../../../models/api-interface';
 import { ApiArtistSearchResponse } from '../../../models/api-artists-interface';
 import { ArtistResponse } from '../../../models/api-artist-page-interface';
 import { API } from '../../utils/constants/api.constants';
@@ -29,5 +33,7 @@ export class MusicApiService {
     return this.http.get<ApiAlbumResponse>(`${API.URL}${API.ALBUMS}`, { params });
   }
 
-  
+  getTracksByArtistId(id: string, params: any) {
+    return this.http.get<ApiPopularTracksResponse>(`${API.URL}${API.ARTISTS}/${id}/songs`, { params });
+  }
 }

@@ -9,6 +9,7 @@ import { LoginPage } from './pages/login-page/login-page';
 import { authGuard } from './guards/auth.guard';
 import { loginGuard } from './guards/login.guard';
 import { PlaylistPageComponent } from './pages/playlist-page/playlist-page.component';
+import { ArtistTracksComponent } from './pages/artist-tracks/artist-tracks.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,10 @@ export const routes: Routes = [
       {
         path: 'artist/:artistId',
         component: ArtistPage,
+      },
+      {
+        path: 'artist/:artistId/tracks',
+        component: ArtistTracksComponent,
       },
       {
         path: 'albums/:albumId',

@@ -1,0 +1,12 @@
+<div class="container">
+  <div>
+    <app-navigation-buttons-component></app-navigation-buttons-component>
+    <h1>Popular tracks</h1>
+  </div>
+
+  <div>
+    <app-track-list [tracks]="allTracks()"></app-track-list>
+  </div>
+
+  <div #scrollAnchor></div>
+</div>
