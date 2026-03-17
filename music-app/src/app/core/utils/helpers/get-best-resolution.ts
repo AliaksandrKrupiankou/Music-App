@@ -1,3 +1,4 @@
 export function getBest(data: any) {
-  return data[data.length - 1];
+  const best = data[data.length - 1]
+  return best ? best : '';
 }
