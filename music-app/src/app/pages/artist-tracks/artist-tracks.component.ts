@@ -43,7 +43,7 @@ export class ArtistTracksComponent {
           this.loadMore();
         }
       },
-      { root: null, rootMargin: '0px', threshold: 0.5 },
+      { root: null, rootMargin: '300px', threshold: 0.5 },
     );
     this.observer.observe(anchor);
   }
