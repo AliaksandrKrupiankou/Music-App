@@ -4,10 +4,11 @@ import { TrackList } from '../../shared/ui/track-list/track-list';
 import { MusicDataService } from '../../core/services/data-services/music-data.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { EntityHeaderComponentComponent } from '../../shared/ui/entity-header-component/entity-header-component.component';
-import { HeaderDescriptionData } from '../../models/app-interface';
+import { Album, HeaderDescriptionData } from '../../models/app-interface';
 import { ListenButtonComponentComponent } from '../../shared/ui/listen-button-component/listen-button-component.component';
 import { EntityHeaderComponentSkeletonComponent } from "../../shared/ui/skeletons/entity-header-component-skeleton/entity-header-component-skeleton.component";
 import { TrackRowSkeletonComponent } from "../../shared/ui/skeletons/track-row-skeleton/track-row-skeleton.component";
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-album-page',
@@ -27,9 +28,9 @@ export class AlbumPage {
   albumId = input<string>();
   service = inject(MusicDataService);
 
-  albumData = rxResource({
-    request: () => this.albumId(),
-    loader: ({ request: id }) => this.service.getAlbumById(id),
+  albumData = rxResource<Album, string | undefined>({
+    params: () => this.albumId(),
+    stream: ({ params: id }): Observable<Album> => this.service.getAlbumById(id),
   });
 
   headerDiscription = computed(() => {

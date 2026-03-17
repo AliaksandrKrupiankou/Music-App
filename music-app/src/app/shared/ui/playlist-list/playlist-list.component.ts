@@ -26,8 +26,8 @@ export class PlaylistListComponent {
   router = inject(Router);
 
   playlists = rxResource({
-    request: () => this.uid,
-    loader: ({ request: uid }) => this.playlistService.getUserPlaylists(uid),
+    params: () => this.uid,
+    stream: ({ params: uid }) => this.playlistService.getUserPlaylists(uid),
   });
 
   playlistWithButton = computed<PlaylistListItem[]>(() => {

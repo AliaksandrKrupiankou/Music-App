@@ -35,8 +35,8 @@ export class EntityHeaderComponentComponent {
   }
 
     bgColor = rxResource({
-    request: () => this.image(),
-    loader: ({ request: url }) => {
+    params: () => this.image(),
+    stream: ({ params: url }) => {
       return this.colorService.getDominantColor(url) ?? '#565c5c' 
     }
   })
