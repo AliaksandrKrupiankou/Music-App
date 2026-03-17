@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { AudioService } from '../../services/audio-service';
+import { AudioService } from '../../services/AudioLogic/audio-service';
 import { FavoriteService } from '../../services/favorite-service';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
@@ -34,7 +34,7 @@ export class PlayerBarComponent {
   }
 
   progress = computed(() => {
-    const current = this.service.currentTime();
+    const current = Number(this.service.currentTime());
     const fullTime = this.service.currentTrack()?.duration;
 
     if (fullTime === 0 || fullTime === null || fullTime === undefined) return 0;
