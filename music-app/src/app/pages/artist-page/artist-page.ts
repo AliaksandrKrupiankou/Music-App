@@ -37,8 +37,8 @@ export class ArtistPage {
   artistService = inject(MusicDataService);
 
   artistProfile = rxResource({
-    request: () => this.artistId(),
-    loader: ({ request: id }) => this.artistService.getArtistById(id, 5),
+    params: () => this.artistId(),
+    stream: ({ params: id }) => this.artistService.getArtistById(id, 5),
   });
 
   headerDiscriptionInfo = computed(() => {

@@ -22,9 +22,9 @@ export class AudioService {
 
   isFullScreen = signal<boolean>(false);
 
-    bgColor = rxResource({
-    request: () => this.currentTrack()?.coverUrl,
-    loader: ({ request: url }) => {
+    bgColor = rxResource<string, string | undefined>({
+    params: () => this.currentTrack()?.coverUrl,
+    stream: ({ params: url }) => {
       return this.colorService.getDominantColor(url) ?? '#323838' 
     }
   })
