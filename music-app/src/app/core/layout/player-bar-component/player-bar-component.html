@@ -3,18 +3,20 @@
     <input
       type="range"
       #rangeInput
-      [max]="currentTrack()?.duration"
-      [value]="currentTime()"
+      min="0"
+      step="any"
+      [max]="currentTrack()?.duration || 0"
+      [value]="displayTime()"
+      (input)="onInput($event)"
       (change)="seekTrack(rangeInput.value)"
       [style.background-size]="progress() + '% 100%'"
     />
   </div>
 
   <div class="main-container">
-
     <div class="cover-img">
       <button class="cover-btn" (click)="openFullScreen()">
-      <img [src]="currentTrack()?.coverUrl" [hidden]="!currentTrack()" />
+        <img [src]="currentTrack()?.coverUrl" [hidden]="!currentTrack()" />
       </button>
     </div>
 
@@ -37,10 +39,10 @@
       </button>
 
       <button (click)="playPauseToggle()" class="play-btn">
-        @if(isPlaying()){
-        <lucide-icon name="pause"></lucide-icon>
+        @if (isPlaying()) {
+          <lucide-icon name="pause"></lucide-icon>
         } @else {
-        <lucide-icon name="play"></lucide-icon>
+          <lucide-icon name="play"></lucide-icon>
         }
       </button>
 
@@ -64,12 +66,12 @@
       </div>
 
       <button (click)="toggleVolume()">
-        @if(currentVolume() > 0.5){
-        <lucide-icon name="volume-2"></lucide-icon>
-        } @else if(currentVolume() < 0.5 && currentVolume() !== 0){
-        <lucide-icon name="volume-1"></lucide-icon>
-        } @else if(currentVolume() === 0){
-        <lucide-icon name="volume-x"></lucide-icon>
+        @if (currentVolume() > 0.5) {
+          <lucide-icon name="volume-2"></lucide-icon>
+        } @else if (currentVolume() < 0.5 && currentVolume() !== 0) {
+          <lucide-icon name="volume-1"></lucide-icon>
+        } @else if (currentVolume() === 0) {
+          <lucide-icon name="volume-x"></lucide-icon>
         }
       </button>
     </div>

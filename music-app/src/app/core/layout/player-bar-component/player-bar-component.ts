@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { AudioService } from '../../services/AudioLogic/audio-service';
 import { FavoriteService } from '../../services/favorite-service';
 import { RouterLink } from '@angular/router';
@@ -6,6 +6,7 @@ import { LucideAngularModule } from 'lucide-angular';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ImageColorServiceService } from '../../services/image-color-service.service';
 import { from, of } from 'rxjs';
+import { ProgressBarService } from '../../services/progress-bar.service';
 
 @Component({
   selector: 'app-player-bar-component',
@@ -16,8 +17,16 @@ import { from, of } from 'rxjs';
 })
 export class PlayerBarComponent {
   service = inject(AudioService);
+  progressService = inject(ProgressBarService);
   like = inject(FavoriteService);
   colorService = inject(ImageColorServiceService);
+
+  displayTime = this.progressService.displayTime;
+
+  progress = computed(() => {
+    const dur = this.service.currentTrack()?.duration || 0;
+    return this.progressService.getPercent(dur);
+  });
 
   currentTrack = this.service.currentTrack;
   currentTime = this.service.currentTime;
@@ -25,22 +34,20 @@ export class PlayerBarComponent {
   isPlaying = this.service.isPlaying;
   bgColor = this.service.bgColor;
 
-  openFullScreen() {
-    this.service.toggleFullScreen();
+  onInput(event: Event) {
+    const val = Number((event.target as HTMLInputElement).value);
+    this.progressService.onInput(val);
   }
 
   seekTrack(val: string) {
-    this.service.seekTo(Number(val));
+    const time = Number(val);
+    this.service.seekTo(time);
+    this.progressService.onChange(time);
   }
 
-  progress = computed(() => {
-    const current = Number(this.service.currentTime());
-    const fullTime = this.service.currentTrack()?.duration;
-
-    if (fullTime === 0 || fullTime === null || fullTime === undefined) return 0;
-
-    return (current / fullTime) * 100;
-  });
+  openFullScreen() {
+    this.service.toggleFullScreen();
+  }
 
   playNextTrack() {
     this.service.playNextTrack();

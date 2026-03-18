@@ -1,7 +1,5 @@
 import { afterNextRender, DestroyRef, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
-import { LocalStorageService } from '../data-services/local-storage-service';
-import { Track } from '../../../models/app-interface';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({
@@ -22,12 +20,12 @@ export class AudioEngineService {
       this.player.crossOrigin = 'anonymous';
 
       fromEvent(this.player, 'ended')
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((e) => this.onEnded.next(e));
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((e) => this.onEnded.next(e));
 
       fromEvent(this.player, 'timeupdate')
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((e) => this.onTimeUpdate.next(e));
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((e) => this.onTimeUpdate.next(e));
     });
   }
 
@@ -69,10 +67,9 @@ export class AudioEngineService {
     return this.player ? this.player.currentTime : 0;
   }
 
-  get progress(){
-    if(!this.player || !this.player.duration) return 0;
+  get progress() {
+    if (!this.player || !this.player.duration) return 0;
 
     return (this.player.currentTime / this.player.duration) * 100;
   }
-
 }

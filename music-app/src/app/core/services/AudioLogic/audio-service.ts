@@ -4,12 +4,14 @@ import { LocalStorageService } from '../data-services/local-storage-service';
 import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ImageColorServiceService } from '../image-color-service.service';
 import { AudioEngineService } from './audio-engine.service';
+import { ProgressBarService } from '../progress-bar.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AudioService {
   engine = inject(AudioEngineService);
+  progressService = inject(ProgressBarService);
 
   colorService = inject(ImageColorServiceService);
   localStorageService = inject(LocalStorageService);
@@ -84,9 +86,11 @@ export class AudioService {
       .play()
       .then(() => {
         this.isPlaying.set(true);
+        this.progressService.start();
       })
       .catch(() => {
         this.isPlaying.set(false);
+        this.progressService.stop();
       });
   }
 
@@ -112,6 +116,7 @@ export class AudioService {
   seekTo(newTime: number) {
     this.currentTime.set(newTime);
     this.engine.seek(newTime);
+    this.progressService.currentTime.set(newTime);
   }
 
   playPastTrack() {
@@ -126,6 +131,7 @@ export class AudioService {
   stop() {
     this.engine.pause();
     this.isPlaying.set(false);
+    this.progressService.stop();
   }
 
   toggle(track: Track) {
@@ -143,6 +149,4 @@ export class AudioService {
       this.currentVolume.set(this.localStorageService.get('volume'));
     }
   }
-
-  
 }
