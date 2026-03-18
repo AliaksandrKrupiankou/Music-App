@@ -1,4 +1,4 @@
-import { afterNextRender, inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { afterNextRender, DestroyRef, inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
 import { LocalStorageService } from '../data-services/local-storage-service';
 import { Track } from '../../../models/app-interface';
@@ -9,6 +9,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class AudioEngineService {
   platformId = inject(PLATFORM_ID);
+  destroyRef = inject(DestroyRef);
+
   player: HTMLAudioElement | null = null;
 
   onEnded = new Subject<Event>();
@@ -20,11 +22,11 @@ export class AudioEngineService {
       this.player.crossOrigin = 'anonymous';
 
       fromEvent(this.player, 'ended')
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((e) => this.onEnded.next(e));
 
       fromEvent(this.player, 'timeupdate')
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((e) => this.onTimeUpdate.next(e));
     });
   }
@@ -66,4 +68,11 @@ export class AudioEngineService {
   get currentTime(): number {
     return this.player ? this.player.currentTime : 0;
   }
+
+  get progress(){
+    if(!this.player || !this.player.duration) return 0;
+
+    return (this.player.currentTime / this.player.duration) * 100;
+  }
+
 }

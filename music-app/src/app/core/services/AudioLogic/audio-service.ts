@@ -91,8 +91,8 @@ export class AudioService {
   }
 
   playFirstTrack(playlist: Track[]) {
-    this.playTrack(playlist[0]);
     this.currentPlaylist.set(playlist);
+    this.playTrack(playlist[0]);
   }
 
   changeVolume(value: string) {
@@ -101,6 +101,7 @@ export class AudioService {
 
   playNextTrack() {
     const cIndx = this.currentIndex();
+    console.log(cIndx);
     if (cIndx !== null && cIndx >= 0 && cIndx < this.currentPlaylist().length - 1) {
       this.playTrack(this.currentPlaylist()[cIndx + 1]);
     } else {
@@ -142,4 +143,6 @@ export class AudioService {
       this.currentVolume.set(this.localStorageService.get('volume'));
     }
   }
+
+  
 }
