@@ -57,14 +57,6 @@ export class AudioService {
       if (track) {
         this.engine.setTrack(track.audioUrl);
         this.localStorageService.set('lastTrack', this.currentTrack());
-        this.engine
-          .play()
-          .then(() => {
-            this.isPlaying.set(true);
-          })
-          .catch(() => {
-            this.isPlaying.set(false);
-          });
       }
     });
 
@@ -88,7 +80,14 @@ export class AudioService {
 
   playTrack(track: Track) {
     this.currentTrack.set(track);
-    this.isPlaying.set(true);
+    this.engine
+      .play()
+      .then(() => {
+        this.isPlaying.set(true);
+      })
+      .catch(() => {
+        this.isPlaying.set(false);
+      });
   }
 
   playFirstTrack(playlist: Track[]) {

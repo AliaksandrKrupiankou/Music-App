@@ -15,6 +15,7 @@ import { LucideAngularModule } from 'lucide-angular';
 import { provideStorage } from '@angular/fire/storage';
 import { getStorage } from 'firebase/storage';
 import { provideServiceWorker } from '@angular/service-worker';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json');
@@ -25,6 +26,7 @@ export const appConfig: ApplicationConfig = {
     // provideZoneChangeDetection({ eventCoalescing: true }),
     provideZonelessChangeDetection(),
     provideRouter(routes, withComponentInputBinding()),
+    provideClientHydration(withEventReplay()),
     provideHttpClient(),
 
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
@@ -47,6 +49,6 @@ export const appConfig: ApplicationConfig = {
           }), provideServiceWorker('ngsw-worker.js', {
             enabled: !isDevMode(),
             registrationStrategy: 'registerWhenStable:30000'
-          }),
+          }), provideClientHydration(withEventReplay()),
   ],
 };

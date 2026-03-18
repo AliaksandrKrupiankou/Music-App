@@ -1,46 +1,69 @@
-import { inject, Injectable } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { afterNextRender, inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { EMPTY, fromEvent, Observable, Subject } from 'rxjs';
 import { LocalStorageService } from '../data-services/local-storage-service';
 import { Track } from '../../../models/app-interface';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AudioEngineService {
-  player = new Audio();
+  platformId = inject(PLATFORM_ID);
+  player: HTMLAudioElement | null = null;
 
-  onEnded = fromEvent(this.player, 'ended');
-  onTimeUpdate = fromEvent(this.player, 'timeupdate');
+  onEnded = new Subject<Event>();
+  onTimeUpdate = new Subject<Event>();
 
   constructor() {
-    this.player.crossOrigin = 'anonymous';
+    afterNextRender(() => {
+      this.player = new Audio();
+      this.player.crossOrigin = 'anonymous';
+
+      fromEvent(this.player, 'ended')
+      .pipe(takeUntilDestroyed())
+      .subscribe((e) => this.onEnded.next(e));
+
+      fromEvent(this.player, 'timeupdate')
+      .pipe(takeUntilDestroyed())
+      .subscribe((e) => this.onTimeUpdate.next(e));
+    });
   }
 
   setVolume(volume: number) {
-    this.player.volume = volume;
+    if (this.player) {
+      return (this.player.volume = volume);
+    }
+    return null;
   }
 
   setTrack(url: string) {
-    if (this.player.src.includes(url) && url !== '') {
+    if ((this.player !== null && this.player.src.includes(url) && url !== '') || !this.player) {
       return;
     }
-
     this.player.src = url;
   }
 
   play() {
-    return this.player.play();
+    if (this.player !== null) {
+      return this.player.play();
+    } else {
+      return Promise.resolve();
+    }
   }
 
   pause() {
-    this.player.pause();
+    if (this.player) {
+      this.player.pause();
+    }
   }
 
   seek(time: number) {
-    this.player.currentTime = time;
+    if (this.player) {
+      this.player.currentTime = time;
+    }
   }
 
   get currentTime(): number {
-    return this.player.currentTime;
+    return this.player ? this.player.currentTime : 0;
   }
 }
