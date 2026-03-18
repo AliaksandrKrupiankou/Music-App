@@ -3,9 +3,7 @@ import { AudioService } from '../../services/AudioLogic/audio-service';
 import { FavoriteService } from '../../services/favorite-service';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
-import { rxResource } from '@angular/core/rxjs-interop';
 import { ImageColorServiceService } from '../../services/image-color-service.service';
-import { from, of } from 'rxjs';
 import { ProgressBarService } from '../../services/progress-bar.service';
 
 @Component({
@@ -23,16 +21,16 @@ export class PlayerBarComponent {
 
   displayTime = this.progressService.displayTime;
 
-  progress = computed(() => {
-    const dur = this.service.currentTrack()?.duration || 0;
-    return this.progressService.getPercent(dur);
-  });
-
   currentTrack = this.service.currentTrack;
   currentTime = this.service.currentTime;
   currentVolume = this.service.currentVolume;
   isPlaying = this.service.isPlaying;
   bgColor = this.service.bgColor;
+
+  progress = computed(() => {
+    const dur = this.service.currentTrack()?.duration || 0;
+    return this.progressService.getPercent(dur);
+  });
 
   onInput(event: Event) {
     const val = Number((event.target as HTMLInputElement).value);

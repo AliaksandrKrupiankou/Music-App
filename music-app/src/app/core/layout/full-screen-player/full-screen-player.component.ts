@@ -1,35 +1,41 @@
-import { Component, HostBinding, inject } from '@angular/core';
+import { Component, computed, HostBinding, inject } from '@angular/core';
 import { AudioService } from '../../services/AudioLogic/audio-service';
-import { BehaviorSubject } from 'rxjs';
-import { PlayerBarComponent } from '../player-bar-component/player-bar-component';
-
+import { ProgressBarService } from '../../services/progress-bar.service';
 @Component({
   selector: 'app-full-screen-player',
   imports: [],
   host: {
     '[class.open]': 'audioService.isFullScreen()',
+    '[style.--dynamic-color]': 'bgColor.value()',
   },
   templateUrl: './full-screen-player.component.html',
   styleUrl: './full-screen-player.component.css',
 })
 export class FullScreenPlayerComponent {
   audioService = inject(AudioService);
+  progressService = inject(ProgressBarService);
 
-  currentTrack = this.audioService.currentTrack;
-  currentTime = this.audioService.currentTime;
-  currentVolume = this.audioService.currentVolume;
-  isPlaying = this.audioService.isPlaying;
+  track = this.audioService.currentTrack;
   bgColor = this.audioService.bgColor;
+  displayTime = this.progressService.displayTime;
 
-  previous() {
-    this.audioService.playPastTrack();
+  close(){
+    this.audioService.toggleFullScreen()
   }
 
-  next() {
-    this.audioService.playNextTrack();
+  onInput(event: Event) {
+    const val = Number((event.target as HTMLInputElement).value);
+    this.progressService.onInput(val);
   }
 
-  close() {
-    this.audioService.toggleFullScreen();
+  seekTrack(val: string) {
+    const time = Number(val);
+    this.audioService.seekTo(time);
+    this.progressService.onChange(time);
   }
+
+  progress = computed(() => {
+    const dur = this.track()?.duration || 0;
+    return this.progressService.getPercent(dur);
+  });
 }

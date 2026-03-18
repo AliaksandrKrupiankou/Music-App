@@ -1,26 +1,31 @@
-
-<div class="container" [style.background-color]="bgColor.value()">
 <div class="close-btn">
-<button (click)="close()">Close</button>
+  <button (click)="close()">close</button>
 </div>
-<div class="content">
-    <div>
-        <img [src]="currentTrack()?.coverUrl" alt="">
+
+<div class="container">
+  <div class="navigation">
+    <img [src]="track()?.coverUrl" alt="" />
+  </div>
+
+  <div class="information">
+    <div class="track-name">
+      <p>{{ track()?.title }}</p>
     </div>
-    <div class="info">
-        <div class="title">
-            <p>{{currentTrack()?.title}}</p>
-        </div>
-        <div class="artist-name">
-            <p>{{currentTrack()?.artist}}</p>
-        </div>
+    <div class="artist-name">
+      <p>{{ track()?.artist }}</p>
     </div>
-    <div class="navigation">
-        <button (click)="previous()">Previous</button>
-        <button (click)="next()">Next</button>
-    </div>
-    <div class="progress-bar">
-        <p>progress-bar</p>
-    </div>
-</div>
+  </div>
+  <div class="progress-bar">
+    <input
+      type="range"
+      #rangeInput
+      min="0"
+      step="any"
+      [max]="track()?.duration || 0"
+      [value]="displayTime()"
+      (input)="onInput($event)"
+      (change)="seekTrack(rangeInput.value)"
+      [style.background-size]="progress() + '% 100%'"
+    />
+  </div>
 </div>
