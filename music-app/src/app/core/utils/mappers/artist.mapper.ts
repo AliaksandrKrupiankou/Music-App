@@ -22,7 +22,7 @@ export function artistByIdMapper(data: ArtistResponse): ArtistProfile {
   return {
     id: apiData.id,
     name: apiData.name,
-    image: bestImg.url,
+    image: bestImg?.url,
     fanCount: apiData.fanCount,
     twitter: apiData.twitter,
 

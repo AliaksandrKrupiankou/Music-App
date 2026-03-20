@@ -6,17 +6,17 @@
   <div class="links">
     <a routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
       <lucide-icon name="search"></lucide-icon>
-      {{ 'SIDEBAR.SEARCH' | translate }}
+      <span>{{ 'SIDEBAR.SEARCH' | translate }}</span>
     </a>
 
     <a routerLink="main" routerLinkActive="active-link">
       <lucide-icon name="music"></lucide-icon>
-      {{ 'SIDEBAR.MAIN' | translate }}
+      <span>{{ 'SIDEBAR.MAIN' | translate }}</span>
     </a>
 
     <a routerLink="collection" routerLinkActive="active-link">
       <lucide-icon name="book-heart"></lucide-icon>
-      {{ 'SIDEBAR.COLLECTION' | translate }}
+      <span>{{ 'SIDEBAR.COLLECTION' | translate }}</span>
     </a>
   </div>
 

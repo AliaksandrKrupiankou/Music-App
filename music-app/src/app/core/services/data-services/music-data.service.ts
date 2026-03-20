@@ -7,6 +7,7 @@ import { Artist } from '../../../models/api-artists-interface';
 import { artistByIdMapper, transformToArtist } from '../../utils/mappers/artist.mapper';
 import { ArtistProfile } from '../../../models/api-artist-page-interface';
 import { albumByIdMapper } from '../../utils/mappers/album.mapper';
+import { ApiPopularTracksData } from '../../../models/api-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +37,7 @@ export class MusicDataService {
     );
   }
 
-  getArtistById(id: string): Observable<ArtistProfile> {
+  getArtistById(id: string, countTracks: number): Observable<ArtistProfile> {
     const params = {
       page: 0,
       songCount: 5,
@@ -63,5 +64,22 @@ export class MusicDataService {
         return albumByIdMapper(response);
       })
     );
+  }
+
+  getPopularSongsByArtistId(id: string, page: number): Observable<Track[]> {
+    const params = {
+      page: page,
+      limit: 50,
+      songCount:50,
+      sortBy: 'popularity',
+    }
+
+    return this.api.getTracksByArtistId(id ,params).pipe(
+      tap(response => console.log('Сырые данные до маппинга:', response)),
+      map((response) => {
+        const songs = response.data.songs || [];
+        return songs.map((track) => transformToTrack(track));
+      })
+    )
   }
 }

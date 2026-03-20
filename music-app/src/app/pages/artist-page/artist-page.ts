@@ -12,6 +12,7 @@ import { HeaderDescriptionData } from '../../models/app-interface';
 import { ListenButtonComponentComponent } from "../../shared/ui/listen-button-component/listen-button-component.component";
 import { EntityHeaderComponentSkeletonComponent } from "../../shared/ui/skeletons/entity-header-component-skeleton/entity-header-component-skeleton.component";
 import { TrackRowSkeletonComponent } from "../../shared/ui/skeletons/track-row-skeleton/track-row-skeleton.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-artist-page',
@@ -24,7 +25,8 @@ import { TrackRowSkeletonComponent } from "../../shared/ui/skeletons/track-row-s
     EntityHeaderComponentComponent,
     ListenButtonComponentComponent,
     EntityHeaderComponentSkeletonComponent,
-    TrackRowSkeletonComponent
+    TrackRowSkeletonComponent,
+    RouterLink,
 ],
   templateUrl: './artist-page.html',
   styleUrl: './artist-page.css',
@@ -35,8 +37,8 @@ export class ArtistPage {
   artistService = inject(MusicDataService);
 
   artistProfile = rxResource({
-    request: () => this.artistId(),
-    loader: ({ request: id }) => this.artistService.getArtistById(id),
+    params: () => this.artistId(),
+    stream: ({ params: id }) => this.artistService.getArtistById(id, 5),
   });
 
   headerDiscriptionInfo = computed(() => {

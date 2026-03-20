@@ -49,8 +49,8 @@ export class PlaylistPageComponent {
   }
 
   playlistData = rxResource({
-    request: () => this.playlistId(),
-    loader: ({ request: id }) => this.playlistService.getById(id),
+    params: () => this.playlistId(),
+    stream: ({ params: id }) => this.playlistService.getById(id),
   });
 
   form = this.formBuilder.group({

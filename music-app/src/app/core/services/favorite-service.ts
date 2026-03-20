@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Track } from '../../models/app-interface';
 import { DbService } from './data-services/db-service';
-import { rxResource, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { AuthService } from './auth-service';
-import { of, switchMap } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +13,9 @@ export class FavoriteService {
   localStorageKey = 'likedSongs';
   auth = inject(AuthService);
 
-  likedTracks = rxResource({
-    request: () => this.auth.user()?.uid,
-    loader: ({ request: id }) => {
+  likedTracks = rxResource<Track[], string | undefined>({
+    params: () => this.auth.user()?.uid,
+    stream: ({ params: id }) => {
       if (id) {
         return this.dbService.getFavoriteSongs(id);
       } else {

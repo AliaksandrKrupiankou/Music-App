@@ -1,0 +1,50 @@
+<div class="close-btn">
+  <button (click)="close()">close</button>
+</div>
+
+<div class="container">
+  <div class="navigation">
+    <img [src]="track()?.coverUrl" alt="" />
+    <div class="nav-btns">
+
+      <button class="nav-btn" (click)="audioService.playPastTrack()">
+        <lucide-icon name="skip-back"></lucide-icon>
+      </button>
+
+      <button class="play-btn" (click)="audioService.toggle(track()!)">
+        @if (isPlaying()) {
+          <lucide-icon name="pause" [size]="30"></lucide-icon>
+        } @else {
+          <lucide-icon name="play" [size]="30"></lucide-icon>
+        }
+      </button>
+
+      <button class="nav-btn" (click)="audioService.playNextTrack()">
+        <lucide-icon name="skip-forward"></lucide-icon>
+      </button>
+
+    </div>
+  </div>
+
+  <div class="information">
+    <div class="track-name">
+      <p>{{ track()?.title }}</p>
+    </div>
+    <div class="artist-name">
+      <p>{{ track()?.artist }}</p>
+    </div>
+  </div>
+  <div class="progress-bar">
+    <input
+      type="range"
+      #rangeInput
+      min="0"
+      step="any"
+      [max]="track()?.duration || 0"
+      [value]="displayTime()"
+      (input)="onInput($event)"
+      (change)="seekTrack(rangeInput.value)"
+      [style.background-size]="progress() + '% 100%'"
+    />
+  </div>
+</div>

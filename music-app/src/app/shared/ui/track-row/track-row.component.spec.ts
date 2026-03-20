@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TrackRowComponent } from './track-row.component';
 import { NO_ERRORS_SCHEMA, signal, WritableSignal } from '@angular/core';
 import { Track } from '../../../models/app-interface';
-import { AudioService } from '../../../core/services/audio-service';
+import { AudioService } from '../../../core/services/AudioLogic/audio-service';
 import { By } from '@angular/platform-browser';
 import { FavoriteService } from '../../../core/services/favorite-service';
 import { provideRouter } from '@angular/router';

@@ -4,7 +4,6 @@
   background-color: var(--player-bar-bg);
   margin: var(--player-bar-margin);
   border-radius: var(--player-border-radius);
-  
 }
 
 .container {
@@ -14,7 +13,7 @@
   border-radius: var(--player-border-radius);
   transition: background 0.5s ease;
   backdrop-filter: blur(40px);
-   background: color-mix(in srgb, var(--dynamic-color), #0000004f 50%);
+  background: color-mix(in srgb, var(--dynamic-color), #0000004f 50%);
 }
 
 .during input {
@@ -37,6 +36,14 @@
   border-radius: 50%;
   background: var(--main-yellow-color);
 }
+.during input::-moz-range-thumb {
+  border: none;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  background: var(--main-yellow-color);
+  cursor: pointer;
+}
 
 .main-container {
   position: relative;
@@ -58,6 +65,21 @@
   width: var(--player-bar-cover-size);
   height: var(--player-bar-cover-size);
   border-radius: var(--player-bar-cover-br);
+  pointer-events: none;
+}
+
+.cover-btn{
+  all: unset;     
+  position: relative;
+  z-index: 10001;
+  cursor: pointer;  
+  display: block;   
+  width: 100%;      
+  height: 100%;
+  border-radius: inherit; 
+  overflow: hidden;
+  width: var(--player-bar-cover-size);
+  height: var(--player-bar-cover-size);
 }
 
 .track-info {
@@ -165,9 +187,28 @@
 .volume-slider {
   all: unset;
   appearance: slider-vertical;
+  -webkit-appearance: slider-vertical;
+
+  writing-mode: bt-lr;
   width: 20px;
   height: 150px;
   padding: 0 5px;
+  writing-mode: vertical-lr;
+  direction: rtl;
+}
+
+.volume-slider::-moz-range-track {
+  background: #505959;
+  border-radius: 10px;
+  width: 6px;
+}
+
+.volume-slider::-moz-range-thumb {
+  border: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: var(--main-yellow-color);
 }
 
 .like button {
@@ -182,4 +223,16 @@
 
 .like lucide-icon.liked ::ng-deep svg {
   fill: currentColor;
+}
+
+@media (max-width: 800px) {
+  .volume,
+  .skip-track {
+    display: none;
+  }
+
+  .navigation {
+    justify-content: end;
+    padding-right: 10%;
+  }
 }
