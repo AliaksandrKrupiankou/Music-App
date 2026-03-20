@@ -6,7 +6,10 @@
   justify-content: center;
   flex-direction: column;
   transform: translateY(100%);
-  transition: transform 0.4s ease-out;
+  transition:
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    background-color 0.3s linear;
+  will-change: transform;
   z-index: 1000;
   pointer-events: none;
   background-color: var(--dynamic-color);
@@ -76,7 +79,6 @@
 
       lucide-icon ::ng-deep svg {
         fill: rgb(62, 62, 62);
-        
       }
     }
   }
@@ -91,6 +93,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 }
 
 :host.open {

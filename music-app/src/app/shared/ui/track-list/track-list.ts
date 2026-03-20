@@ -29,7 +29,6 @@ export class TrackList {
 
   playTrack(track: Track) {
     this.player.currentPlaylist.set(this.tracks());
-    this.player.currentIndex.set(this.tracks().indexOf(track));
     this.player.toggle(track);
   }
 }

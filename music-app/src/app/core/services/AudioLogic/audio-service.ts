@@ -57,7 +57,6 @@ export class AudioService {
     effect(() => {
       const track = this.currentTrack();
       if (track) {
-        this.engine.setTrack(track.audioUrl);
         this.localStorageService.set('lastTrack', this.currentTrack());
       }
     });
@@ -82,6 +81,7 @@ export class AudioService {
 
   playTrack(track: Track) {
     this.currentTrack.set(track);
+    this.engine.setTrack(this.currentTrack()?.audioUrl!)
     this.engine
       .play()
       .then(() => {
@@ -121,6 +121,7 @@ export class AudioService {
 
   playPastTrack() {
     const cIndx = this.currentIndex();
+    console.log(cIndx)
     if (cIndx === 0 || cIndx === -1) {
       this.seekTo(0);
     } else {
