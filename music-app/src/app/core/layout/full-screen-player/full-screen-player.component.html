@@ -5,6 +5,25 @@
 <div class="container">
   <div class="navigation">
     <img [src]="track()?.coverUrl" alt="" />
+    <div class="nav-btns">
+
+      <button class="nav-btn" (click)="audioService.playPastTrack()">
+        <lucide-icon name="skip-back"></lucide-icon>
+      </button>
+
+      <button class="play-btn" (click)="audioService.toggle(track()!)">
+        @if (isPlaying()) {
+          <lucide-icon name="pause" [size]="30"></lucide-icon>
+        } @else {
+          <lucide-icon name="play" [size]="30"></lucide-icon>
+        }
+      </button>
+
+      <button class="nav-btn" (click)="audioService.playNextTrack()">
+        <lucide-icon name="skip-forward" color="white"></lucide-icon>
+      </button>
+
+    </div>
   </div>
 
   <div class="information">

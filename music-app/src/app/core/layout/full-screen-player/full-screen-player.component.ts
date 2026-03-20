@@ -1,9 +1,10 @@
 import { Component, computed, HostBinding, inject } from '@angular/core';
 import { AudioService } from '../../services/AudioLogic/audio-service';
 import { ProgressBarService } from '../../services/progress-bar.service';
+import { LucideAngularModule } from 'lucide-angular';
 @Component({
   selector: 'app-full-screen-player',
-  imports: [],
+  imports: [LucideAngularModule],
   host: {
     '[class.open]': 'audioService.isFullScreen()',
     '[style.--dynamic-color]': 'bgColor.value()',
@@ -18,6 +19,7 @@ export class FullScreenPlayerComponent {
   track = this.audioService.currentTrack;
   bgColor = this.audioService.bgColor;
   displayTime = this.progressService.displayTime;
+  isPlaying = this.audioService.isPlaying;
 
   close(){
     this.audioService.toggleFullScreen()
