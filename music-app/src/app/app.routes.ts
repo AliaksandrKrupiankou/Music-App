@@ -1,15 +1,7 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout-component';
-import { CollectionPage } from './pages/collection-page/collection-page';
-import { SearchPage } from './pages/search-page/search-page';
-import { MainPage } from './pages/main-page/main-page';
-import { ArtistPage } from './pages/artist-page/artist-page';
-import { AlbumPage } from './pages/album-page/album-page';
-import { LoginPage } from './pages/login-page/login-page';
 import { authGuard } from './guards/auth.guard';
 import { loginGuard } from './guards/login.guard';
-import { PlaylistPageComponent } from './pages/playlist-page/playlist-page.component';
-import { ArtistTracksComponent } from './pages/artist-tracks/artist-tracks.component';
 
 export const routes: Routes = [
   {
@@ -19,37 +11,44 @@ export const routes: Routes = [
     children: [
       {
         path: 'collection',
-        component: CollectionPage,
+        loadComponent: () =>
+          import('./pages/collection-page/collection-page').then((m) => m.CollectionPage),
       },
       {
         path: '',
-        component: SearchPage,
+        loadComponent: () => import('./pages/search-page/search-page').then((m) => m.SearchPage),
       },
       {
         path: 'main',
-        component: MainPage,
+        loadComponent: () => import('./pages/main-page/main-page').then((m) => m.MainPage),
       },
       {
         path: 'artist/:artistId',
-        component: ArtistPage,
+        loadComponent: () => import('./pages/artist-page/artist-page').then((m) => m.ArtistPage),
       },
       {
         path: 'artist/:artistId/tracks',
-        component: ArtistTracksComponent,
+        loadComponent: () =>
+          import('./pages/artist-tracks/artist-tracks.component').then(
+            (m) => m.ArtistTracksComponent,
+          ),
       },
       {
         path: 'albums/:albumId',
-        component: AlbumPage,
+        loadComponent: () => import('./pages/album-page/album-page').then((m) => m.AlbumPage),
       },
       {
         path: 'playlist/:playlistId',
-        component:  PlaylistPageComponent
+        loadComponent: () =>
+          import('./pages/playlist-page/playlist-page.component').then(
+            (m) => m.PlaylistPageComponent,
+          ),
       },
     ],
   },
   {
     path: 'login',
-    component: LoginPage,
+    loadComponent: () => import('./pages/login-page/login-page').then((m) => m.LoginPage),
     canActivate: [loginGuard],
   },
 ];

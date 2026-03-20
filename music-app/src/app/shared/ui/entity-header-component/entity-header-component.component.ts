@@ -6,12 +6,12 @@ import { HeaderDescriptionData } from '../../../models/app-interface';
 import { TwitterHoverDirective } from '../../derectives/twitter-hover.directive';
 import { ImageColorServiceService } from '../../../core/services/image-color-service.service';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { Location } from '@angular/common';
+import { Location, NgOptimizedImage } from '@angular/common';
 import { NavigationButtonsComponentComponent } from "../navigation-buttons-component/navigation-buttons-component.component";
 
 @Component({
   selector: 'app-entity-header-component',
-  imports: [LucideAngularModule, RouterLink, TranslateModule, TwitterHoverDirective, NavigationButtonsComponentComponent],
+  imports: [LucideAngularModule, RouterLink, TranslateModule, TwitterHoverDirective, NavigationButtonsComponentComponent, NgOptimizedImage],
   templateUrl: './entity-header-component.component.html',
   styleUrl: './entity-header-component.component.css',
 })

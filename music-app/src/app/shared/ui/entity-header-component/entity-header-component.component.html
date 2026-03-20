@@ -6,10 +6,14 @@
   <app-navigation-buttons-component></app-navigation-buttons-component>
 
   <div class="content-wrapper">
-
-    
     <div class="image-box">
-      <img [src]="image()" [class]="imageForm()" alt="Cover Art" class="cover-img" />
+      <img
+        [src]="image()!"
+        [class]="imageForm()"
+
+        alt="Cover Art"
+        class="cover-img"
+      />
     </div>
 
     <div class="info-stack">
@@ -44,7 +48,6 @@
             </div>
           }
         }
-        
       </div>
 
       <div class="actions-row">

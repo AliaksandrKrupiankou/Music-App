@@ -1,8 +1,18 @@
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection, isDevMode, provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  isDevMode,
+  provideZonelessChangeDetection,
+} from '@angular/core';
+import {
+  PreloadAllModules,
+  provideRouter,
+  withComponentInputBinding,
+  withPreloading,
+} from '@angular/router';
 import { routes } from './app.routes';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -25,9 +35,9 @@ export const appConfig: ApplicationConfig = {
   providers: [
     // provideZoneChangeDetection({ eventCoalescing: true }),
     provideZonelessChangeDetection(),
-    provideRouter(routes, withComponentInputBinding()),
+    provideRouter(routes, withComponentInputBinding(), withPreloading(PreloadAllModules)),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
 
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideStorage(() => getStorage()),
@@ -43,12 +53,15 @@ export const appConfig: ApplicationConfig = {
       },
     }),
 
-    importProvidersFrom(LucideAngularModule.pick(icons)), provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          }), provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          }), provideClientHydration(withEventReplay()),
+    importProvidersFrom(LucideAngularModule.pick(icons)),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+    provideClientHydration(withEventReplay()),
   ],
 };
