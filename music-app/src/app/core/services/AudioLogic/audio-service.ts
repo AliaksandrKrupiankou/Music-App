@@ -1,10 +1,13 @@
-import { effect, inject, Injectable, linkedSignal, NgZone, signal } from '@angular/core';
+import { effect, inject, Injectable, linkedSignal, NgZone, PLATFORM_ID, signal } from '@angular/core';
 import { PlayingStrategy, Track } from '../../../models/app-interface';
 import { LocalStorageService } from '../data-services/local-storage-service';
 import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ImageColorServiceService } from '../image-color-service.service';
 import { AudioEngineService } from './audio-engine.service';
 import { ProgressBarService } from '../progress-bar.service';
+import { platformBrowser } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +17,7 @@ export class AudioService {
   progressService = inject(ProgressBarService);
 
   colorService = inject(ImageColorServiceService);
+  private platformId = inject(PLATFORM_ID);
   localStorageService = inject(LocalStorageService);
 
   currentTrack = signal<Track | null>(null);
@@ -37,7 +41,10 @@ export class AudioService {
   bgColor = rxResource<string, string | undefined>({
     params: () => this.currentTrack()?.coverUrl,
     stream: ({ params: url }) => {
-      return this.colorService.getDominantColor(url) ?? '#323838';
+      if(!isPlatformBrowser(this.platformId) || !url){
+        return of('#323838');
+      }
+      return this.colorService.getDominantColor(url);
     },
   });
 
