@@ -2,6 +2,7 @@ import { Component, computed, HostBinding, inject } from '@angular/core';
 import { AudioService } from '../../services/AudioLogic/audio-service';
 import { ProgressBarService } from '../../services/progress-bar.service';
 import { LucideAngularModule } from 'lucide-angular';
+import { PlayerUiService } from '../../Player/player-ui.service';
 @Component({
   selector: 'app-full-screen-player',
   imports: [LucideAngularModule],
@@ -15,14 +16,15 @@ import { LucideAngularModule } from 'lucide-angular';
 export class FullScreenPlayerComponent {
   audioService = inject(AudioService);
   progressService = inject(ProgressBarService);
+  uiService = inject(PlayerUiService);
 
   track = this.audioService.currentTrack;
-  bgColor = this.audioService.bgColor;
+  bgColor = this.uiService.bgColor;
   displayTime = this.progressService.displayTime;
   isPlaying = this.audioService.isPlaying;
 
   close(){
-    this.audioService.toggleFullScreen()
+    this.uiService.toggleFullScreen()
   }
 
   onInput(event: Event) {

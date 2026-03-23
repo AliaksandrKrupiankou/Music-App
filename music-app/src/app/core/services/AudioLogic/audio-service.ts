@@ -1,11 +1,10 @@
-import { effect, inject, Injectable, linkedSignal, NgZone, PLATFORM_ID, signal } from '@angular/core';
-import { PlayingStrategy, Track } from '../../../models/app-interface';
+import { effect, inject, Injectable, linkedSignal, PLATFORM_ID, signal } from '@angular/core';
+import { Track } from '../../../models/app-interface';
 import { LocalStorageService } from '../data-services/local-storage-service';
-import { rxResource, takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ImageColorServiceService } from '../image-color-service.service';
 import { AudioEngineService } from './audio-engine.service';
 import { ProgressBarService } from '../progress-bar.service';
-import { platformBrowser } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
 import { of } from 'rxjs';
 
@@ -15,15 +14,12 @@ import { of } from 'rxjs';
 export class AudioService {
   engine = inject(AudioEngineService);
   progressService = inject(ProgressBarService);
-
-  colorService = inject(ImageColorServiceService);
-  private platformId = inject(PLATFORM_ID);
   localStorageService = inject(LocalStorageService);
+  private platformId = inject(PLATFORM_ID);
 
   currentTrack = signal<Track | null>(null);
   currentVolume = signal<number>(0.5);
   isFullScreen = signal<boolean>(false);
-
   isPlaying = signal<boolean>(false);
   currentPlaylist = signal<Track[]>([]);
 
@@ -38,19 +34,9 @@ export class AudioService {
     computation: () => 0,
   });
 
-  bgColor = rxResource<string, string | undefined>({
-    params: () => this.currentTrack()?.coverUrl,
-    stream: ({ params: url }) => {
-      if(!isPlatformBrowser(this.platformId) || !url){
-        return of('#323838');
-      }
-      return this.colorService.getDominantColor(url);
-    },
-  });
 
-  toggleFullScreen() {
-    this.isFullScreen.set(!this.isFullScreen());
-  }
+
+
 
   constructor() {
     const prvUsngTrack = this.localStorageService.get('lastTrack') as Track;
@@ -88,7 +74,7 @@ export class AudioService {
 
   playTrack(track: Track) {
     this.currentTrack.set(track);
-    this.engine.setTrack(this.currentTrack()?.audioUrl!)
+    this.engine.setTrack(this.currentTrack()?.audioUrl!);
     this.engine
       .play()
       .then(() => {
@@ -128,7 +114,7 @@ export class AudioService {
 
   playPastTrack() {
     const cIndx = this.currentIndex();
-    console.log(cIndx)
+    console.log(cIndx);
     if (cIndx === 0 || cIndx === -1) {
       this.seekTo(0);
     } else {
