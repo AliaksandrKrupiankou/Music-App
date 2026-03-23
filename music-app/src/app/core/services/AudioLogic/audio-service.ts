@@ -1,8 +1,8 @@
-import { effect, inject, Injectable, linkedSignal, signal } from '@angular/core';
+import { effect, inject, Injectable } from '@angular/core';
 import { Track } from '../../../models/app-interface';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AudioEngineService } from './audio-engine.service';
-import { ProgressBarService } from '../../Player/progress-bar.service';
+import { ProgressBarService } from '../progress-bar.service';
 import { QueueStore } from '../../store/queue.store';
 import { AudioStore } from '../../store/audio.store';
 //////////////////// PROGRESS SERVICE RESET В ЭФФЕКТЕ

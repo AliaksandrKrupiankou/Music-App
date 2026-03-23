@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { AudioEngineService } from '../services/AudioLogic/audio-engine.service';
+import { AudioEngineService } from './AudioLogic/audio-engine.service';
 
 @Injectable({
   providedIn: 'root',
