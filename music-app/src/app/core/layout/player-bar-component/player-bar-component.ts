@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { ProgressBarService } from '../../Player/progress-bar.service';
 import { PlayerUiService } from '../../Player/player-ui.service';
+import { AudioStore } from '../../store/audio.store';
 
 @Component({
   selector: 'app-player-bar-component',
@@ -18,6 +19,8 @@ export class PlayerBarComponent {
   progressService = inject(ProgressBarService);
   like = inject(FavoriteService);
   readonly uiService = inject(PlayerUiService);
+
+  audioStore = inject(AudioStore);
 
   displayTime = this.progressService.displayTime;
 
@@ -66,10 +69,10 @@ export class PlayerBarComponent {
   }
 
   toggleVolume() {
-    this.service.toggleVolume();
+    this.audioStore.toogleMute();
   }
 
   changeVolume(volume: string) {
-    this.service.changeVolume(volume);
+    this.audioStore.setVolume(Number(volume));
   }
 }

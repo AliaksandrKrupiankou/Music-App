@@ -1,4 +1,4 @@
-import { Component, computed, HostBinding, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, HostBinding, inject } from '@angular/core';
 import { AudioService } from '../../services/AudioLogic/audio-service';
 import { ProgressBarService } from '../../Player/progress-bar.service';
 import { LucideAngularModule } from 'lucide-angular';
@@ -12,6 +12,7 @@ import { PlayerUiService } from '../../Player/player-ui.service';
   },
   templateUrl: './full-screen-player.component.html',
   styleUrl: './full-screen-player.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FullScreenPlayerComponent {
   audioService = inject(AudioService);

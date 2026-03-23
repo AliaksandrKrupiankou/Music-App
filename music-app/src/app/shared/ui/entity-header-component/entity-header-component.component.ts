@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -14,6 +14,8 @@ import { NavigationButtonsComponentComponent } from "../navigation-buttons-compo
   imports: [LucideAngularModule, RouterLink, TranslateModule, TwitterHoverDirective, NavigationButtonsComponentComponent, NgOptimizedImage],
   templateUrl: './entity-header-component.component.html',
   styleUrl: './entity-header-component.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class EntityHeaderComponentComponent {
   typeOfPage = input.required<'Playlist' | 'Album' | 'Artist'>();
