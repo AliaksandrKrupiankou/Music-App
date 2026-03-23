@@ -3,8 +3,8 @@ import { AudioService } from '../../services/AudioLogic/audio-service';
 import { FavoriteService } from '../../services/favorite-service';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
-import { ImageColorServiceService } from '../../services/image-color-service.service';
-import { ProgressBarService } from '../../services/progress-bar.service';
+import { ProgressBarService } from '../../Player/progress-bar.service';
+import { PlayerUiService } from '../../Player/player-ui.service';
 
 @Component({
   selector: 'app-player-bar-component',
@@ -17,15 +17,15 @@ export class PlayerBarComponent {
   service = inject(AudioService);
   progressService = inject(ProgressBarService);
   like = inject(FavoriteService);
-  colorService = inject(ImageColorServiceService);
+  readonly uiService = inject(PlayerUiService);
 
   displayTime = this.progressService.displayTime;
 
   currentTrack = this.service.currentTrack;
-  currentTime = this.service.currentTime;
+  currentTime = this.progressService.currentTime;
   currentVolume = this.service.currentVolume;
   isPlaying = this.service.isPlaying;
-  bgColor = this.service.bgColor;
+  bgColor = this.uiService.bgColor;
 
   progress = computed(() => {
     const dur = this.service.currentTrack()?.duration || 0;
@@ -37,14 +37,12 @@ export class PlayerBarComponent {
     this.progressService.onInput(val);
   }
 
-  seekTrack(val: string) {
-    const time = Number(val);
-    this.service.seekTo(time);
-    this.progressService.onChange(time);
+  seekTrack(val: string){
+    this.progressService.onChange(Number(val));
   }
 
   openFullScreen() {
-    this.service.toggleFullScreen();
+    this.uiService.toggleFullScreen();
   }
 
   playNextTrack() {

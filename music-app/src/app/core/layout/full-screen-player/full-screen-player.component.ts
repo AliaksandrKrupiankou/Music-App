@@ -1,13 +1,13 @@
 import { Component, computed, HostBinding, inject } from '@angular/core';
 import { AudioService } from '../../services/AudioLogic/audio-service';
-import { ProgressBarService } from '../../services/progress-bar.service';
+import { ProgressBarService } from '../../Player/progress-bar.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { PlayerUiService } from '../../Player/player-ui.service';
 @Component({
   selector: 'app-full-screen-player',
   imports: [LucideAngularModule],
   host: {
-    '[class.open]': 'audioService.isFullScreen()',
+    '[class.open]': 'uiService.isFullScreen()',
     '[style.--dynamic-color]': 'bgColor.value()',
   },
   templateUrl: './full-screen-player.component.html',
@@ -23,8 +23,8 @@ export class FullScreenPlayerComponent {
   displayTime = this.progressService.displayTime;
   isPlaying = this.audioService.isPlaying;
 
-  close(){
-    this.uiService.toggleFullScreen()
+  close() {
+    this.uiService.toggleFullScreen();
   }
 
   onInput(event: Event) {
@@ -34,7 +34,6 @@ export class FullScreenPlayerComponent {
 
   seekTrack(val: string) {
     const time = Number(val);
-    this.audioService.seekTo(time);
     this.progressService.onChange(time);
   }
 

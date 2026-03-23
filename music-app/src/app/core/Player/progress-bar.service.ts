@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { AudioEngineService } from './AudioLogic/audio-engine.service';
+import { AudioEngineService } from '../services/AudioLogic/audio-engine.service';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +35,11 @@ export class ProgressBarService {
     if (this.frameId) cancelAnimationFrame(this.frameId);
   }
 
+  reset() {
+    this.currentTime.set(0);
+    this.manualTime.set(0);
+  }
+
   onInput(value: number) {
     this.isDragging.set(true);
     this.manualTime.set(value);
@@ -42,6 +47,7 @@ export class ProgressBarService {
 
   onChange(val: number) {
     this.isDragging.set(false);
+    this.engine.seek(val);
     return val;
   }
 }

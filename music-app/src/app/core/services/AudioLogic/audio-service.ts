@@ -1,12 +1,9 @@
-import { effect, inject, Injectable, linkedSignal, PLATFORM_ID, signal } from '@angular/core';
+import { effect, inject, Injectable, linkedSignal, signal } from '@angular/core';
 import { Track } from '../../../models/app-interface';
 import { LocalStorageService } from '../data-services/local-storage-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ImageColorServiceService } from '../image-color-service.service';
 import { AudioEngineService } from './audio-engine.service';
-import { ProgressBarService } from '../progress-bar.service';
-import { isPlatformBrowser } from '@angular/common';
-import { of } from 'rxjs';
+import { ProgressBarService } from '../../Player/progress-bar.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +12,6 @@ export class AudioService {
   engine = inject(AudioEngineService);
   progressService = inject(ProgressBarService);
   localStorageService = inject(LocalStorageService);
-  private platformId = inject(PLATFORM_ID);
 
   currentTrack = signal<Track | null>(null);
   currentVolume = signal<number>(0.5);
@@ -29,18 +25,14 @@ export class AudioService {
       track ? playlist.findIndex((itm) => itm.id === track.id) : -1,
   });
 
-  currentTime = linkedSignal({
-    source: () => this.currentTrack()?.id,
-    computation: () => 0,
-  });
-
-
-
-
-
   constructor() {
     const prvUsngTrack = this.localStorageService.get('lastTrack') as Track;
     const prvUsngVol = this.localStorageService.get('volume');
+
+    effect(() => {
+      this.currentTrack();
+      this.progressService.reset();
+    });
 
     if (prvUsngTrack && prvUsngVol) {
       this.currentTrack.set(prvUsngTrack);
@@ -65,10 +57,6 @@ export class AudioService {
 
     this.engine.onEnded.pipe(takeUntilDestroyed()).subscribe(() => {
       this.playNextTrack();
-    });
-
-    this.engine.onTimeUpdate.pipe(takeUntilDestroyed()).subscribe(() => {
-      this.currentTime.set(this.engine.currentTime);
     });
   }
 
@@ -106,17 +94,11 @@ export class AudioService {
     }
   }
 
-  seekTo(newTime: number) {
-    this.currentTime.set(newTime);
-    this.engine.seek(newTime);
-    this.progressService.currentTime.set(newTime);
-  }
-
   playPastTrack() {
     const cIndx = this.currentIndex();
     console.log(cIndx);
     if (cIndx === 0 || cIndx === -1) {
-      this.seekTo(0);
+      this.progressService.onChange(0);
     } else {
       this.playTrack(this.currentPlaylist()[cIndx - 1]);
     }
