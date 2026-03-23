@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { FastAverageColor } from 'fast-average-color';
 import { from, map, Observable } from 'rxjs';
 
@@ -8,6 +8,7 @@ import { from, map, Observable } from 'rxjs';
 export class ImageColorServiceService {
 
   private fac = new FastAverageColor();
+  
 
    getDominantColor(imageUrl: string): Observable<string> {
     return from(

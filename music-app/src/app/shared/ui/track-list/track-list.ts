@@ -4,6 +4,7 @@ import { AudioService } from '../../../core/services/AudioLogic/audio-service';
 import { TrackRowComponent } from '../track-row/track-row.component';
 import { FavoriteService } from '../../../core/services/favorite-service';
 import { NgTemplateOutlet } from '@angular/common';
+import { QueueStore } from '../../../core/store/queue.store';
 
 @Component({
   selector: 'app-track-list',
@@ -16,6 +17,7 @@ export class TrackList {
   tracks = input.required<Track[]>();
   player = inject(AudioService);
   like = inject(FavoriteService);
+  queueStore = inject(QueueStore);
 
   actionTemplate = input<TemplateRef<any> | null>(null);
 
@@ -28,7 +30,7 @@ export class TrackList {
   }
 
   playTrack(track: Track) {
-    this.player.currentPlaylist.set(this.tracks());
+    this.queueStore.setQueue(this.tracks())
     this.player.toggle(track);
   }
 }
