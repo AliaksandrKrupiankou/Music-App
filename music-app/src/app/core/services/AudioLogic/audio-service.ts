@@ -4,6 +4,7 @@ import { LocalStorageService } from '../data-services/local-storage-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AudioEngineService } from './audio-engine.service';
 import { ProgressBarService } from '../../Player/progress-bar.service';
+import { QueueLogicService } from '../../Player/queue-logic.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,18 +13,11 @@ export class AudioService {
   engine = inject(AudioEngineService);
   progressService = inject(ProgressBarService);
   localStorageService = inject(LocalStorageService);
+  playlistService = inject(QueueLogicService);
 
   currentTrack = signal<Track | null>(null);
   currentVolume = signal<number>(0.5);
-  isFullScreen = signal<boolean>(false);
   isPlaying = signal<boolean>(false);
-  currentPlaylist = signal<Track[]>([]);
-
-  currentIndex = linkedSignal({
-    source: () => ({ track: this.currentTrack(), playlist: this.currentPlaylist() }),
-    computation: ({ track, playlist }) =>
-      track ? playlist.findIndex((itm) => itm.id === track.id) : -1,
-  });
 
   constructor() {
     const prvUsngTrack = this.localStorageService.get('lastTrack') as Track;
@@ -31,29 +25,13 @@ export class AudioService {
 
     effect(() => {
       this.currentTrack();
-      this.progressService.reset();
+      this.progressService.reset(); ////////////////////
     });
 
     if (prvUsngTrack && prvUsngVol) {
       this.currentTrack.set(prvUsngTrack);
       this.currentVolume.set(prvUsngVol);
     }
-
-    effect(() => {
-      const track = this.currentTrack();
-      if (track) {
-        this.localStorageService.set('lastTrack', this.currentTrack());
-      }
-    });
-
-    effect(() => {
-      const volume = this.currentVolume();
-
-      if (volume !== undefined) {
-        this.engine.setVolume(volume);
-        this.localStorageService.set('volume', this.currentVolume());
-      }
-    });
 
     this.engine.onEnded.pipe(takeUntilDestroyed()).subscribe(() => {
       this.playNextTrack();
@@ -62,7 +40,9 @@ export class AudioService {
 
   playTrack(track: Track) {
     this.currentTrack.set(track);
-    this.engine.setTrack(this.currentTrack()?.audioUrl!);
+    this.playlistService.currentTrackId.set(track.id);
+    this.localStorageService.set('lastTrack', track);
+    this.engine.setTrack(track.audioUrl);
     this.engine
       .play()
       .then(() => {
@@ -76,31 +56,30 @@ export class AudioService {
   }
 
   playFirstTrack(playlist: Track[]) {
-    this.currentPlaylist.set(playlist);
+    this.playlistService.updateQueue(playlist);
     this.playTrack(playlist[0]);
   }
 
   changeVolume(value: string) {
     this.currentVolume.set(Number(value));
+    this.localStorageService.set('volume', Number(value));
   }
 
   playNextTrack() {
-    const cIndx = this.currentIndex();
-    console.log(cIndx);
-    if (cIndx !== null && cIndx >= 0 && cIndx < this.currentPlaylist().length - 1) {
-      this.playTrack(this.currentPlaylist()[cIndx + 1]);
+    const next = this.playlistService.getNextTrack();
+    if (next) {
+      this.playTrack(next);
     } else {
       this.stop(); // add logic of recomendation tracks
     }
   }
 
   playPastTrack() {
-    const cIndx = this.currentIndex();
-    console.log(cIndx);
-    if (cIndx === 0 || cIndx === -1) {
-      this.progressService.onChange(0);
+    const prev = this.playlistService.getPreviousTrack();
+    if (prev) {
+      this.playTrack(prev);
     } else {
-      this.playTrack(this.currentPlaylist()[cIndx - 1]);
+      this.progressService.onChange(0);
     }
   }
 
@@ -111,7 +90,7 @@ export class AudioService {
   }
 
   toggle(track: Track) {
-    if (this.isPlaying() === true && track.id === this.currentTrack()?.id) {
+    if (this.isPlaying() && track.id === this.currentTrack()?.id) {
       this.stop();
     } else {
       this.playTrack(track);
@@ -120,6 +99,7 @@ export class AudioService {
 
   toggleVolume() {
     if (this.currentVolume() !== 0) {
+      this.localStorageService.set('volume', this.currentVolume());
       this.currentVolume.set(0);
     } else {
       this.currentVolume.set(this.localStorageService.get('volume'));
