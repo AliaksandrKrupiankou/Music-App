@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, input, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, input, signal, viewChild } from '@angular/core';
 import { MusicDataService } from '../../core/services/data-services/music-data.service';
 import { NavigationButtonsComponentComponent } from '../../shared/ui/navigation-buttons-component/navigation-buttons-component.component';
 import { TrackList } from '../../shared/ui/track-list/track-list';
@@ -9,6 +9,7 @@ import { Track } from '../../models/app-interface';
   imports: [NavigationButtonsComponentComponent, TrackList],
   templateUrl: './artist-tracks.component.html',
   styleUrl: './artist-tracks.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArtistTracksComponent {
   artistId = input.required<string>();
@@ -37,7 +38,7 @@ export class ArtistTracksComponent {
 
   setupIntersectionObserver() {
     const anchor = this.anchor()?.nativeElement;
-     this.observer = new IntersectionObserver(
+    this.observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           this.loadMore();
@@ -48,8 +49,8 @@ export class ArtistTracksComponent {
     this.observer.observe(anchor);
   }
 
-  ngOnDestroy(){
-    if(this.observer){
+  ngOnDestroy() {
+    if (this.observer) {
       this.observer.disconnect();
     }
   }

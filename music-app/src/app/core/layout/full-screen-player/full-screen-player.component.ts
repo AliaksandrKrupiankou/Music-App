@@ -1,28 +1,31 @@
-import { Component, computed, HostBinding, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, HostBinding, inject } from '@angular/core';
 import { AudioService } from '../../services/AudioLogic/audio-service';
 import { ProgressBarService } from '../../services/progress-bar.service';
 import { LucideAngularModule } from 'lucide-angular';
+import { PlayerUiStore } from '../../store/playerUi.store';
 @Component({
   selector: 'app-full-screen-player',
   imports: [LucideAngularModule],
   host: {
-    '[class.open]': 'audioService.isFullScreen()',
-    '[style.--dynamic-color]': 'bgColor.value()',
+    '[class.open]': 'uiStore.isFullScreen()',
+    '[style.--dynamic-color]': 'mainColor()',
   },
   templateUrl: './full-screen-player.component.html',
   styleUrl: './full-screen-player.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FullScreenPlayerComponent {
   audioService = inject(AudioService);
   progressService = inject(ProgressBarService);
+  uiStore = inject(PlayerUiStore);
 
   track = this.audioService.currentTrack;
-  bgColor = this.audioService.bgColor;
+  mainColor = this.uiStore.mainColor;
   displayTime = this.progressService.displayTime;
   isPlaying = this.audioService.isPlaying;
 
-  close(){
-    this.audioService.toggleFullScreen()
+  close() {
+    this.uiStore.toggleFullScreen();
   }
 
   onInput(event: Event) {
@@ -32,7 +35,6 @@ export class FullScreenPlayerComponent {
 
   seekTrack(val: string) {
     const time = Number(val);
-    this.audioService.seekTo(time);
     this.progressService.onChange(time);
   }
 

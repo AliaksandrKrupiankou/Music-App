@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { NavigationButtonsComponentComponent } from '../../navigation-buttons-component/navigation-buttons-component.component';
 
 @Component({
@@ -6,6 +6,7 @@ import { NavigationButtonsComponentComponent } from '../../navigation-buttons-co
   imports: [NavigationButtonsComponentComponent],
   templateUrl: './entity-header-component-skeleton.component.html',
   styleUrl: './entity-header-component-skeleton.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EntityHeaderComponentSkeletonComponent {
   imageForm = input.required<'Square' | 'Circle'>();

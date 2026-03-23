@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
 import { APP_CONFIG, SIDEBAR_CONSTS } from '../../utils/constants/app.constants';
 import { LucideAngularModule } from 'lucide-angular';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../services/language.service';
 
 @Component({
