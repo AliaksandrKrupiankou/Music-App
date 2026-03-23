@@ -4,8 +4,8 @@ import { LocalStorageService } from '../data-services/local-storage-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AudioEngineService } from './audio-engine.service';
 import { ProgressBarService } from '../../Player/progress-bar.service';
-import { QueueLogicService } from '../../Player/queue-logic.service';
-
+import { QueueStore } from '../../store/queue.store';
+//////////////////// PROGRESS SERVICE RESET В ЭФФЕКТЕ
 @Injectable({
   providedIn: 'root',
 })
@@ -13,23 +13,22 @@ export class AudioService {
   engine = inject(AudioEngineService);
   progressService = inject(ProgressBarService);
   localStorageService = inject(LocalStorageService);
-  playlistService = inject(QueueLogicService);
 
-  currentTrack = signal<Track | null>(null);
+  queueStore = inject(QueueStore);
+
+  currentTrack = this.queueStore.currentTrack;
   currentVolume = signal<number>(0.5);
   isPlaying = signal<boolean>(false);
 
   constructor() {
-    const prvUsngTrack = this.localStorageService.get('lastTrack') as Track;
     const prvUsngVol = this.localStorageService.get('volume');
 
     effect(() => {
       this.currentTrack();
-      this.progressService.reset(); ////////////////////
+      this.progressService.reset();
     });
 
-    if (prvUsngTrack && prvUsngVol) {
-      this.currentTrack.set(prvUsngTrack);
+    if (prvUsngVol) {
       this.currentVolume.set(prvUsngVol);
     }
 
@@ -39,9 +38,7 @@ export class AudioService {
   }
 
   playTrack(track: Track) {
-    this.currentTrack.set(track);
-    this.playlistService.currentTrackId.set(track.id);
-    this.localStorageService.set('lastTrack', track);
+    this.queueStore.setTrackId(track.id);
     this.engine.setTrack(track.audioUrl);
     this.engine
       .play()
@@ -56,7 +53,7 @@ export class AudioService {
   }
 
   playFirstTrack(playlist: Track[]) {
-    this.playlistService.updateQueue(playlist);
+    this.queueStore.setQueue(playlist);
     this.playTrack(playlist[0]);
   }
 
@@ -66,7 +63,9 @@ export class AudioService {
   }
 
   playNextTrack() {
-    const next = this.playlistService.getNextTrack();
+    
+    const next = this.queueStore.getNextTrack();
+    console.log(next)
     if (next) {
       this.playTrack(next);
     } else {
@@ -75,7 +74,8 @@ export class AudioService {
   }
 
   playPastTrack() {
-    const prev = this.playlistService.getPreviousTrack();
+    const prev = this.queueStore.getPreviousTrack();
+    console.log(prev)
     if (prev) {
       this.playTrack(prev);
     } else {
