@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { Track } from '../../../models/app-interface';
-import { AudioService } from '../../../core/services/AudioLogic/audio-service';
+import { AudioService } from '../../../core/services/audio-logic/audio-service';
 import { FavoriteService } from '../../../core/services/favorite-service';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';

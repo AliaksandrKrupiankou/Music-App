@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, HostBinding, inject } from '@angular/core';
-import { AudioService } from '../../services/AudioLogic/audio-service';
+import { AudioService } from '../../services/audio-logic/audio-service';
 import { ProgressBarService } from '../../services/progress-bar.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { PlayerUiStore } from '../../store/playerUi.store';

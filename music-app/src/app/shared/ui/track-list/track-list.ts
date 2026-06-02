@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, input, TemplateRef } from '@angular/core';
 import { Track } from '../../../models/app-interface';
-import { AudioService } from '../../../core/services/AudioLogic/audio-service';
+import { AudioService } from '../../../core/services/audio-logic/audio-service';
 import { TrackRowComponent } from '../track-row/track-row.component';
 import { FavoriteService } from '../../../core/services/favorite-service';
 import { NgTemplateOutlet } from '@angular/common';
@@ -30,7 +30,7 @@ export class TrackList {
   }
 
   playTrack(track: Track) {
-    this.queueStore.setQueue(this.tracks())
+    this.queueStore.setQueue(this.tracks());
     this.player.toggle(track);
   }
 }
